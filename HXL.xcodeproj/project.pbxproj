@@ -22,6 +22,10 @@
 		4E1C2A20F6DE45608B9C1D90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4428FFB5D7F48E198537D5A /* libPods.a */; };
 		A71203491946954A004CFC3D /* JDDishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A71203481946954A004CFC3D /* JDDishModel.m */; };
 		A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A712034B1946A9EB004CFC3D /* JDMenuController.m */; };
+		A71D28571948043200DE1B3F /* menu_submit_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A71D28561948043200DE1B3F /* menu_submit_bg.png */; };
+		A744AEE7194832E800C092BB /* menu_orderby_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE5194832E800C092BB /* menu_orderby_devider.png */; };
+		A744AEE8194832E800C092BB /* menu_orderby.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE6194832E800C092BB /* menu_orderby.png */; };
+		A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE91948424A00C092BB /* dishtype_item_bg.png */; };
 		D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECA194551240008E7CF /* Default-568h@2x.png */; };
 		D80A7ECD194551240008E7CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECB194551240008E7CF /* Default@2x.png */; };
 		D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECE1945552E0008E7CF /* icon-120@2x.png */; };
@@ -93,7 +97,11 @@
 		A71203481946954A004CFC3D /* JDDishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishModel.m; sourceTree = "<group>"; };
 		A712034A1946A9EB004CFC3D /* JDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuController.h; sourceTree = "<group>"; };
 		A712034B1946A9EB004CFC3D /* JDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuController.m; sourceTree = "<group>"; };
-		B4428FFB5D7F48E198537D5A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A71D28561948043200DE1B3F /* menu_submit_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_submit_bg.png; sourceTree = "<group>"; };
+		A744AEE5194832E800C092BB /* menu_orderby_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby_devider.png; sourceTree = "<group>"; };
+		A744AEE6194832E800C092BB /* menu_orderby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby.png; sourceTree = "<group>"; };
+		A744AEE91948424A00C092BB /* dishtype_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_item_bg.png; sourceTree = "<group>"; };
+        B4428FFB5D7F48E198537D5A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D80A7ECA194551240008E7CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D80A7ECB194551240008E7CF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -302,6 +310,10 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A744AEE91948424A00C092BB /* dishtype_item_bg.png */,
+				A744AEE5194832E800C092BB /* menu_orderby_devider.png */,
+				A744AEE6194832E800C092BB /* menu_orderby.png */,
+				A71D28561948043200DE1B3F /* menu_submit_bg.png */,
 				D82BE4ED1947DECF0051CB09 /* start_btn_bg_1.png */,
 				D82BE4EE1947DECF0051CB09 /* start_btn_bg_1@2x.png */,
 				D82BE4EF1947DECF0051CB09 /* start_btn_bg.png */,
@@ -427,18 +439,22 @@
 				D80A7ED51945559A0008E7CF /* Default.png in Resources */,
 				D82BE4F11947DECF0051CB09 /* start_btn_bg_1.png in Resources */,
 				D80A7EDE19455C330008E7CF /* address_icon@2x.png in Resources */,
+				A744AEE8194832E800C092BB /* menu_orderby.png in Resources */,
 				D80A7EF4194560B30008E7CF /* back_btn_bg@2x.png in Resources */,
 				D80A7EE019455C330008E7CF /* people_bg@2x.png in Resources */,
 				D80A7ED21945552E0008E7CF /* icon.png in Resources */,
 				D80A7EF5194560B30008E7CF /* main_title.png in Resources */,
 				2DBA4504194146FB00F73B66 /* Images.xcassets in Resources */,
+				A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */,
 				D80A7ED719455A820008E7CF /* navigation_bg@2x.png in Resources */,
 				D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */,
 				D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */,
 				D82A86D61945B5DC00C9C249 /* navigation_bg_44@2x.png in Resources */,
+				A744AEE7194832E800C092BB /* menu_orderby_devider.png in Resources */,
 				D80A7EFA194560B30008E7CF /* user_btn_bg.png in Resources */,
 				D82BE4F41947DECF0051CB09 /* start_btn_bg@2x.png in Resources */,
 				D82BE4F31947DECF0051CB09 /* start_btn_bg.png in Resources */,
+				A71D28571948043200DE1B3F /* menu_submit_bg.png in Resources */,
 				D80A7EE119455C330008E7CF /* setting_btn_bg@2x.png in Resources */,
 				D80A7EF8194560B30008E7CF /* setting_btn_bg.png in Resources */,
 				D80A7EE519455E4F0008E7CF /* main_title@2x.png in Resources */,
