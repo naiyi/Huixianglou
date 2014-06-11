@@ -19,6 +19,7 @@
 		2DBA450D194146FC00F73B66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBA44F5194146FB00F73B66 /* UIKit.framework */; };
 		2DBA4515194146FC00F73B66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA4513194146FC00F73B66 /* InfoPlist.strings */; };
 		2DBA4517194146FC00F73B66 /* HXLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA4516194146FC00F73B66 /* HXLTests.m */; };
+		4E1C2A20F6DE45608B9C1D90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4428FFB5D7F48E198537D5A /* libPods.a */; };
 		A71203491946954A004CFC3D /* JDDishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A71203481946954A004CFC3D /* JDDishModel.m */; };
 		A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A712034B1946A9EB004CFC3D /* JDMenuController.m */; };
 		D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECA194551240008E7CF /* Default-568h@2x.png */; };
@@ -50,6 +51,10 @@
 		D82BE4F21947DECF0051CB09 /* start_btn_bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82BE4EE1947DECF0051CB09 /* start_btn_bg_1@2x.png */; };
 		D82BE4F31947DECF0051CB09 /* start_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D82BE4EF1947DECF0051CB09 /* start_btn_bg.png */; };
 		D82BE4F41947DECF0051CB09 /* start_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82BE4F01947DECF0051CB09 /* start_btn_bg@2x.png */; };
+		D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D82BE58E19482C460051CB09 /* JDOHttpClient.m */; };
+		D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D82BE59019482C460051CB09 /* JDOJsonClient.m */; };
+		D82BE59719482C460051CB09 /* JDOWebClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D82BE59219482C460051CB09 /* JDOWebClient.m */; };
+		D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D82BE59419482C460051CB09 /* JDOXmlClient.m */; };
 		D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4611941B54200022E33 /* JDMainViewController.m */; };
 		D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4651941BE5200022E33 /* JDUserViewController.m */; };
 		D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84807A91945492A001573F9 /* JDHXLParentViewController.m */; };
@@ -86,6 +91,8 @@
 		A71203481946954A004CFC3D /* JDDishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishModel.m; sourceTree = "<group>"; };
 		A712034A1946A9EB004CFC3D /* JDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuController.h; sourceTree = "<group>"; };
 		A712034B1946A9EB004CFC3D /* JDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuController.m; sourceTree = "<group>"; };
+		B4428FFB5D7F48E198537D5A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D80A7ECA194551240008E7CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D80A7ECB194551240008E7CF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D80A7ECE1945552E0008E7CF /* icon-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120@2x.png"; sourceTree = "<group>"; };
@@ -116,6 +123,14 @@
 		D82BE4EE1947DECF0051CB09 /* start_btn_bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_btn_bg_1@2x.png"; sourceTree = "<group>"; };
 		D82BE4EF1947DECF0051CB09 /* start_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_btn_bg.png; sourceTree = "<group>"; };
 		D82BE4F01947DECF0051CB09 /* start_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_btn_bg@2x.png"; sourceTree = "<group>"; };
+		D82BE58D19482C460051CB09 /* JDOHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOHttpClient.h; sourceTree = "<group>"; };
+		D82BE58E19482C460051CB09 /* JDOHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOHttpClient.m; sourceTree = "<group>"; };
+		D82BE58F19482C460051CB09 /* JDOJsonClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOJsonClient.h; sourceTree = "<group>"; };
+		D82BE59019482C460051CB09 /* JDOJsonClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOJsonClient.m; sourceTree = "<group>"; };
+		D82BE59119482C460051CB09 /* JDOWebClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOWebClient.h; sourceTree = "<group>"; };
+		D82BE59219482C460051CB09 /* JDOWebClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOWebClient.m; sourceTree = "<group>"; };
+		D82BE59319482C460051CB09 /* JDOXmlClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOXmlClient.h; sourceTree = "<group>"; };
+		D82BE59419482C460051CB09 /* JDOXmlClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOXmlClient.m; sourceTree = "<group>"; };
 		D82CF4601941B54200022E33 /* JDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMainViewController.h; sourceTree = "<group>"; };
 		D82CF4611941B54200022E33 /* JDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMainViewController.m; sourceTree = "<group>"; };
 		D82CF4641941BE5200022E33 /* JDUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDUserViewController.h; sourceTree = "<group>"; };
@@ -132,6 +147,7 @@
 				2DBA44F4194146FB00F73B66 /* CoreGraphics.framework in Frameworks */,
 				2DBA44F6194146FB00F73B66 /* UIKit.framework in Frameworks */,
 				2DBA44F2194146FB00F73B66 /* Foundation.framework in Frameworks */,
+				4E1C2A20F6DE45608B9C1D90 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +172,7 @@
 				2DBA4510194146FC00F73B66 /* HXLTests */,
 				2DBA44F0194146FB00F73B66 /* Frameworks */,
 				2DBA44EF194146FB00F73B66 /* Products */,
+				D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,6 +192,7 @@
 				2DBA44F3194146FB00F73B66 /* CoreGraphics.framework */,
 				2DBA44F5194146FB00F73B66 /* UIKit.framework */,
 				2DBA450A194146FB00F73B66 /* XCTest.framework */,
+				B4428FFB5D7F48E198537D5A /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,6 +203,8 @@
 				2DBA4500194146FB00F73B66 /* JDAppDelegate.h */,
 				2DBA4501194146FB00F73B66 /* JDAppDelegate.m */,
 				D82CF4631941B55300022E33 /* Controllers */,
+				D82BE58B19482BB40051CB09 /* Utils */,
+				D82BE58C19482BE70051CB09 /* Http */,
 				A7120346194691E2004CFC3D /* Model */,
 				2DBA44F8194146FB00F73B66 /* Supporting Files */,
 				D82CF4671941C17F00022E33 /* Resources */,
@@ -228,6 +248,28 @@
 				A71203481946954A004CFC3D /* JDDishModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D82BE58B19482BB40051CB09 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D82BE58C19482BE70051CB09 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				D82BE58D19482C460051CB09 /* JDOHttpClient.h */,
+				D82BE58E19482C460051CB09 /* JDOHttpClient.m */,
+				D82BE58F19482C460051CB09 /* JDOJsonClient.h */,
+				D82BE59019482C460051CB09 /* JDOJsonClient.m */,
+				D82BE59119482C460051CB09 /* JDOWebClient.h */,
+				D82BE59219482C460051CB09 /* JDOWebClient.m */,
+				D82BE59319482C460051CB09 /* JDOXmlClient.h */,
+				D82BE59419482C460051CB09 /* JDOXmlClient.m */,
+			);
+			path = Http;
 			sourceTree = "<group>";
 		};
 		D82CF4631941B55300022E33 /* Controllers */ = {
@@ -289,9 +331,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DBA451A194146FC00F73B66 /* Build configuration list for PBXNativeTarget "HXL" */;
 			buildPhases = (
+				BA400D1F8EDD459A9D8586FB /* Check Pods Manifest.lock */,
 				2DBA44EA194146FB00F73B66 /* Sources */,
 				2DBA44EB194146FB00F73B66 /* Frameworks */,
 				2DBA44EC194146FB00F73B66 /* Resources */,
+				F0BCD87143394D5E8A3EF3E9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -401,6 +445,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BA400D1F8EDD459A9D8586FB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F0BCD87143394D5E8A3EF3E9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2DBA44EA194146FB00F73B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -408,11 +485,15 @@
 			files = (
 				D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */,
 				D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */,
+				D82BE59719482C460051CB09 /* JDOWebClient.m in Sources */,
 				D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */,
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
 				A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */,
+				D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */,
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,
 				2DBA44FE194146FB00F73B66 /* main.m in Sources */,
+				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
+				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +608,7 @@
 		};
 		2DBA451B194146FC00F73B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXL/HXL-Prefix.pch";
@@ -539,6 +621,7 @@
 		};
 		2DBA451C194146FC00F73B66 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXL/HXL-Prefix.pch";

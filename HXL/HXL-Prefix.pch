@@ -13,6 +13,8 @@
 #define IS_iOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
 #define Nav_Height ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? 64.0 : 44.0)
 #define App_Height ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? [UIScreen mainScreen].bounds.size.height : [UIScreen mainScreen].applicationFrame.size.height)
+#define SERVER_QUERY_URL @"http://p.jiaodong.net/food/hxl/Pub/"
+#define SERVER_RESOURCE_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
