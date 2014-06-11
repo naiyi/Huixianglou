@@ -9,6 +9,7 @@
 #import "JDMainViewController.h"
 #import "JDUserViewController.h"
 #import "JDSettingsViewController.h"
+#import "JDMenuController.h"
 
 @interface JDMainViewController ()
 
@@ -74,7 +75,8 @@
 
 - (void)onStartButtonClicked
 {
-    
+    JDMenuController *menuController = [[JDMenuController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:menuController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
