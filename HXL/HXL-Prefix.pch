@@ -15,6 +15,7 @@
 #define App_Height ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? [UIScreen mainScreen].bounds.size.height : [UIScreen mainScreen].applicationFrame.size.height)
 #define SERVER_QUERY_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define SERVER_RESOURCE_URL @"http://p.jiaodong.net/food/hxl/Pub/"
+#define HOTEL_INFO_SERVICE @"hotel_api"
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>

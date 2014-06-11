@@ -9,7 +9,6 @@
 #import "JDOHttpClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "DCKeyValueObjectMapping.h"
-#import "DCParserConfiguration.h"
 #import "JSONKit.h"
 
 @implementation JDOHttpClient

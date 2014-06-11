@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JDHXLParentViewController.h"
+#import "DCArrayMapping.h"
 
 @interface JDMainViewController : JDHXLParentViewController
 {

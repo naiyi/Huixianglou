@@ -7,6 +7,7 @@
 //
 
 #import "JDOWebClient.h"
+#import "DCParserConfiguration.h"
 
 @class DCParserConfiguration;
 

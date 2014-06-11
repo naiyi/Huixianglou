@@ -45,6 +45,7 @@
 		D80A7EF8194560B30008E7CF /* setting_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7EEF194560B30008E7CF /* setting_btn_bg.png */; };
 		D80A7EF9194560B30008E7CF /* telephone_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7EF0194560B30008E7CF /* telephone_icon.png */; };
 		D80A7EFA194560B30008E7CF /* user_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7EF1194560B30008E7CF /* user_btn_bg.png */; };
+		D811C83A194839A900788155 /* JDHotelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D811C839194839A900788155 /* JDHotelModel.m */; };
 		D82A86D51945B5DC00C9C249 /* navigation_bg_44.png in Resources */ = {isa = PBXBuildFile; fileRef = D82A86D31945B5DC00C9C249 /* navigation_bg_44.png */; };
 		D82A86D61945B5DC00C9C249 /* navigation_bg_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82A86D41945B5DC00C9C249 /* navigation_bg_44@2x.png */; };
 		D82BE4F11947DECF0051CB09 /* start_btn_bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D82BE4ED1947DECF0051CB09 /* start_btn_bg_1.png */; };
@@ -58,6 +59,7 @@
 		D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4611941B54200022E33 /* JDMainViewController.m */; };
 		D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4651941BE5200022E33 /* JDUserViewController.m */; };
 		D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84807A91945492A001573F9 /* JDHXLParentViewController.m */; };
+		D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D84DF96E19483E5D001B266E /* JDHXLModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		D80A7EEF194560B30008E7CF /* setting_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_btn_bg.png; sourceTree = "<group>"; };
 		D80A7EF0194560B30008E7CF /* telephone_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = telephone_icon.png; sourceTree = "<group>"; };
 		D80A7EF1194560B30008E7CF /* user_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_btn_bg.png; sourceTree = "<group>"; };
+		D811C838194839A900788155 /* JDHotelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHotelModel.h; sourceTree = "<group>"; };
+		D811C839194839A900788155 /* JDHotelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHotelModel.m; sourceTree = "<group>"; };
 		D82A86D31945B5DC00C9C249 /* navigation_bg_44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_bg_44.png; sourceTree = "<group>"; };
 		D82A86D41945B5DC00C9C249 /* navigation_bg_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation_bg_44@2x.png"; sourceTree = "<group>"; };
 		D82BE4ED1947DECF0051CB09 /* start_btn_bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_btn_bg_1.png; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		D82CF4651941BE5200022E33 /* JDUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDUserViewController.m; sourceTree = "<group>"; };
 		D84807A81945492A001573F9 /* JDHXLParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHXLParentViewController.h; sourceTree = "<group>"; };
 		D84807A91945492A001573F9 /* JDHXLParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHXLParentViewController.m; sourceTree = "<group>"; };
+		D84DF96D19483E5D001B266E /* JDHXLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHXLModel.h; sourceTree = "<group>"; };
+		D84DF96E19483E5D001B266E /* JDHXLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHXLModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +250,10 @@
 		A7120346194691E2004CFC3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D84DF96D19483E5D001B266E /* JDHXLModel.h */,
+				D84DF96E19483E5D001B266E /* JDHXLModel.m */,
+				D811C838194839A900788155 /* JDHotelModel.h */,
+				D811C839194839A900788155 /* JDHotelModel.m */,
 				A71203471946954A004CFC3D /* JDDishModel.h */,
 				A71203481946954A004CFC3D /* JDDishModel.m */,
 			);
@@ -487,6 +497,7 @@
 				D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */,
 				D82BE59719482C460051CB09 /* JDOWebClient.m in Sources */,
 				D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */,
+				D811C83A194839A900788155 /* JDHotelModel.m in Sources */,
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
 				A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */,
 				D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */,
@@ -495,6 +506,7 @@
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
+				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

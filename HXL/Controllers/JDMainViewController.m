@@ -10,6 +10,10 @@
 #import "JDUserViewController.h"
 #import "JDSettingsViewController.h"
 #import "JDMenuController.h"
+#import "JDOHttpClient.h"
+#import "JDHotelModel.h"
+#import "JDHXLModel.h"
+#import "DCKeyValueObjectMapping.h"
 
 @interface JDMainViewController ()
 
@@ -28,6 +32,16 @@
 
 - (void)viewDidLoad
 {
+    NSDictionary *params = @{@"id": @"1"};
+    // 加载酒店信息
+    [[JDOHttpClient sharedClient] getJSONByServiceName:HOTEL_INFO_SERVICE modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
+        DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDHotelModel class]];
+        JDHotelModel *hoteldata = [mapper parseDictionary:dataModel.data];
+    } failure:^(NSString *errorStr) {
+        
+    }];
+
+    
     [super viewDidLoad];
     [self setNavigationTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_title"]]];
     [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"user_btn_bg"] Target:self Action:@selector(onUserButtonClicked)];
@@ -84,7 +98,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end
