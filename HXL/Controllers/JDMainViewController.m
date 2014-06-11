@@ -54,7 +54,10 @@
 
 - (void)setupBottomView
 {
-    
+    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
+    [startButton setImage:[UIImage imageNamed:@"start_btn_bg_1"] forState:UIControlStateNormal];
+    [startButton addTarget:self action:@selector(onStartButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:startButton];
 }
 
 - (void)onUserButtonClicked
@@ -67,6 +70,11 @@
 {
     JDSettingsViewController *settingsViewController = [[JDSettingsViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:settingsViewController animated:YES];
+}
+
+- (void)onStartButtonClicked
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
