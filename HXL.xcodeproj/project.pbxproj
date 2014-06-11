@@ -19,6 +19,8 @@
 		2DBA450D194146FC00F73B66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBA44F5194146FB00F73B66 /* UIKit.framework */; };
 		2DBA4515194146FC00F73B66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA4513194146FC00F73B66 /* InfoPlist.strings */; };
 		2DBA4517194146FC00F73B66 /* HXLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA4516194146FC00F73B66 /* HXLTests.m */; };
+		A71203491946954A004CFC3D /* JDDishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A71203481946954A004CFC3D /* JDDishModel.m */; };
+		A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A712034B1946A9EB004CFC3D /* JDMenuController.m */; };
 		D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECA194551240008E7CF /* Default-568h@2x.png */; };
 		D80A7ECD194551240008E7CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECB194551240008E7CF /* Default@2x.png */; };
 		D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECE1945552E0008E7CF /* icon-120@2x.png */; };
@@ -68,12 +70,16 @@
 		2DBA44FF194146FB00F73B66 /* HXL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HXL-Prefix.pch"; sourceTree = "<group>"; };
 		2DBA4500194146FB00F73B66 /* JDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDAppDelegate.h; sourceTree = "<group>"; };
 		2DBA4501194146FB00F73B66 /* JDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDAppDelegate.m; sourceTree = "<group>"; };
-		2DBA4503194146FB00F73B66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2DBA4503194146FB00F73B66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HXL/Images.xcassets; sourceTree = "<group>"; };
 		2DBA4509194146FB00F73B66 /* HXLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HXLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DBA450A194146FB00F73B66 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2DBA4512194146FC00F73B66 /* HXLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HXLTests-Info.plist"; sourceTree = "<group>"; };
 		2DBA4514194146FC00F73B66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2DBA4516194146FC00F73B66 /* HXLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HXLTests.m; sourceTree = "<group>"; };
+		A71203471946954A004CFC3D /* JDDishModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishModel.h; sourceTree = "<group>"; };
+		A71203481946954A004CFC3D /* JDDishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishModel.m; sourceTree = "<group>"; };
+		A712034A1946A9EB004CFC3D /* JDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuController.h; sourceTree = "<group>"; };
+		A712034B1946A9EB004CFC3D /* JDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuController.m; sourceTree = "<group>"; };
 		D80A7ECA194551240008E7CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D80A7ECB194551240008E7CF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D80A7ECE1945552E0008E7CF /* icon-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120@2x.png"; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				2DBA44F7194146FB00F73B66 /* HXL */,
+				2DBA4503194146FB00F73B66 /* Images.xcassets */,
 				2DBA4510194146FC00F73B66 /* HXLTests */,
 				2DBA44F0194146FB00F73B66 /* Frameworks */,
 				2DBA44EF194146FB00F73B66 /* Products */,
@@ -163,10 +170,10 @@
 		2DBA44F7194146FB00F73B66 /* HXL */ = {
 			isa = PBXGroup;
 			children = (
-				D82CF4631941B55300022E33 /* Controllers */,
 				2DBA4500194146FB00F73B66 /* JDAppDelegate.h */,
 				2DBA4501194146FB00F73B66 /* JDAppDelegate.m */,
-				2DBA4503194146FB00F73B66 /* Images.xcassets */,
+				D82CF4631941B55300022E33 /* Controllers */,
+				A7120346194691E2004CFC3D /* Model */,
 				2DBA44F8194146FB00F73B66 /* Supporting Files */,
 				D82CF4671941C17F00022E33 /* Resources */,
 			);
@@ -202,6 +209,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A7120346194691E2004CFC3D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A71203471946954A004CFC3D /* JDDishModel.h */,
+				A71203481946954A004CFC3D /* JDDishModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D82CF4631941B55300022E33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +229,8 @@
 				D84807A91945492A001573F9 /* JDHXLParentViewController.m */,
 				D80A7EE619455EA60008E7CF /* JDSettingsViewController.h */,
 				D80A7EE719455EA60008E7CF /* JDSettingsViewController.m */,
+				A712034A1946A9EB004CFC3D /* JDMenuController.h */,
+				A712034B1946A9EB004CFC3D /* JDMenuController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -368,8 +386,10 @@
 				D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */,
 				D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */,
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
+				A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */,
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,
 				2DBA44FE194146FB00F73B66 /* main.m in Sources */,
+				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
