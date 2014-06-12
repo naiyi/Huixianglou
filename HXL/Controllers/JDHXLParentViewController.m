@@ -25,6 +25,9 @@
         [self.loadingView addSubview:loadingImageView];
         
         self.notavilableView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, IS_iOS7 ? App_Height : App_Height - Nav_Height)];
+        UIImageView *notavilableImageView = [[UIImageView alloc] initWithFrame:CGRectMake(90.0, 200.0, 140.0, 65.0)];
+        [notavilableImageView setImage:[UIImage imageNamed:@"notavilable_bg"]];
+        [self.notavilableView addSubview:notavilableImageView];
     }
     return self;
 }
