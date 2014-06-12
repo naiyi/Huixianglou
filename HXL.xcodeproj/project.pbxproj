@@ -68,6 +68,8 @@
 		D8D418681949380100471D40 /* loading_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D418641949380100471D40 /* loading_bg@2x.png */; };
 		D8D418691949380100471D40 /* notavilable_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D418651949380100471D40 /* notavilable_bg.png */; };
 		D8D4186A1949380100471D40 /* notavilable_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D418661949380100471D40 /* notavilable_bg@2x.png */; };
+		D8D4186D1949829900471D40 /* JDHXLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4186C1949829900471D40 /* JDHXLUtil.m */; };
+		D8D41871194986BA00471D40 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D41870194986BA00471D40 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,10 @@
 		D8D418641949380100471D40 /* loading_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_bg@2x.png"; sourceTree = "<group>"; };
 		D8D418651949380100471D40 /* notavilable_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notavilable_bg.png; sourceTree = "<group>"; };
 		D8D418661949380100471D40 /* notavilable_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notavilable_bg@2x.png"; sourceTree = "<group>"; };
+		D8D4186B1949829900471D40 /* JDHXLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHXLUtil.h; sourceTree = "<group>"; };
+		D8D4186C1949829900471D40 /* JDHXLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHXLUtil.m; sourceTree = "<group>"; };
+		D8D4186F194986BA00471D40 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKeychain.h; sourceTree = "<group>"; };
+		D8D41870194986BA00471D40 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKeychain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,9 +231,10 @@
 				2DBA4500194146FB00F73B66 /* JDAppDelegate.h */,
 				2DBA4501194146FB00F73B66 /* JDAppDelegate.m */,
 				D82CF4631941B55300022E33 /* Controllers */,
-				D82BE58B19482BB40051CB09 /* Utils */,
-				D82BE58C19482BE70051CB09 /* Http */,
 				A7120346194691E2004CFC3D /* Model */,
+				D82BE58C19482BE70051CB09 /* Http */,
+				D82BE58B19482BB40051CB09 /* Utils */,
+				D8D4186E1949862300471D40 /* Vendors */,
 				2DBA44F8194146FB00F73B66 /* Supporting Files */,
 				D82CF4671941C17F00022E33 /* Resources */,
 			);
@@ -279,6 +286,10 @@
 		D82BE58B19482BB40051CB09 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D8D4186F194986BA00471D40 /* STKeychain.h */,
+				D8D41870194986BA00471D40 /* STKeychain.m */,
+				D8D4186B1949829900471D40 /* JDHXLUtil.h */,
+				D8D4186C1949829900471D40 /* JDHXLUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -356,6 +367,13 @@
 				D80A7ECB194551240008E7CF /* Default@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D8D4186E1949862300471D40 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vendors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,10 +553,12 @@
 				D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */,
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,
 				2DBA44FE194146FB00F73B66 /* main.m in Sources */,
+				D8D41871194986BA00471D40 /* STKeychain.m in Sources */,
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
+				D8D4186D1949829900471D40 /* JDHXLUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

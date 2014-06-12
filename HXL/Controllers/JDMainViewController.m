@@ -11,9 +11,10 @@
 #import "JDSettingsViewController.h"
 #import "JDMenuController.h"
 #import "JDOHttpClient.h"
-#import "JDHotelModel.h"
-#import "JDHXLModel.h"
 #import "DCKeyValueObjectMapping.h"
+#import "JDHXLUtil.h"
+
+#define Default_Image @"aaaaa"
 
 @interface JDMainViewController ()
 
@@ -41,7 +42,7 @@
     // 加载酒店信息
     [[JDOHttpClient sharedClient] getJSONByServiceName:HOTEL_INFO_SERVICE modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
         DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDHotelModel class]];
-        JDHotelModel *hoteldata = [mapper parseDictionary:dataModel.data];
+        self.hotelModel = [mapper parseDictionary:dataModel.data];
         [self setNetworkState:NETWORK_STATE_NORMAL];
     } failure:^(NSString *errorStr) {
         [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
@@ -51,10 +52,47 @@
 - (void)setContentView{
     centerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? Nav_Height - 4.0 : - 4.0, 320.0, App_Height - 96.0 - 49.0 - Nav_Height + 4.0)];
     [centerScrollView setBackgroundColor:[UIColor redColor]];
+    [centerScrollView setContentSize:CGSizeMake(320.0*self.hotelModel.img.count, centerScrollView.frame.size.height)];
+    [centerScrollView setPagingEnabled:YES];
+    for (int i = 0; i < self.hotelModel.img.count; i++) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(320.0*i, 0.0, 320.0, centerScrollView.frame.size.height)];
+        UIImageView *blockImageView = imageView;
+        [imageView setImageWithURL:[NSURL URLWithString:[self.hotelModel.img objectAtIndex:0]] placeholderImage:[UIImage imageNamed:Default_Image] options:SDWebImageOption success:^(UIImage *image, BOOL cached) {
+            if(!cached){    // 非缓存加载时使用渐变动画
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.3;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionFade;
+                [blockImageView.layer addAnimation:transition forKey:nil];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+        [centerScrollView addSubview:imageView];
+    }
     [self.contentView addSubview:centerScrollView];
     
     addrAndTelView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? centerScrollView.frame.size.height + Nav_Height - 4.0 : centerScrollView.frame.size.height - 4.0, 320.0, 96.0)];
     [addrAndTelView setBackgroundColor:BACKGROUND_COLOR];
+    UIImageView *addricon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"address_icon"]];
+    UILabel *addrlabel = [[UILabel alloc] init];
+    [addrlabel setText:self.hotelModel.address];
+    [addrlabel setFont:[UIFont systemFontOfSize:16.0]];
+    [addrlabel sizeToFit];
+    [addricon setFrame:CGRectMake((320.0-addrlabel.frame.size.width-25.0)/2, 20.0, 20.0, 20.0)];
+    [addrlabel setFrame:CGRectMake(addricon.frame.origin.x + addricon.frame.size.width + 5.0, 22.0, addrlabel.frame.size.width, 20.0)];
+    [addrAndTelView addSubview:addricon];
+    [addrAndTelView addSubview:addrlabel];
+    UIImageView *telicon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"telephone_icon"]];
+    UILabel *tellabel = [[UILabel alloc] init];
+    [tellabel setText:self.hotelModel.tel];
+    [tellabel setFont:[UIFont systemFontOfSize:16.0]];
+    [tellabel sizeToFit];
+    [telicon setFrame:CGRectMake((320.0-tellabel.frame.size.width-25.0)/2, 52.0, 20.0, 20.0)];
+    [tellabel setFrame:CGRectMake(telicon.frame.origin.x + telicon.frame.size.width + 5.0, 54.0, tellabel.frame.size.width, 20.0)];
+    [addrAndTelView addSubview:telicon];
+    [addrAndTelView addSubview:tellabel];
+    
     [self.contentView addSubview:addrAndTelView];
     [self setupAddrAndTelView];
     

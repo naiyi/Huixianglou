@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JDHXLParentViewController.h"
 #import "DCArrayMapping.h"
+#import "JDHotelModel.h"
+#import "JDHXLModel.h"
 
 @interface JDMainViewController : JDHXLParentViewController
 {
@@ -16,5 +18,8 @@
     UIView *addrAndTelView;
     UIView *bottomView;
 }
+
+@property (nonatomic, strong) NSMutableArray *centerImageViews;
+@property (nonatomic, strong) JDHotelModel *hotelModel;
 
 @end

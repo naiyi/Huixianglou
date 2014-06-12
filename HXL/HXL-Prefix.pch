@@ -5,6 +5,9 @@
 //
 
 #import <Availability.h>
+#import "UIImageView+WebCache.h"
+#import "AFHTTPRequestOperation.h"
+#import "UIImageView+WebCache.h"
 
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
@@ -20,6 +23,8 @@
 #define NETWORK_STATE_NOTAVILABLE 1
 #define NETWORK_STATE_NORMAL 2
 #define BACKGROUND_COLOR [UIColor colorWithRed:1.0 green:0.980 blue:0.910 alpha:1.0]
+
+#define SDWebImageOption SDWebImageRetryFailed|SDWebImageLowPriority|SDWebImageProgressiveDownload
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
