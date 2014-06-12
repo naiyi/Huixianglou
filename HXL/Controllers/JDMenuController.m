@@ -38,7 +38,12 @@
     [titleView addSubview:_price_avg];
     [self setNavigationTitleView:titleView];
     
-    UIView *sortView =[[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y+self.navigationController.navigationBar.frame.size.height-5, self.view.frame.size.width, 40)];
+    [self setNetworkState:NETWORK_STATE_NORMAL];
+}
+
+- (void)setContentView
+{
+    UIView *sortView =[[UIView alloc] initWithFrame:CGRectMake(0, IS_iOS7 ? Nav_Height-5 : -5, self.contentView.frame.size.width, 40)];
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"menu_submit_bg.png"]];
     [sortView setBackgroundColor:bgColor];
     float sort_width = sortView.frame.size.width/3;
@@ -54,7 +59,7 @@
     [_sort addTarget:self action:@selector(onSortByButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [sortView addSubview:_sort];
     
-    _sort_bysale = [[UIButton alloc] initWithFrame:CGRectMake(sort_width,0,  sort_width, sort_height)];
+    _sort_bysale = [[UIButton alloc] initWithFrame:CGRectMake(sort_width, 0, sort_width, sort_height)];
     [_sort_bysale setTitle:@"销量" forState:UIControlStateNormal];
     [_sort_bysale setTitleColor:color_selected forState:UIControlStateHighlighted];
     [_sort_bysale setTitleColor:color_selected forState:UIControlStateSelected];
@@ -83,18 +88,18 @@
     [_sort_bycomment addSubview:devider3];
     [_sort_bycomment addSubview:devider4];
     [sortView addSubview:_sort_bycomment];
-    [self.view addSubview:sortView];
+    [self.contentView addSubview:sortView];
     
-    float scroll_height = self.view.frame.size.height-sortView.frame.size.height-sortView.frame.origin.y-60;
+    float scroll_height = self.contentView.frame.size.height-sortView.frame.size.height-sortView.frame.origin.y-60;
     float scroll_y = sortView.frame.origin.y+sortView.frame.size.height;
     _left = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scroll_y, 80, scroll_height)];
     _left.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dishtype_item_bg"]];
-    [self.view addSubview:_left];
-    _right = [[UIScrollView alloc] initWithFrame:CGRectMake(_left.frame.size.width, scroll_y, self.view.frame.size.width-_left.frame.size.width, scroll_height)];
+    [self.contentView addSubview:_left];
+    _right = [[UIScrollView alloc] initWithFrame:CGRectMake(_left.frame.size.width, scroll_y, self.contentView.frame.size.width-_left.frame.size.width, scroll_height)];
     _right.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_right];
+    [self.contentView addSubview:_right];
     
-    UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, _left.frame.origin.y+scroll_height, self.view.frame.size.width, 60)];
+    UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, _left.frame.origin.y+scroll_height, self.contentView.frame.size.width, 60)];
     submit_frame.backgroundColor = bgColor;
     _submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 40)];
     [_submit setTitle:@"预览菜单" forState:UIControlStateNormal];
@@ -103,8 +108,9 @@
     [_submit setBackgroundColor:color_selected];
     [_submit addTarget:self action:@selector(onSubmitButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [submit_frame addSubview:_submit];
-    [self.view addSubview:submit_frame];
+    [self.contentView addSubview:submit_frame];
 }
+
 - (void)onBackButtonClicked {
     [self.navigationController popViewControllerAnimated:YES];
 }

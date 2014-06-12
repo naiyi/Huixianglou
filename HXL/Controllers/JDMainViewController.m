@@ -32,33 +32,35 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    [self setNavigationTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_title"]]];
+    [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"user_btn_bg"] Target:self Action:@selector(onUserButtonClicked)];
+    [self setNavigationRightButtonWithImage:[UIImage imageNamed:@"setting_btn_bg"] Target:self Action:@selector(onSettingButtonClicked)];
+    [self setNetworkState:NETWORK_STATE_LOADING];
     NSDictionary *params = @{@"id": @"1"};
     // 加载酒店信息
     [[JDOHttpClient sharedClient] getJSONByServiceName:HOTEL_INFO_SERVICE modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
         DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDHotelModel class]];
         JDHotelModel *hoteldata = [mapper parseDictionary:dataModel.data];
+        [self setNetworkState:NETWORK_STATE_NORMAL];
     } failure:^(NSString *errorStr) {
-        
+        [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
     }];
+}
 
-    
-    [super viewDidLoad];
-    [self setNavigationTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_title"]]];
-    [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"user_btn_bg"] Target:self Action:@selector(onUserButtonClicked)];
-    [self setNavigationRightButtonWithImage:[UIImage imageNamed:@"setting_btn_bg"] Target:self Action:@selector(onSettingButtonClicked)];
-    
+- (void)setContentView{
     centerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? Nav_Height - 4.0 : - 4.0, 320.0, App_Height - 96.0 - 49.0 - Nav_Height + 4.0)];
     [centerScrollView setBackgroundColor:[UIColor redColor]];
-    [self.view addSubview:centerScrollView];
+    [self.contentView addSubview:centerScrollView];
     
     addrAndTelView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? centerScrollView.frame.size.height + Nav_Height - 4.0 : centerScrollView.frame.size.height - 4.0, 320.0, 96.0)];
-    [addrAndTelView setBackgroundColor:[UIColor colorWithRed:1.0 green:0.980 blue:0.906 alpha:1.0]];
-    [self.view addSubview:addrAndTelView];
+    [addrAndTelView setBackgroundColor:BACKGROUND_COLOR];
+    [self.contentView addSubview:addrAndTelView];
     [self setupAddrAndTelView];
     
     bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, addrAndTelView.frame.origin.y + 96.0, 320.0, 49.0)];
     [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
-    [self.view addSubview:bottomView];
+    [self.contentView addSubview:bottomView];
     [self setupBottomView];
 }
 

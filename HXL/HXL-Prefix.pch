@@ -16,6 +16,10 @@
 #define SERVER_QUERY_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define SERVER_RESOURCE_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define HOTEL_INFO_SERVICE @"hotel_api"
+#define NETWORK_STATE_LOADING 0
+#define NETWORK_STATE_NOTAVILABLE 1
+#define NETWORK_STATE_NORMAL 2
+#define BACKGROUND_COLOR [UIColor colorWithRed:1.0 green:0.980 blue:0.910 alpha:1.0]
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
