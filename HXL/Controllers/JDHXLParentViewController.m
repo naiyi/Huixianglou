@@ -18,13 +18,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, IS_iOS7 ? App_Height : App_Height - Nav_Height)];
+        self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? Nav_Height - 4.0 : -4.0, 320.0, App_Height - Nav_Height + 4.0)];
         [self.loadingView setBackgroundColor:BACKGROUND_COLOR];
         UIImageView *loadingImageView = [[UIImageView alloc] initWithFrame:CGRectMake(90.0, 200.0, 140.0, 65.0)];
         [loadingImageView setImage:[UIImage imageNamed:@"loading_bg"]];
         [self.loadingView addSubview:loadingImageView];
         
-        self.notavilableView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, IS_iOS7 ? App_Height : App_Height - Nav_Height)];
+        self.notavilableView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? Nav_Height - 4.0 : -4.0, 320.0, App_Height - Nav_Height + 4.0)];
         UIImageView *notavilableImageView = [[UIImageView alloc] initWithFrame:CGRectMake(90.0, 200.0, 140.0, 65.0)];
         [notavilableImageView setImage:[UIImage imageNamed:@"notavilable_bg"]];
         [self.notavilableView addSubview:notavilableImageView];
@@ -88,7 +88,7 @@
             [self.view addSubview:self.notavilableView];
             break;
         case NETWORK_STATE_NORMAL:
-            self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, IS_iOS7 ? App_Height : App_Height - Nav_Height)];
+            self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? Nav_Height - 4.0 : -4.0, 320.0, App_Height - Nav_Height + 4.0)];
             [self setContentView];
             [self.loadingView removeFromSuperview];
             [self.notavilableView removeFromSuperview];
