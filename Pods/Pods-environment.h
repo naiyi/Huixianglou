@@ -85,6 +85,12 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Main 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Main 4
 
+// V8HorizontalPickerView
+#define COCOAPODS_POD_AVAILABLE_V8HorizontalPickerView
+#define COCOAPODS_VERSION_MAJOR_V8HorizontalPickerView 1
+#define COCOAPODS_VERSION_MINOR_V8HorizontalPickerView 0
+#define COCOAPODS_VERSION_PATCH_V8HorizontalPickerView 0
+
 // ViewDeck
 #define COCOAPODS_POD_AVAILABLE_ViewDeck
 #define COCOAPODS_VERSION_MAJOR_ViewDeck 2
