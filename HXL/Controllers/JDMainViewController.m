@@ -80,6 +80,7 @@
     
     [self setupAddrAndTelView];
     [self setupBottomView];
+    [self setupCountSelectView];
 }
 
 - (void)setupAddrAndTelView
@@ -109,6 +110,27 @@
     [whiteCenter addSubview:tellabel];
     
     [self.contentView addSubview:addrAndTelView];
+}
+
+- (void)setupCountSelectView
+{
+	CGRect tmpFrame = CGRectMake(0.0, centerScrollView.frame.size.height - 40.0, 320.0, 40.0);
+
+	self.pickerView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
+	self.pickerView.backgroundColor   = [UIColor blackColor];
+	self.pickerView.selectedTextColor = [UIColor whiteColor];
+	self.pickerView.textColor   = [UIColor grayColor];
+	self.pickerView.delegate    = self;
+	self.pickerView.dataSource  = self;
+	self.pickerView.elementFont = [UIFont boldSystemFontOfSize:14.0f];
+	self.pickerView.selectionPoint = CGPointMake(160, 0);
+    
+	// add carat or other view to indicate selected element
+	UIImageView *indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"indicator_1"]];
+	self.pickerView.selectionIndicatorView = indicator;
+    [self.pickerView setIndicatorPosition:V8HorizontalPickerIndicatorCenter];
+    
+    [self.contentView addSubview:self.pickerView];
 }
 
 - (void)setupBottomView
@@ -146,6 +168,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker
+{
+    return self.hotelModel.max;
+}
+
+- (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index
+{
+    NSString *title = [NSString stringWithFormat:@"%d", index];
+    return title;
+}
+
+- (NSInteger)horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index
+{
+    return 40.0;
 }
 
 @end

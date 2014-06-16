@@ -11,7 +11,8 @@
 // position of indicator view, if shown
 typedef enum {
 	V8HorizontalPickerIndicatorBottom = 0,
-	V8HorizontalPickerIndicatorTop	
+	V8HorizontalPickerIndicatorTop,
+    V8HorizontalPickerIndicatorCenter
 } V8HorizontalPickerIndicatorPosition;
 
 

@@ -434,6 +434,10 @@
 			y = self.frame.size.height - indicatorFrame.size.height;
 			break;
 		}
+        case V8HorizontalPickerIndicatorCenter: {
+            y = (self.frame.size.height - indicatorFrame.size.height)/2;
+            break;
+        }
 		default:
 			break;
 	}
