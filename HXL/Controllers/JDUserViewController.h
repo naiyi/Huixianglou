@@ -10,5 +10,8 @@
 #import "JDHXLParentViewController.h"
 
 @interface JDUserViewController : JDHXLParentViewController
+{
+    
+}
 
 @end

@@ -32,6 +32,28 @@
     [self setNavigationTitle:@"个人中心"];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
+    if (userinfo) {
+        [self setUpUserView];
+    } else {
+        [self setUpLoginView];
+    }
+}
+
+- (void)setUpLoginView
+{
+    [self setNetworkState:NETWORK_STATE_NORMAL];
+    [self.contentView setBackgroundColor:BACKGROUND_COLOR];
+    
+}
+
+- (void)setUpUserView
+{
+    [self.contentView setBackgroundColor:BACKGROUND_COLOR];
+}
+
 - (void)onBackButtonClicked
 {
     [self.navigationController popViewControllerAnimated:YES];
