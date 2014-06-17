@@ -19,6 +19,7 @@
 #define SERVER_QUERY_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define SERVER_RESOURCE_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define HOTEL_INFO_SERVICE @"hotel_api"
+#define GET_DISH_TYPE_AND_LIST @"type_and_dish"
 #define NETWORK_STATE_LOADING 0
 #define NETWORK_STATE_NOTAVILABLE 1
 #define NETWORK_STATE_NORMAL 2

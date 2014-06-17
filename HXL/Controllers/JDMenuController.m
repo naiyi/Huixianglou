@@ -7,8 +7,19 @@
 //
 
 #import "JDMenuController.h"
+#import "JDOHttpClient.h"
+#import "JDOArrayModel.h"
+#import "JDDishModel.h"
+#import "JDDishTypeModel.h"
+#import "DCKeyValueObjectMapping.h"
 
 @implementation JDMenuController
+{
+    NSMutableArray *dish_types;
+    NSMutableArray *allDishes;//所有菜的集合
+    NSMutableArray *dishes;//所有菜的分类集合
+    int selectPos;//左侧listview的选中位置
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -20,6 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    dish_types = [[NSMutableArray alloc] init];
+    dishes = [[NSMutableArray alloc] init];
+    allDishes = [[NSMutableArray alloc] init];
     [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"back_btn_bg"] Target:self Action:@selector(onBackButtonClicked)];
     //[self setNavigationRightButtonWithImage:[UIImage imageNamed:@"setting_btn_bg"] Target:self Action:@selector(onSettingButtonClicked)];
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height)];
@@ -37,8 +51,29 @@
     _price_avg.textColor = [UIColor grayColor];
     [titleView addSubview:_price_avg];
     [self setNavigationTitleView:titleView];
+    NSDictionary *params = @{@"id": @"1"};
+    [[JDOHttpClient sharedClient] getJSONByServiceName:GET_DISH_TYPE_AND_LIST modelClass:@"JDOArrayModel" params:params success:^(JDOArrayModel *dataModel) {
+        NSArray *dataList = (NSArray *)dataModel.data;
+        if(dataList == nil || dataList.count==0){
+            [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
+        } else {
+            for (int i = 0; i < dataList.count; i++) {
+                DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDDishTypeModel class]];
+                DCKeyValueObjectMapping *mapper1 = [DCKeyValueObjectMapping mapperForClass:[JDDishModel class]];
+                JDDishTypeModel *dishType = [mapper parseDictionary:[dataList objectAtIndex:i]];
+                [dish_types addObject:dishType];
+                for (int j=0; j<dishType.number; j++) {
+                    NSArray *innerDishes = [mapper1 parseArray:dishType.dish_list];
+                    [dishes addObject:innerDishes];
+                    [allDishes addObjectsFromArray:innerDishes];
+                }
+            }
+            [self setNetworkState:NETWORK_STATE_NORMAL];
+        }
+    } failure:^(NSString *errorStr) {
+        [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
+    }];
     
-    [self setNetworkState:NETWORK_STATE_NORMAL];
 }
 
 - (void)setContentView
@@ -92,10 +127,16 @@
     
     float scroll_height = self.contentView.frame.size.height-sortView.frame.size.height-sortView.frame.origin.y-60;
     float scroll_y = sortView.frame.origin.y+sortView.frame.size.height;
-    _left = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scroll_y, 80, scroll_height)];
+    _left = [[UITableView alloc] initWithFrame:CGRectMake(0, scroll_y, 90, scroll_height)];
+    _left.delegate = self;
+    _left.dataSource = self;
+    _left.separatorStyle = UITableViewCellSeparatorStyleNone;
     _left.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dishtype_item_bg"]];
     [self.contentView addSubview:_left];
-    _right = [[UIScrollView alloc] initWithFrame:CGRectMake(_left.frame.size.width, scroll_y, self.contentView.frame.size.width-_left.frame.size.width, scroll_height)];
+    _right = [[UITableView alloc] initWithFrame:CGRectMake(_left.frame.size.width, scroll_y, self.contentView.frame.size.width-_left.frame.size.width, scroll_height)];
+    _right.delegate = self;
+    _right.dataSource = self;
+    _right.separatorStyle = UITableViewCellSeparatorStyleNone;
     _right.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_right];
     
@@ -130,5 +171,58 @@
     _sort_bysale.selected = false;
 }
 - (void)onSubmitButtonClicked {
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _left) {
+        static NSString *reuseId = @"Left";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UILabel *count = [[UILabel alloc] initWithFrame:CGRectMake(_left.frame.size.width-15, 2, 15, 15)];
+        count.text = @"1";
+        [cell addSubview:count];
+        NSLog(@"%i",selectPos);
+        if (indexPath.row == selectPos) {
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.textLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
+        } else {
+            cell.backgroundColor = [UIColor clearColor];
+            cell.textLabel.textColor = [UIColor colorWithRed:250.0f/255.0f green:235.0f/255.0f blue:100.0f/255.0f alpha:1.0f];
+        }
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        cell.textLabel.text = ((JDDishTypeModel *)[dish_types objectAtIndex:indexPath.row]).type_name;
+        return cell;
+    } else if(tableView == _right){
+        static NSString *reuseId1 = @"Right";
+        UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:reuseId1];
+        if (cell1 == nil) {
+            cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId1];
+        }
+        return cell1;
+    }
+    return nil;
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView == _left) {
+        return dish_types.count;
+    } else if(tableView == _right){
+        return ((NSArray *)[dishes objectAtIndex:selectPos]).count;
+    }
+    return 0;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _left) {
+        selectPos = indexPath.row;
+        [tableView reloadData];
+    } else if(tableView == _right){
+        
+    }
 }
 @end

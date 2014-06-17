@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "JDHXLParentViewController.h"
 
-@interface JDMenuController : JDHXLParentViewController
+@interface JDMenuController : JDHXLParentViewController<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UILabel *total;
 @property (nonatomic,strong) UILabel *price;
 @property (nonatomic,strong) UILabel *price_avg;
 @property (nonatomic,strong) UIButton *sort;
 @property (nonatomic,strong) UIButton *sort_bysale;
 @property (nonatomic,strong) UIButton *sort_bycomment;
-@property (nonatomic,strong) UIScrollView *left;
-@property (nonatomic,strong) UIScrollView *right;
+@property (nonatomic,strong) UITableView *left;
+@property (nonatomic,strong) UITableView *right;
 @property (nonatomic,strong) UIButton *submit;
 @end
