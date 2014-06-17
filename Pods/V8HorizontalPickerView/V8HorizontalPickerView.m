@@ -201,7 +201,6 @@
 	}
 }
 
-
 #pragma mark - Getters and Setters
 - (void)setDelegate:(id)newDelegate {
 	if (self.delegate != newDelegate) {
@@ -365,6 +364,7 @@
 
 		// set the current item under the center to "highlighted" or current
 		_currentSelectedIndex = [self nearestElementToCenter];
+        [self.delegate horizontalPickerView:self currentSelectingElementAtIndex:_currentSelectedIndex];
 	}
 
 #if (__IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3)

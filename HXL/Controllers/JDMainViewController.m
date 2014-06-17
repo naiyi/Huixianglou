@@ -97,8 +97,16 @@
     [addrlabel sizeToFit];
     [addricon setFrame:CGRectMake((320.0-addrlabel.frame.size.width-25.0)/2, 10.0, 20.0, 20.0)];
     [addrlabel setFrame:CGRectMake(addricon.frame.origin.x + addricon.frame.size.width + 5.0, 12.0, addrlabel.frame.size.width, 20.0)];
+    UITapGestureRecognizer *tapGestureAddr1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAddrClicked)];
+    UITapGestureRecognizer *tapGestureAddr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAddrClicked)];
+    [addricon setUserInteractionEnabled:YES];
+    [addrlabel setUserInteractionEnabled:YES];
+    [addricon addGestureRecognizer:tapGestureAddr1];
+    [addrlabel addGestureRecognizer:tapGestureAddr2];
+    
     [whiteCenter addSubview:addricon];
     [whiteCenter addSubview:addrlabel];
+    
     UIImageView *telicon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"telephone_icon"]];
     UILabel *tellabel = [[UILabel alloc] init];
     [tellabel setText:self.hotelModel.tel];
@@ -106,18 +114,38 @@
     [tellabel sizeToFit];
     [telicon setFrame:CGRectMake((320.0-tellabel.frame.size.width-25.0)/2, 42.0, 20.0, 20.0)];
     [tellabel setFrame:CGRectMake(telicon.frame.origin.x + telicon.frame.size.width + 5.0, 44.0, tellabel.frame.size.width, 20.0)];
+    UITapGestureRecognizer *tapGestureTel1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTelClicked)];
+    UITapGestureRecognizer *tapGestureTel2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTelClicked)];
+    [telicon setUserInteractionEnabled:YES];
+    [tellabel setUserInteractionEnabled:YES];
+    [telicon addGestureRecognizer:tapGestureTel1];
+    [tellabel addGestureRecognizer:tapGestureTel2];
+    
     [whiteCenter addSubview:telicon];
     [whiteCenter addSubview:tellabel];
     
     [self.contentView addSubview:addrAndTelView];
 }
 
+- (void)onTelClicked
+{
+    NSString *phoneNum = @"";// 电话号码
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+    UIWebView *phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
+
+- (void)onAddrClicked
+{
+    
+}
+
 - (void)setupCountSelectView
 {
-	CGRect tmpFrame = CGRectMake(0.0, centerScrollView.frame.size.height - 40.0, 320.0, 40.0);
+	CGRect tmpFrame = CGRectMake(0.0, centerScrollView.frame.size.height - 36.0, 320.0, 36.0);
 
 	self.pickerView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
-	self.pickerView.backgroundColor   = [UIColor blackColor];
+	self.pickerView.backgroundColor   = [UIColor colorWithPatternImage:[UIImage imageNamed:@"count_bg"]];
 	self.pickerView.selectedTextColor = [UIColor whiteColor];
 	self.pickerView.textColor   = [UIColor grayColor];
 	self.pickerView.delegate    = self;
@@ -126,17 +154,35 @@
 	self.pickerView.selectionPoint = CGPointMake(160, 0);
     
 	// add carat or other view to indicate selected element
-	UIImageView *indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"indicator_1"]];
-	self.pickerView.selectionIndicatorView = indicator;
+	indicator = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 61.0, 61.0)];
+    [indicator setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"indicator_1"]]];
+    indicatorLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 41.0, 41.0)];
+    [indicatorLabel setBackgroundColor:[UIColor clearColor]];
+    [indicatorLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
+    [indicatorLabel setTextColor:[UIColor whiteColor]];
+    [indicatorLabel setTextAlignment:NSTextAlignmentCenter];
+    [indicatorLabel setText:[NSString stringWithFormat:@"%d", 0]];
+    [indicator addSubview:indicatorLabel];
+    
+    selectLabel = [[UILabel alloc] initWithFrame:CGRectMake(5.0, centerScrollView.frame.size.height - 36.0 + 8.0, 120.0, 20.0)];
+    [selectLabel setBackgroundColor:[UIColor clearColor]];
+    [selectLabel setText:@"滑动选择就餐人数"];
+    [selectLabel setFont:[UIFont systemFontOfSize:14.0]];
+    [selectLabel setTextColor:[UIColor whiteColor]];
+    [selectLabel setTextAlignment:NSTextAlignmentLeft];
+    [self.contentView addSubview:selectLabel];
+    
+    self.pickerView.selectionIndicatorView = indicator;
     [self.pickerView setIndicatorPosition:V8HorizontalPickerIndicatorCenter];
     
     [self.contentView addSubview:self.pickerView];
+    [self.pickerView scrollToElement:0 animated:NO];
 }
 
 - (void)setupBottomView
 {
     bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, addrAndTelView.frame.origin.y + 96.0, 320.0, 49.0)];
-    [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+    [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
     //[bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
     [self.contentView addSubview:bottomView];
     
@@ -172,18 +218,36 @@
 
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker
 {
-    return self.hotelModel.max;
-}
-
-- (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index
-{
-    NSString *title = [NSString stringWithFormat:@"%d", index];
-    return title;
+    return self.hotelModel.max + 1;
 }
 
 - (NSInteger)horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index
 {
-    return 40.0;
+    return 36.0;
+}
+
+- (UIView *)horizontalPickerView:(V8HorizontalPickerView *)picker viewForElementAtIndex:(NSInteger)index
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 36.0, 36.0)];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setText:[NSString stringWithFormat:@"%d", index]];
+    [label setTextColor:[UIColor grayColor]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setFont:[UIFont boldSystemFontOfSize:15.0]];
+    
+    return label;
+}
+
+- (void)horizontalPickerView:(V8HorizontalPickerView *)picker currentSelectingElementAtIndex:(NSInteger)index
+{
+    if (index != 0) {
+        [selectLabel setHidden:YES];
+        [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+    } else {
+        [selectLabel setHidden:NO];
+        [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
+    }
+    [indicatorLabel setText:[NSString stringWithFormat:@"%d", index]];
 }
 
 @end
