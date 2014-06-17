@@ -16,6 +16,7 @@ PODS:
   - SDWebImage (2.7.4):
     - SDWebImage/Main
   - SDWebImage/Main (2.7.4)
+  - V8HorizontalPickerView (1.0.0)
   - ViewDeck (2.3.1)
   - WebViewJavascriptBridge (4.1.0)
 
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - Reachability
   - SDURLCache
   - SDWebImage (= 2.7.4)
+  - V8HorizontalPickerView
   - ViewDeck
   - WebViewJavascriptBridge
 
@@ -46,6 +48,7 @@ SPEC CHECKSUMS:
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   SDURLCache: 814ea358784cb2f99bc7eb0dc5e88862bd0de937
   SDWebImage: 346947a13a1d7e89df95fa7b9831110857c5396f
+  V8HorizontalPickerView: 76d45849549fc6b26f497361cbc8f853b407bc13
   ViewDeck: 654a493fc83928892ce483dea08a5302180aafce
   WebViewJavascriptBridge: 81cfaf48e1f9bafa8de3d4bf503981c9da10e08f
 

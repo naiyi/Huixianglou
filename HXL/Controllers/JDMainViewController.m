@@ -49,10 +49,16 @@
     }];
 }
 
+- (BOOL)automaticallyAdjustsScrollViewInsets
+{
+    return NO;
+}
+
 - (void)setContentView{
-    centerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? Nav_Height - 4.0 : - 4.0, 320.0, App_Height - 96.0 - 49.0 - Nav_Height + 4.0)];
+    centerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, App_Height - 96.0 - 49.0 - Nav_Height + 4.0)];
     [centerScrollView setBackgroundColor:[UIColor redColor]];
     [centerScrollView setContentSize:CGSizeMake(320.0*self.hotelModel.img.count, centerScrollView.frame.size.height)];
+    [centerScrollView setBounces:NO];
     [centerScrollView setPagingEnabled:YES];
     for (int i = 0; i < self.hotelModel.img.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(320.0*i, 0.0, 320.0, centerScrollView.frame.size.height)];
@@ -72,43 +78,68 @@
     }
     [self.contentView addSubview:centerScrollView];
     
-    addrAndTelView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_iOS7 ? centerScrollView.frame.size.height + Nav_Height - 4.0 : centerScrollView.frame.size.height - 4.0, 320.0, 96.0)];
+    [self setupAddrAndTelView];
+    [self setupBottomView];
+    [self setupCountSelectView];
+}
+
+- (void)setupAddrAndTelView
+{
+    addrAndTelView = [[UIView alloc] initWithFrame:CGRectMake(0.0, centerScrollView.frame.origin.y + centerScrollView.frame.size.height, 320.0, 96.0)];
     [addrAndTelView setBackgroundColor:BACKGROUND_COLOR];
+    UIView *whiteCenter = [[UIView alloc] initWithFrame:CGRectMake(10.0, 10.0, 300.0, 76.0)];
+    [whiteCenter setBackgroundColor:[UIColor whiteColor]];
+    [addrAndTelView addSubview:whiteCenter];
     UIImageView *addricon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"address_icon"]];
     UILabel *addrlabel = [[UILabel alloc] init];
     [addrlabel setText:self.hotelModel.address];
     [addrlabel setFont:[UIFont systemFontOfSize:16.0]];
     [addrlabel sizeToFit];
-    [addricon setFrame:CGRectMake((320.0-addrlabel.frame.size.width-25.0)/2, 20.0, 20.0, 20.0)];
-    [addrlabel setFrame:CGRectMake(addricon.frame.origin.x + addricon.frame.size.width + 5.0, 22.0, addrlabel.frame.size.width, 20.0)];
-    [addrAndTelView addSubview:addricon];
-    [addrAndTelView addSubview:addrlabel];
+    [addricon setFrame:CGRectMake((320.0-addrlabel.frame.size.width-25.0)/2, 10.0, 20.0, 20.0)];
+    [addrlabel setFrame:CGRectMake(addricon.frame.origin.x + addricon.frame.size.width + 5.0, 12.0, addrlabel.frame.size.width, 20.0)];
+    [whiteCenter addSubview:addricon];
+    [whiteCenter addSubview:addrlabel];
     UIImageView *telicon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"telephone_icon"]];
     UILabel *tellabel = [[UILabel alloc] init];
     [tellabel setText:self.hotelModel.tel];
     [tellabel setFont:[UIFont systemFontOfSize:16.0]];
     [tellabel sizeToFit];
-    [telicon setFrame:CGRectMake((320.0-tellabel.frame.size.width-25.0)/2, 52.0, 20.0, 20.0)];
-    [tellabel setFrame:CGRectMake(telicon.frame.origin.x + telicon.frame.size.width + 5.0, 54.0, tellabel.frame.size.width, 20.0)];
-    [addrAndTelView addSubview:telicon];
-    [addrAndTelView addSubview:tellabel];
+    [telicon setFrame:CGRectMake((320.0-tellabel.frame.size.width-25.0)/2, 42.0, 20.0, 20.0)];
+    [tellabel setFrame:CGRectMake(telicon.frame.origin.x + telicon.frame.size.width + 5.0, 44.0, tellabel.frame.size.width, 20.0)];
+    [whiteCenter addSubview:telicon];
+    [whiteCenter addSubview:tellabel];
     
     [self.contentView addSubview:addrAndTelView];
-    [self setupAddrAndTelView];
-    
-    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, addrAndTelView.frame.origin.y + 96.0, 320.0, 49.0)];
-    [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
-    [self.contentView addSubview:bottomView];
-    [self setupBottomView];
 }
 
-- (void)setupAddrAndTelView
+- (void)setupCountSelectView
 {
+	CGRect tmpFrame = CGRectMake(0.0, centerScrollView.frame.size.height - 40.0, 320.0, 40.0);
+
+	self.pickerView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
+	self.pickerView.backgroundColor   = [UIColor blackColor];
+	self.pickerView.selectedTextColor = [UIColor whiteColor];
+	self.pickerView.textColor   = [UIColor grayColor];
+	self.pickerView.delegate    = self;
+	self.pickerView.dataSource  = self;
+	self.pickerView.elementFont = [UIFont boldSystemFontOfSize:14.0f];
+	self.pickerView.selectionPoint = CGPointMake(160, 0);
     
+	// add carat or other view to indicate selected element
+	UIImageView *indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"indicator_1"]];
+	self.pickerView.selectionIndicatorView = indicator;
+    [self.pickerView setIndicatorPosition:V8HorizontalPickerIndicatorCenter];
+    
+    [self.contentView addSubview:self.pickerView];
 }
 
 - (void)setupBottomView
 {
+    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, addrAndTelView.frame.origin.y + 96.0, 320.0, 49.0)];
+    [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+    //[bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
+    [self.contentView addSubview:bottomView];
+    
     UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
     [startButton setImage:[UIImage imageNamed:@"start_btn_bg_1"] forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(onStartButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -137,6 +168,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker
+{
+    return self.hotelModel.max;
+}
+
+- (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index
+{
+    NSString *title = [NSString stringWithFormat:@"%d", index];
+    return title;
+}
+
+- (NSInteger)horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index
+{
+    return 40.0;
 }
 
 @end

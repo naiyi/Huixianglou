@@ -78,7 +78,7 @@
 
 - (void)setContentView
 {
-    UIView *sortView =[[UIView alloc] initWithFrame:CGRectMake(0, IS_iOS7 ? Nav_Height-5 : -5, self.contentView.frame.size.width, 40)];
+    UIView *sortView =[[UIView alloc] initWithFrame:CGRectMake(0, 0.0, self.contentView.frame.size.width, 40)];
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"menu_submit_bg.png"]];
     [sortView setBackgroundColor:bgColor];
     float sort_width = sortView.frame.size.width/3;

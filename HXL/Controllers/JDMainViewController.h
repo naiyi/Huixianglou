@@ -11,8 +11,9 @@
 #import "DCArrayMapping.h"
 #import "JDHotelModel.h"
 #import "JDHXLModel.h"
+#import "V8HorizontalPickerView.h"
 
-@interface JDMainViewController : JDHXLParentViewController
+@interface JDMainViewController : JDHXLParentViewController<V8HorizontalPickerViewDataSource, V8HorizontalPickerViewDelegate>
 {
     UIScrollView *centerScrollView;
     UIView *addrAndTelView;
@@ -21,5 +22,6 @@
 
 @property (nonatomic, strong) NSMutableArray *centerImageViews;
 @property (nonatomic, strong) JDHotelModel *hotelModel;
+@property (nonatomic, strong) V8HorizontalPickerView *pickerView;
 
 @end
