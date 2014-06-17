@@ -26,6 +26,9 @@
 		A744AEE7194832E800C092BB /* menu_orderby_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE5194832E800C092BB /* menu_orderby_devider.png */; };
 		A744AEE8194832E800C092BB /* menu_orderby.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE6194832E800C092BB /* menu_orderby.png */; };
 		A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE91948424A00C092BB /* dishtype_item_bg.png */; };
+		A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC74F194AD6920052CD3E /* JDOArrayModel.m */; };
+		A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC751194AD6920052CD3E /* JDODataModel.m */; };
+		A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */; };
 		D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECA194551240008E7CF /* Default-568h@2x.png */; };
 		D80A7ECD194551240008E7CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECB194551240008E7CF /* Default@2x.png */; };
 		D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECE1945552E0008E7CF /* icon-120@2x.png */; };
@@ -109,6 +112,12 @@
 		A744AEE5194832E800C092BB /* menu_orderby_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby_devider.png; sourceTree = "<group>"; };
 		A744AEE6194832E800C092BB /* menu_orderby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby.png; sourceTree = "<group>"; };
 		A744AEE91948424A00C092BB /* dishtype_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_item_bg.png; sourceTree = "<group>"; };
+		A75BC74E194AD6920052CD3E /* JDOArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOArrayModel.h; sourceTree = "<group>"; };
+		A75BC74F194AD6920052CD3E /* JDOArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOArrayModel.m; sourceTree = "<group>"; };
+		A75BC750194AD6920052CD3E /* JDODataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDODataModel.h; sourceTree = "<group>"; };
+		A75BC751194AD6920052CD3E /* JDODataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDODataModel.m; sourceTree = "<group>"; };
+		A75BC754194AD97C0052CD3E /* JDDishTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeModel.h; sourceTree = "<group>"; };
+		A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeModel.m; sourceTree = "<group>"; };
 		B4428FFB5D7F48E198537D5A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D80A7ECA194551240008E7CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -277,12 +286,18 @@
 		A7120346194691E2004CFC3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A75BC74E194AD6920052CD3E /* JDOArrayModel.h */,
+				A75BC74F194AD6920052CD3E /* JDOArrayModel.m */,
+				A75BC750194AD6920052CD3E /* JDODataModel.h */,
+				A75BC751194AD6920052CD3E /* JDODataModel.m */,
 				D84DF96D19483E5D001B266E /* JDHXLModel.h */,
 				D84DF96E19483E5D001B266E /* JDHXLModel.m */,
 				D811C838194839A900788155 /* JDHotelModel.h */,
 				D811C839194839A900788155 /* JDHotelModel.m */,
 				A71203471946954A004CFC3D /* JDDishModel.h */,
 				A71203481946954A004CFC3D /* JDDishModel.m */,
+				A75BC754194AD97C0052CD3E /* JDDishTypeModel.h */,
+				A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -562,10 +577,13 @@
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,
 				2DBA44FE194146FB00F73B66 /* main.m in Sources */,
 				D8D41871194986BA00471D40 /* STKeychain.m in Sources */,
+				A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */,
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
+				A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */,
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
+				A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */,
 				D8D4186D1949829900471D40 /* JDHXLUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
