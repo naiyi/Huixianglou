@@ -18,6 +18,9 @@
     UIScrollView *centerScrollView;
     UIView *addrAndTelView;
     UIView *bottomView;
+    UIView *indicator;
+    UILabel *indicatorLabel;
+    UILabel *selectLabel;
 }
 
 @property (nonatomic, strong) NSMutableArray *centerImageViews;
