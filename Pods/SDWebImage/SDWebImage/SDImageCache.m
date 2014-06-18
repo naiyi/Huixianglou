@@ -123,7 +123,8 @@ static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
     NSFileManager *fileManager = [[NSFileManager alloc] init];
 
     NSString *key = [keyAndData objectAtIndex:0];
-    NSData *data = [keyAndData count] > 1 ? [keyAndData objectAtIndex:1] : nil;
+    id<SDWebImageStoreDelegate> storeDelegate = [keyAndData objectAtIndex:1] == [NSNull null]? nil:[keyAndData objectAtIndex:1];
+    NSData *data = [keyAndData objectAtIndex:2] == [NSNull null]? nil:[keyAndData objectAtIndex:2];
 
     if (data)
     {
@@ -137,7 +138,8 @@ static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
         if (image)
         {
 #if TARGET_OS_IPHONE
-            [fileManager createFileAtPath:[self cachePathForKey:key] contents:UIImageJPEGRepresentation(image, (CGFloat)1.0) attributes:nil];
+            NSData *imageData = UIImageJPEGRepresentation(image, (CGFloat)1.0);
+            [fileManager createFileAtPath:[self cachePathForKey:key] contents:imageData attributes:nil];
 #else
             NSArray*  representations  = [image representations];
             NSData* jpegData = [NSBitmapImageRep representationOfImageRepsInArray: representations usingType: NSJPEGFileType properties:nil];
@@ -148,6 +150,19 @@ static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
     }
 
     SDWIRelease(fileManager);
+    if ([storeDelegate respondsToSelector:@selector(didFinishStoreForKey:)])
+    {
+        //[storeDelegate performSelector:@selector(didFinishStoreForKey:) withObject:key];
+        NSDictionary *arg = [NSDictionary dictionaryWithObjects:@[storeDelegate, key] forKeys:@[@"storeDelegate", @"key"]];
+        //[[NSDictionary alloc] initWithObjects:(storeDelegate, key, nil) forKeys:(@"storeDelegate", @"key", nil)];
+        [self performSelectorOnMainThread:@selector(notifyStoreDelegate:) withObject:arg waitUntilDone:FALSE];
+    }
+}
+
+- (void)notifyStoreDelegate:(NSDictionary *)arguments {
+    id<SDWebImageStoreDelegate> storeDelegate = [arguments objectForKey:@"storeDelegate"];
+    NSString *key = [arguments objectForKey:@"key"];
+    [storeDelegate performSelector:@selector(didFinishStoreForKey:) withObject:key];
 }
 
 - (void)notifyDelegate:(NSDictionary *)arguments
@@ -198,7 +213,7 @@ static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
 
 #pragma mark ImageCache
 
-- (void)storeImage:(UIImage *)image imageData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk
+- (void)storeImage:(UIImage *)image imageData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk storeDelegate:(id<SDWebImageStoreDelegate>) storeDelegate
 {
     if (!image || !key)
     {
@@ -209,15 +224,7 @@ static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
 
     if (toDisk)
     {
-        NSArray *keyWithData;
-        if (data)
-        {
-            keyWithData = [NSArray arrayWithObjects:key, data, nil];
-        }
-        else
-        {
-            keyWithData = [NSArray arrayWithObjects:key, nil];
-        }
+        NSArray *keyWithData = [NSArray arrayWithObjects:key, storeDelegate ? storeDelegate:[NSNull null], data ? data:[NSNull null], nil];
 
         NSInvocationOperation *operation = SDWIReturnAutoreleased([[NSInvocationOperation alloc] initWithTarget:self
                                                                                                        selector:@selector(storeKeyWithDataToDisk:)
@@ -226,15 +233,15 @@ static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
     }
 }
 
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key
-{
-    [self storeImage:image imageData:nil forKey:key toDisk:YES];
-}
-
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk
-{
-    [self storeImage:image imageData:nil forKey:key toDisk:toDisk];
-}
+//- (void)storeImage:(UIImage *)image forKey:(NSString *)key
+//{
+//    [self storeImage:image imageData:nil forKey:key toDisk:YES];
+//}
+//
+//- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk
+//{
+//    [self storeImage:image imageData:nil forKey:key toDisk:toDisk];
+//}
 
 
 - (UIImage *)imageFromKey:(NSString *)key

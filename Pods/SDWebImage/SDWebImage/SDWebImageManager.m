@@ -100,9 +100,19 @@ static SDWebImageManager *instance;
     [self downloadWithURL:url delegate:delegate options:options];
 }
 
-- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate 
 {
     [self downloadWithURL:url delegate:delegate options:0];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate options:(SDWebImageOptions)options userInfo:(NSDictionary *)info
+{
+    [self downloadWithURL:url delegate:delegate options:options userInfo:info storeDelegate:nil];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate storeDelegate:(id<SDWebImageStoreDelegate>) storeDelegate
+{
+    [self downloadWithURL:url delegate:delegate options:0 userInfo:nil storeDelegate:storeDelegate];
 }
 
 - (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate options:(SDWebImageOptions)options
@@ -110,7 +120,7 @@ static SDWebImageManager *instance;
     [self downloadWithURL:url delegate:delegate options:options userInfo:nil];
 }
 
-- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate options:(SDWebImageOptions)options userInfo:(NSDictionary *)userInfo
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebImageManagerDelegate>)delegate options:(SDWebImageOptions)options userInfo:(NSDictionary *)userInfo storeDelegate:(id<SDWebImageStoreDelegate>) storeDelegate
 {
     // Very common mistake is to send the URL using NSString object instead of NSURL. For some strange reason, XCode won't
     // throw any warning for this type mismatch. Here we failsafe this error by allowing URLs to be passed as NSString.
@@ -136,6 +146,7 @@ static SDWebImageManager *instance;
                           url, @"url",
                           [NSNumber numberWithInt:options], @"options",
                           userInfo ? userInfo : [NSNull null], @"userInfo",
+                          storeDelegate ? storeDelegate:[NSNull null], @"storeDelegate",
                           nil];
     [[SDImageCache sharedImageCache] queryDiskCacheForKey:[self cacheKeyForURL:url] delegate:self userInfo:info];
 }
@@ -433,11 +444,13 @@ static SDWebImageManager *instance;
 
     if (image)
     {
+        id<SDWebImageStoreDelegate> storeDelegate = [downloader.userInfo valueForKey:@"storeDelegate"];
         // Store the image in the cache
         [[SDImageCache sharedImageCache] storeImage:image
                                           imageData:downloader.imageData
                                              forKey:[self cacheKeyForURL:downloader.url]
-                                             toDisk:!(options & SDWebImageCacheMemoryOnly)];
+                                             toDisk:!(options & SDWebImageCacheMemoryOnly)
+                                            storeDelegate:storeDelegate];
     }
     else if (!(options & SDWebImageRetryFailed))
     {
