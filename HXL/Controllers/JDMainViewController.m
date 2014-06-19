@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentSelectedCount = 0;
     [self setNavigationTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_title"]]];
     [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"user_btn_bg"] Target:self Action:@selector(onUserButtonClicked)];
     [self setNavigationRightButtonWithImage:[UIImage imageNamed:@"setting_btn_bg"] Target:self Action:@selector(onSettingButtonClicked)];
@@ -186,9 +187,10 @@
     //[bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
     [self.contentView addSubview:bottomView];
     
-    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
+    startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
     [startButton setImage:[UIImage imageNamed:@"start_btn_bg_1"] forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(onStartButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [startButton setUserInteractionEnabled:NO];
     [bottomView addSubview:startButton];
 }
 
@@ -243,10 +245,13 @@
     if (index != 0) {
         [selectLabel setHidden:YES];
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+        [startButton setUserInteractionEnabled:YES];
     } else {
         [selectLabel setHidden:NO];
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
+        [startButton setUserInteractionEnabled:NO];
     }
+    self.currentSelectedCount = index;
     [indicatorLabel setText:[NSString stringWithFormat:@"%d", index]];
 }
 

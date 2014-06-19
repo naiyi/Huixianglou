@@ -21,10 +21,12 @@
     UIView *indicator;
     UILabel *indicatorLabel;
     UILabel *selectLabel;
+    UIButton *startButton;
 }
 
 @property (nonatomic, strong) NSMutableArray *centerImageViews;
 @property (nonatomic, strong) JDHotelModel *hotelModel;
 @property (nonatomic, strong) V8HorizontalPickerView *pickerView;
+@property (nonatomic) int currentSelectedCount;
 
 @end

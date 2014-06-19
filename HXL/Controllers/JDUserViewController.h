@@ -11,7 +11,13 @@
 
 @interface JDUserViewController : JDHXLParentViewController
 {
-    
+    UIImageView *centerView;
+    UIView *bottomView;
+    UIButton *loginButton;
+    UITextField *nameField;
+    UITextField *telField;
+    UITextField *codeField;
+    UIButton *codeButton;
 }
 
 @end
