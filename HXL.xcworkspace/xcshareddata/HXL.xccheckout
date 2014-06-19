@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>824B3DEE-2D2E-41C8-B44C-7769087E631D</string>
+	<string>1A3B9F83-ED9C-41A7-87CF-F24914D6DE4B</string>
 	<key>IDESourceControlProjectName</key>
 	<string>HXL</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>http://192.168.10.3/git/HXL.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>HXL/HXL.xcworkspace</string>
+	<string>HXL.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>7E3D302A-4B3D-460D-96B3-8280B6BA9C9B</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>http://192.168.10.3/git/HXL.git</string>

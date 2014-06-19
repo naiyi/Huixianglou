@@ -44,9 +44,11 @@
 
 - (void)setUpLoginView
 {
+    keyBoardShowing = NO;
     [self setNetworkState:NETWORK_STATE_NORMAL];
     [self.contentView setBackgroundColor:BACKGROUND_COLOR];
     centerView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 14.0, 300.0, self.contentView.frame.size.height - 24.0 - 49.0)];
+    [centerView setUserInteractionEnabled:YES];
     [centerView setImage:[UIImage imageNamed:@"login_bg"]];
     [self.contentView addSubview:centerView];
     
@@ -61,6 +63,7 @@
     [nameField setFont:[UIFont systemFontOfSize:16.0]];
     [nameField setTextAlignment:NSTextAlignmentLeft];
     [nameField setTextColor:[UIColor blackColor]];
+    [nameField setDelegate:self];
     [centerView addSubview:nameField];
     UIImageView *divider1 = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 38.0, 300.0, 1.0)];
     [divider1 setImage:[UIImage imageNamed:@"divider"]];
@@ -76,6 +79,7 @@
     [telField setFont:[UIFont systemFontOfSize:16.0]];
     [telField setTextAlignment:NSTextAlignmentLeft];
     [telField setTextColor:[UIColor blackColor]];
+    [telField setDelegate:self];
     [centerView addSubview:telField];
     UIImageView *divider2 = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 77.0, 300.0, 1.0)];
     [divider2 setImage:[UIImage imageNamed:@"divider"]];
@@ -91,6 +95,7 @@
     [codeField setFont:[UIFont systemFontOfSize:16.0]];
     [codeField setTextAlignment:NSTextAlignmentLeft];
     [codeField setTextColor:[UIColor blackColor]];
+    [codeField setDelegate:self];
     [centerView addSubview:codeField];
     UIImageView *divider4 = [[UIImageView alloc] initWithFrame:CGRectMake(200.0, 78.0, 1.0, 38.0)];
     [divider4 setImage:[UIImage imageNamed:@"divider_v"]];
@@ -101,6 +106,7 @@
     [codeButton setTitleColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0] forState:UIControlStateNormal];
     [codeButton setTitleEdgeInsets:UIEdgeInsetsMake(-20.0, 0.0, 0.0, 0.0)];
     [[codeButton titleLabel] setFont:[UIFont systemFontOfSize:16.0]];
+    [codeButton addTarget:self action:@selector(onCodeButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [centerView addSubview:codeButton];
     UIImageView *divider3 = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 115.0, 300.0, 1.0)];
     [divider3 setImage:[UIImage imageNamed:@"divider"]];
@@ -122,6 +128,75 @@
     [loginButton setUserInteractionEnabled:NO];
     [bottomView addSubview:loginButton];
     [self.contentView addSubview:bottomView];
+}
+
+- (void)onCodeButtonClicked
+{
+    timerindex = 60;
+    [codeButton setUserInteractionEnabled:NO];
+    codeTimer = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(timerStart) userInfo:nil repeats:NO];
+}
+
+- (void)timerStart
+{
+    if (timerindex > 0) {
+        [codeButton setTitleColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0] forState:UIControlStateNormal];
+        [codeButton setTitle:[NSString stringWithFormat:@"重试（%d）", timerindex] forState:UIControlStateNormal];
+        timerindex--;
+        codeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerStart) userInfo:nil repeats:NO];
+    } else {
+        [codeButton setTitleColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0] forState:UIControlStateNormal];
+        [codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [codeButton setUserInteractionEnabled:YES];
+        [codeTimer invalidate];
+        codeTimer = nil;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
+    if (!keyBoardShowing) {
+        return YES;
+    }
+    CGRect frame = bottomView.frame;
+    int offset = frame.origin.y + 216.0;//键盘高度216
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = bottomView.frame.size.width;
+    float height = bottomView.frame.size.height;
+    if(offset > 0)
+    {
+        CGRect rect = CGRectMake(0.0f, offset, width, height);
+        bottomView.frame = rect;
+    }
+    [UIView commitAnimations];
+    keyBoardShowing = NO;
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (keyBoardShowing) {
+        return;
+    }
+    CGRect frame = bottomView.frame;
+    int offset = frame.origin.y - 216.0;//键盘高度216
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = bottomView.frame.size.width;
+    float height = bottomView.frame.size.height;
+    if(offset > 0)
+    {
+        CGRect rect = CGRectMake(0.0f, offset, width, height);
+        bottomView.frame = rect;
+    }
+    [UIView commitAnimations];
+    keyBoardShowing = YES;
 }
 
 - (void)onLoginButtonClicked
@@ -149,6 +224,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (codeTimer) {
+        [codeTimer invalidate];
+        codeTimer = nil;
+    }
 }
 
 @end

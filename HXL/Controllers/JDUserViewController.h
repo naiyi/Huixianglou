@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JDHXLParentViewController.h"
 
-@interface JDUserViewController : JDHXLParentViewController
+@interface JDUserViewController : JDHXLParentViewController<UITextFieldDelegate>
 {
     UIImageView *centerView;
     UIView *bottomView;
@@ -18,6 +18,9 @@
     UITextField *telField;
     UITextField *codeField;
     UIButton *codeButton;
+    NSTimer *codeTimer;
+    int timerindex;
+    BOOL keyBoardShowing;
 }
 
 @end

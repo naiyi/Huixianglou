@@ -389,6 +389,12 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A7228F0519512C31007AF87C /* dish_eat.png */,
+				A7228F0619512C31007AF87C /* dish_like.png */,
+				A7228F0119512AE0007AF87C /* dish_taste_bg.png */,
+				A7228F0219512AE0007AF87C /* dish_tuijian.png */,
+				A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */,
+				A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */,
 				D8B120AA1952869000A631E1 /* divider_v.png */,
 				D8B120AB1952869000A631E1 /* divider.png */,
 				D82736B319503CFB009E3468 /* divider_v@2x.png */,
