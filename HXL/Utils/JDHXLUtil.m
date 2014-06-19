@@ -11,12 +11,16 @@
 #import "Reachability.h"
 #import "SDImageCache.h"
 #import "STKeychain.h"
+#import <WBNoticeView.h>
+#import <WBErrorNoticeView.h>
+#import <WBSuccessNoticeView.h>
 
 #define NUMBERS @"0123456789"
 
 @implementation JDHXLUtil
 
 static NSDateFormatter *dateFormatter;
+static bool isShowingHint;
 
 + (void) showFrameDetail:(UIView *)view{
     NSLog(@"x:%g,y:%g,w:%g,h:%g",view.frame.origin.x,view.frame.origin.y,
@@ -306,6 +310,86 @@ static NSDateFormatter *dateFormatter;
         
     }
     return size;
+}
+
+
++ (BOOL) isShowingHint{
+    return isShowingHint;
+}
+
++ (void) showHintHUD:(NSString *)content inView:(UIView *)view {
+    [self showHintHUD:content inView:view withSlidingMode:WBNoticeViewSlidingModeDown];
+}
+
++ (void) showHintHUD:(NSString *)content inView:(UIView *)view withSlidingMode:(WBNoticeViewSlidingMode)slidingMode{
+    //    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    //    hud.mode = MBProgressHUDModeText;
+    //    hud.labelText = content;
+    //    hud.margin = 10.f;
+    //    hud.yOffset = view.frame.size.height/2.0f-40;
+    //    hud.removeFromSuperViewOnHide = YES;
+    //    [hud hide:YES afterDelay:1.5];
+    
+    // Toast样式提示
+    //    iToast *toast = [iToast makeText:content];
+    //    iToastSettings *setting = toast.theSettings;
+    //    setting.duration = 1500;
+    //    setting.gravity = iToastGravityBottom;
+    //    setting.imageLocation = iToastImageLocationLeft;
+    //    [setting setImage:[UIImage imageNamed:@"error"] forType:iToastTypeError];
+    //    [toast show:iToastTypeError];
+    
+    // Tweetbot样式notice提示
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:view title:@"操作失败" message:content];
+    notice.sticky = false;
+    notice.alpha = 0.8;
+    notice.slidingMode = slidingMode;
+    [notice setDismissalBlock:^(BOOL dismissedInteractively) {
+        isShowingHint = false;
+    }];
+    isShowingHint = true;
+    [notice show];
+}
+
++ (void) showHintHUD:(NSString *)content inView:(UIView *)view originY:(CGFloat) originY{
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:view title:@"操作失败" message:content];
+    notice.sticky = false;
+    notice.alpha = 0.8;
+    notice.originY = originY;
+    [notice setDismissalBlock:^(BOOL dismissedInteractively) {
+        isShowingHint = false;
+    }];
+    isShowingHint = true;
+    [notice show];
+}
+
++ (void) showSuccessHUD:(NSString *)content inView:(UIView *)view withSlidingMode:(WBNoticeViewSlidingMode)slidingMode{
+    WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:view title:content];
+    notice.sticky = false;
+    notice.alpha = 0.8;
+    notice.slidingMode = slidingMode;
+    [notice setDismissalBlock:^(BOOL dismissedInteractively) {
+        isShowingHint = false;
+    }];
+    isShowingHint = true;
+    [notice show];
+}
+
++ (void) showSuccessHUD:(NSString *)content inView:(UIView *)view{
+    [self showSuccessHUD:content inView:view originY:0];
+}
+
++ (void) showSuccessHUD:(NSString *)content inView:(UIView *)view originY:(CGFloat) originY{
+    // Tweetbot样式notice提示
+    WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:view title:content];
+    notice.sticky = false;
+    notice.alpha = 0.8;
+    notice.originY = originY;
+    [notice setDismissalBlock:^(BOOL dismissedInteractively) {
+        isShowingHint = false;
+    }];
+    isShowingHint = true;
+    [notice show];
 }
 
 @end

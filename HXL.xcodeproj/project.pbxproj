@@ -23,12 +23,20 @@
 		A71203491946954A004CFC3D /* JDDishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A71203481946954A004CFC3D /* JDDishModel.m */; };
 		A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A712034B1946A9EB004CFC3D /* JDMenuController.m */; };
 		A71D28571948043200DE1B3F /* menu_submit_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A71D28561948043200DE1B3F /* menu_submit_bg.png */; };
+		A7228F0319512AE0007AF87C /* dish_taste_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A7228F0119512AE0007AF87C /* dish_taste_bg.png */; };
+		A7228F0419512AE0007AF87C /* dish_tuijian.png in Resources */ = {isa = PBXBuildFile; fileRef = A7228F0219512AE0007AF87C /* dish_tuijian.png */; };
+		A7228F0719512C31007AF87C /* dish_eat.png in Resources */ = {isa = PBXBuildFile; fileRef = A7228F0519512C31007AF87C /* dish_eat.png */; };
+		A7228F0819512C31007AF87C /* dish_like.png in Resources */ = {isa = PBXBuildFile; fileRef = A7228F0619512C31007AF87C /* dish_like.png */; };
 		A744AEE7194832E800C092BB /* menu_orderby_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE5194832E800C092BB /* menu_orderby_devider.png */; };
 		A744AEE8194832E800C092BB /* menu_orderby.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE6194832E800C092BB /* menu_orderby.png */; };
 		A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE91948424A00C092BB /* dishtype_item_bg.png */; };
+		A758E68119519B9000374F8F /* JDDishTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A758E68019519B9000374F8F /* JDDishTypeView.m */; };
 		A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC74F194AD6920052CD3E /* JDOArrayModel.m */; };
 		A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC751194AD6920052CD3E /* JDODataModel.m */; };
 		A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */; };
+		A79969F1194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */; };
+		A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */; };
+		A79969F5194FE7CA003D7DE7 /* JDMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */; };
 		D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECA194551240008E7CF /* Default-568h@2x.png */; };
 		D80A7ECD194551240008E7CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECB194551240008E7CF /* Default@2x.png */; };
 		D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECE1945552E0008E7CF /* icon-120@2x.png */; };
@@ -119,15 +127,25 @@
 		A712034A1946A9EB004CFC3D /* JDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuController.h; sourceTree = "<group>"; };
 		A712034B1946A9EB004CFC3D /* JDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuController.m; sourceTree = "<group>"; };
 		A71D28561948043200DE1B3F /* menu_submit_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_submit_bg.png; sourceTree = "<group>"; };
+		A7228F0119512AE0007AF87C /* dish_taste_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_taste_bg.png; sourceTree = "<group>"; };
+		A7228F0219512AE0007AF87C /* dish_tuijian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_tuijian.png; sourceTree = "<group>"; };
+		A7228F0519512C31007AF87C /* dish_eat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_eat.png; sourceTree = "<group>"; };
+		A7228F0619512C31007AF87C /* dish_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_like.png; sourceTree = "<group>"; };
 		A744AEE5194832E800C092BB /* menu_orderby_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby_devider.png; sourceTree = "<group>"; };
 		A744AEE6194832E800C092BB /* menu_orderby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby.png; sourceTree = "<group>"; };
 		A744AEE91948424A00C092BB /* dishtype_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_item_bg.png; sourceTree = "<group>"; };
+		A758E67F19519B9000374F8F /* JDDishTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeView.h; sourceTree = "<group>"; };
+		A758E68019519B9000374F8F /* JDDishTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeView.m; sourceTree = "<group>"; };
 		A75BC74E194AD6920052CD3E /* JDOArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOArrayModel.h; sourceTree = "<group>"; };
 		A75BC74F194AD6920052CD3E /* JDOArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOArrayModel.m; sourceTree = "<group>"; };
 		A75BC750194AD6920052CD3E /* JDODataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDODataModel.h; sourceTree = "<group>"; };
 		A75BC751194AD6920052CD3E /* JDODataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDODataModel.m; sourceTree = "<group>"; };
 		A75BC754194AD97C0052CD3E /* JDDishTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeModel.h; sourceTree = "<group>"; };
 		A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeModel.m; sourceTree = "<group>"; };
+		A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_ordernumber_bg.png; sourceTree = "<group>"; };
+		A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_ordernumber_bg2.png; sourceTree = "<group>"; };
+		A79969F3194FE7CA003D7DE7 /* JDMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuItemView.h; sourceTree = "<group>"; };
+		A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuItemView.m; sourceTree = "<group>"; };
 		B4428FFB5D7F48E198537D5A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D80A7ECA194551240008E7CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -267,7 +285,6 @@
 				A7120346194691E2004CFC3D /* Model */,
 				D82BE58C19482BE70051CB09 /* Http */,
 				D82BE58B19482BB40051CB09 /* Utils */,
-				D8D4186E1949862300471D40 /* Vendors */,
 				2DBA44F8194146FB00F73B66 /* Supporting Files */,
 				D82CF4671941C17F00022E33 /* Resources */,
 			);
@@ -361,6 +378,10 @@
 				D80A7EE719455EA60008E7CF /* JDSettingsViewController.m */,
 				A712034A1946A9EB004CFC3D /* JDMenuController.h */,
 				A712034B1946A9EB004CFC3D /* JDMenuController.m */,
+				A79969F3194FE7CA003D7DE7 /* JDMenuItemView.h */,
+				A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */,
+				A758E67F19519B9000374F8F /* JDDishTypeView.h */,
+				A758E68019519B9000374F8F /* JDDishTypeView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -418,13 +439,6 @@
 				D80A7ECB194551240008E7CF /* Default@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		D8D4186E1949862300471D40 /* Vendors */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Vendors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,6 +525,7 @@
 				D82BE4F21947DECF0051CB09 /* start_btn_bg_1@2x.png in Resources */,
 				D82A86D51945B5DC00C9C249 /* navigation_bg_44.png in Resources */,
 				D80A7ECD194551240008E7CF /* Default@2x.png in Resources */,
+				A7228F0819512C31007AF87C /* dish_like.png in Resources */,
 				D80A7EE319455C330008E7CF /* user_btn_bg@2x.png in Resources */,
 				D8D418691949380100471D40 /* notavilable_bg.png in Resources */,
 				D82736B919503CFB009E3468 /* login_bg.png in Resources */,
@@ -522,6 +537,7 @@
 				2DBA44FC194146FB00F73B66 /* InfoPlist.strings in Resources */,
 				D82736B719503CFB009E3468 /* divider_v@2x.png in Resources */,
 				D80A7ED51945559A0008E7CF /* Default.png in Resources */,
+				A7228F0319512AE0007AF87C /* dish_taste_bg.png in Resources */,
 				D8D4186A1949380100471D40 /* notavilable_bg@2x.png in Resources */,
 				D82BE4F11947DECF0051CB09 /* start_btn_bg_1.png in Resources */,
 				D80A7EDE19455C330008E7CF /* address_icon@2x.png in Resources */,
@@ -541,11 +557,14 @@
 				A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */,
 				D80A7ED719455A820008E7CF /* navigation_bg@2x.png in Resources */,
 				D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */,
+				A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */,
 				D8292D29194EE19700623611 /* indicator_2@2x.png in Resources */,
-				D82736B2194FD8D5009E3468 /* indicator_2.png in Resources */,
+				A7228F0719512C31007AF87C /* dish_eat.png in Resources */,
 				D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */,
 				D82A86D61945B5DC00C9C249 /* navigation_bg_44@2x.png in Resources */,
+				A7228F0419512AE0007AF87C /* dish_tuijian.png in Resources */,
 				A744AEE7194832E800C092BB /* menu_orderby_devider.png in Resources */,
+				A79969F1194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png in Resources */,
 				D80A7EFA194560B30008E7CF /* user_btn_bg.png in Resources */,
 				D82BE4F41947DECF0051CB09 /* start_btn_bg@2x.png in Resources */,
 				D8B120AD1952869000A631E1 /* divider.png in Resources */,
@@ -614,6 +633,7 @@
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
 				A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */,
 				D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */,
+				A79969F5194FE7CA003D7DE7 /* JDMenuItemView.m in Sources */,
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,
 				2DBA44FE194146FB00F73B66 /* main.m in Sources */,
 				D8D41871194986BA00471D40 /* STKeychain.m in Sources */,
@@ -623,6 +643,7 @@
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
+				A758E68119519B9000374F8F /* JDDishTypeView.m in Sources */,
 				A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */,
 				D8D4186D1949829900471D40 /* JDHXLUtil.m in Sources */,
 			);

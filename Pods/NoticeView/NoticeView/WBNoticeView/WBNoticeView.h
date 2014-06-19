@@ -8,76 +8,151 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum WBNoticeViewSlidingMode {
+    WBNoticeViewSlidingModeUp,
+    WBNoticeViewSlidingModeDown,
+} WBNoticeViewSlidingMode;
+
+/**
+ `WBNoticeView` objects provides a lightweight, non-intrusive means for displaying information to the user. The `WBNoticeView` class is an abstract class that encapsulates the interface common to all notice objects.
+ */
 @interface WBNoticeView : NSObject
 
-typedef enum {
-    WBNoticeViewTypeError = 0,
-    WBNoticeViewTypeSuccess,
-    WBNoticeViewTypeSticky
-} WBNoticeViewType;
+///----------------------------
+/// @name Initializing a Notice
+///----------------------------
 
-typedef void (^WBNoticeViewDismissedBlock)(void);
+/**
+ Initializes the receiver with the given origin view and title.
+ 
+ This is the designated initializer.
+ 
+ @param view The view from which the notice will originate when displayed.
+ @param title The title for the notice.
+ @return The receiver, initialized with the given view and title.
+ */
+- (id)initWithView:(UIView *)view title:(NSString *)title;
 
-@property (nonatomic, readwrite) WBNoticeViewType noticeType;
+///---------------------------------
+/// @name Configuring Notice Display
+///---------------------------------
 
-@property (nonatomic, strong) UIView *view;
-@property (nonatomic, strong) NSString *title; // default: @"Unknown Error"
+/**
+ The view from which the notice will be displayed.
+ */
+@property (nonatomic,retain) UIView *view;
 
-@property (nonatomic, readwrite) CGFloat duration; // default: 0.5
-@property (nonatomic, readwrite) CGFloat delay; // default: 2.0
-@property (nonatomic, readwrite) CGFloat alpha; // default: 1.0
-@property (nonatomic, readwrite) CGFloat originY; // default: 0.0
-@property (nonatomic, readwrite, getter = isSticky) BOOL sticky; // default NO (Error and Success notice); YES (Sticky notice)
-@property (nonatomic, readwrite, strong) WBNoticeViewDismissedBlock dismissedBlock;
+/**
+ Content insets
+ */
+@property (nonatomic) UIEdgeInsets contentInset;
 
+/**
+ The title text for the notice.
+ 
+ **Default**: `"Unknown Error"`
+ */
+@property (nonatomic, copy) NSString *title;
 
-+ (WBNoticeView *)defaultManager;
+/**
+ The message for the notice. Not supported by all notice types.
+ */
+@property (nonatomic, copy) NSString *message;
 
-- (id)initWithView:(UIView *)theView title:(NSString *)theTitle; // throws NSInvalidArgumentException is view is nil.
+/**
+ The animation duration for the notice.
+ 
+ **Default**: `0.5`
+ */
+@property (nonatomic, readwrite) NSTimeInterval duration;
 
-- (void)show; // Must be implemented in the subclasses, or else it'll raise an exception. 
+/**
+ The time interval in seconds that the notice will be displayed before being automatically dismissed.
+ 
+ **Default**: `2.0`
+ */
+@property (nonatomic, readwrite) NSTimeInterval delay;
 
-- (void)dismissNotice; // Only succeeds if the notice is sticky.
+/**
+ The amount of transparency applied to the notice. Values can range between `0.0` (transparent) and `1.0` (opaque). Values outside this range are clamped to `0.0` or `1.0`.
+ 
+ **Default**: `1.0`
+ */
+@property (nonatomic, readwrite) CGFloat alpha;
 
-// Error notice methods
+/**
+ The number of points that the notice will be offset vertically from the origin view when being displayed.
+ 
+ **Default**: `0.0`
+ */
+@property (nonatomic, readwrite) CGFloat originY;
 
-- (void)showErrorNoticeInView:(UIView *)view
-                        title:(NSString *)title
-                      message:(NSString *)message;
+/**
+ A Boolean value that determines if the notice supports tap to dismiss. 
+ 
+ **Default**: `YES`
+ */
+@property (nonatomic, assign, getter = isTapToDismissEnabled) BOOL tapToDismissEnabled;
 
-- (void)showErrorNoticeInView:(UIView *)view
-                        title:(NSString *)title
-                      message:(NSString *)message
-                     duration:(float)duration
-                        delay:(float)delay
-                        alpha:(float)alpha;
+/**
+ A Boolean value that determines if the notice will be automatically dismissed after the time interval specified by the `delay` property expires.
+ 
+ **Default**: `NO`
+ */
+@property (nonatomic, readwrite, getter = isSticky) BOOL sticky;
 
-- (void)showErrorNoticeInView:(UIView *)view
-                        title:(NSString *)title
-                      message:(NSString *)message
-                     duration:(float)duration
-                        delay:(float)delay
-                        alpha:(float)alpha
-                      yOrigin:(CGFloat)origin;
+/**
+ Decides if the notice is shown sliding up from the bottom or down from the top
+ 
+ **Default**: 'WBNoticeViewSlidingModeDown'
+*/
+@property WBNoticeViewSlidingMode slidingMode;
 
-// Success notice methods
+/**
+ A Boolean value that determines if the notice will be floating. If added to a `UIScrollView`, it
+ will have a fixed position while scrolling.
 
-- (void)showSuccessNoticeInView:(UIView *)view
-                        message:(NSString *)message;
+ **Default**: `NO`
+ */
+@property (nonatomic, readwrite, getter = isFloating) BOOL floating;
 
-- (void)showSuccessNoticeInView:(UIView *)view
-                        message:(NSString *)message
-                       duration:(float)duration
-                          delay:(float)delay
-                          alpha:(float)alpha
-                        yOrigin:(CGFloat)origin;
+///----------------------------------------
+/// @name Showing and Dismissing the Notice
+///----------------------------------------
 
-// Sticky notice methods
+/**
+ Shows the notice.
+ 
+ @warning The `WBNoticeView` class is abstract. Concrete subclasses must provide an implementation of the `show` method or else an exception will be raised.
+ */
+- (void)show;
 
-- (void)showStickyNoticeInView:(UIView *)view
-                       message:(NSString *)message
-                      duration:(float)duration
-                         alpha:(float)alpha
-                       yOrigin:(CGFloat)origin;
+/**
+ Dismisses the notice.
+ */
+- (void)dismissNotice;
+
+///----------------------------------
+/// @name Setting the Dismissal Block
+///----------------------------------
+
+/**
+ Sets a block to be executed when the notice is dismissed.
+ 
+ The block accepts a single Boolean value that indicates if the notice was dismissed interactively by the user or was dismissed due to expiration of the display interval.
+ 
+ @param block The block to be executed when the notice receives a dismissal.
+ */
+- (void)setDismissalBlock:(void (^)(BOOL dismissedInteractively))block;
+
+/**
+ Sets a block to be executed when the notice is dismissed.
+ 
+ The block accepts a Boolean value that indicates if the notice was dismissed interactively by the user or was dismissed due to expiration of the display interval.
+ The block also accepts a boolean pointer that makes it possible to make the dismissal optional depending on the resulting block. (Good for putting up an AlertView in the block to check if the user is sure)
+ 
+ @param block The block to be executed when the notice receives a dismissal.
+ */
+- (void)setDismissalBlockWithOptionalDismiss:(void (^)(BOOL dismissedInteractively, BOOL *dismissAfterBlock))block;
 
 @end

@@ -11,15 +11,20 @@
 #import "JDOArrayModel.h"
 #import "JDDishModel.h"
 #import "JDDishTypeModel.h"
+#import "JDMenuItemView.h"
+#import "JDDishTypeView.h"
 #import "DCKeyValueObjectMapping.h"
+#import "JDHXLUtil.h"
 
 @implementation JDMenuController
 {
     NSMutableArray *dish_types;
     NSMutableArray *allDishes;//所有菜的集合
     NSMutableArray *dishes;//所有菜的分类集合
+    NSMutableArray *orderedDishes;//已经点过的菜集合
     int selectPos;//左侧listview的选中位置
 }
+int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在左侧菜系表中
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +39,8 @@
     dish_types = [[NSMutableArray alloc] init];
     dishes = [[NSMutableArray alloc] init];
     allDishes = [[NSMutableArray alloc] init];
+    orderedDishes = [[NSMutableArray alloc] init];
+    
     [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"back_btn_bg"] Target:self Action:@selector(onBackButtonClicked)];
     //[self setNavigationRightButtonWithImage:[UIImage imageNamed:@"setting_btn_bg"] Target:self Action:@selector(onSettingButtonClicked)];
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height)];
@@ -51,6 +58,7 @@
     _price_avg.textColor = [UIColor grayColor];
     [titleView addSubview:_price_avg];
     [self setNavigationTitleView:titleView];
+    [self setNetworkState:NETWORK_STATE_LOADING];
     NSDictionary *params = @{@"id": @"1"};
     [[JDOHttpClient sharedClient] getJSONByServiceName:GET_DISH_TYPE_AND_LIST modelClass:@"JDOArrayModel" params:params success:^(JDOArrayModel *dataModel) {
         NSArray *dataList = (NSArray *)dataModel.data;
@@ -62,11 +70,24 @@
                 DCKeyValueObjectMapping *mapper1 = [DCKeyValueObjectMapping mapperForClass:[JDDishModel class]];
                 JDDishTypeModel *dishType = [mapper parseDictionary:[dataList objectAtIndex:i]];
                 [dish_types addObject:dishType];
-                for (int j=0; j<dishType.number; j++) {
-                    NSArray *innerDishes = [mapper1 parseArray:dishType.dish_list];
-                    [dishes addObject:innerDishes];
-                    [allDishes addObjectsFromArray:innerDishes];
+                NSArray *innerDishes = [mapper1 parseArray:dishType.dish_list];
+                NSMutableArray *innerDishes1 = [[NSMutableArray alloc] init];
+                for (int k=0; k<innerDishes.count; k++) {
+                    JDDishModel *dish = [innerDishes objectAtIndex:k];
+                    if (dish.price_type == 1) {//按重量计价
+                        dish.price_show = [(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"first_price"] intValue];
+                        dish.checked_weight = [(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"first_weight"] intValue];
+                    } else if(dish.price_type == 2){//按份数计价
+                        dish.price_show = [(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"price"] intValue];
+                        dish.checked_weight = [(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"weight"] intValue];
+                    } else {
+                        dish.price_show = dish.price;
+                        dish.checked_weight = dish.weight;
+                    }
+                    [innerDishes1 addObject:dish];
                 }
+                [dishes addObject:innerDishes1];
+                [allDishes addObjectsFromArray:innerDishes1];
             }
             [self setNetworkState:NETWORK_STATE_NORMAL];
         }
@@ -173,56 +194,120 @@
 - (void)onSubmitButtonClicked {
 }
 
+- (void)addDish:(JDDishModel *)dish indexPath:(NSIndexPath *)indexPath{
+    dish.ifOrdered = !dish.ifOrdered;
+    [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
+    [orderedDishes addObject:dish];
+    if (dish.ifOrdered) {
+        orderedDishesCount[indexPath.section]++;
+    } else {
+        orderedDishesCount[indexPath.section]--;
+    }
+    
+    [_left reloadData];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _left) {
         static NSString *reuseId = @"Left";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
+        JDDishTypeView *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
+            cell = [[JDDishTypeView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UILabel *count = [[UILabel alloc] initWithFrame:CGRectMake(_left.frame.size.width-15, 2, 15, 15)];
-        count.text = @"1";
-        [cell addSubview:count];
-        NSLog(@"%i",selectPos);
+        if (orderedDishesCount[indexPath.row] == 0) {
+            cell.countLabel.hidden = true;
+            cell.count_bg.hidden = true;
+        } else {
+            cell.countLabel.hidden = false;
+            cell.count_bg.hidden = false;
+            cell.countLabel.text = [NSString stringWithFormat:@"%i",orderedDishesCount[indexPath.row]];
+        }
         if (indexPath.row == selectPos) {
             cell.backgroundColor = [UIColor whiteColor];
             cell.textLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
+            cell.countLabel.textColor = [UIColor whiteColor];
+            cell.count_bg.image = [UIImage imageNamed:@"dishtype_ordernumber_bg"];
         } else {
             cell.backgroundColor = [UIColor clearColor];
             cell.textLabel.textColor = [UIColor colorWithRed:250.0f/255.0f green:235.0f/255.0f blue:100.0f/255.0f alpha:1.0f];
+            cell.countLabel.textColor = [UIColor colorWithRed:195.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
+            cell.count_bg.image = [UIImage imageNamed:@"dishtype_ordernumber_bg2"];
         }
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.text = ((JDDishTypeModel *)[dish_types objectAtIndex:indexPath.row]).type_name;
         return cell;
     } else if(tableView == _right){
         static NSString *reuseId1 = @"Right";
-        UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:reuseId1];
+        JDMenuItemView *cell1 = [tableView dequeueReusableCellWithIdentifier:reuseId1];
         if (cell1 == nil) {
-            cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId1];
+            cell1 = [[JDMenuItemView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId1];
         }
+        [cell1 setModel:[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickDishImage)];
+        [cell1.dish_img addGestureRecognizer:tapGesture];
         return cell1;
     }
     return nil;
+}
+
+- (void)clickDishImage {
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _right) {
+        return 80;
+    }
+    return 40;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (tableView == _right) {
+        return [(JDDishTypeModel *)[dish_types objectAtIndex:section] type_name];
+    }
+    return nil;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if(tableView == _left) {
+        return 1;
+    } else {
+        return dish_types.count;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == _left) {
         return dish_types.count;
     } else if(tableView == _right){
-        return ((NSArray *)[dishes objectAtIndex:selectPos]).count;
+        return ((NSArray *)[dishes objectAtIndex:section]).count;
     }
     return 0;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _right) {
+        selectPos = indexPath.section;
+        [_left reloadData];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _left) {
         selectPos = indexPath.row;
-        [tableView reloadData];
+        NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+        [_right scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:true];
+        [_left reloadData];
     } else if(tableView == _right){
-        
+        JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        if ([dish.status isEqualToString:@"正常"]) {
+            [self addDish:dish indexPath:indexPath];
+            [_right reloadData];
+        } else {
+            [JDHXLUtil showHintHUD:dish.status_reason inView:self.contentView withSlidingMode:WBNoticeViewSlidingModeUp];
+        }
     }
 }
 @end
