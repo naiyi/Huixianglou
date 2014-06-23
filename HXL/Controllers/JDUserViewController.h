@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JDHXLParentViewController.h"
+#import "JDUserModel.h"
 
 @interface JDUserViewController : JDHXLParentViewController<UITextFieldDelegate>
 {
@@ -21,6 +22,14 @@
     NSTimer *codeTimer;
     int timerindex;
     BOOL keyBoardShowing;
+    
+    UIScrollView *userView;
+    UIView *userinfoView;
+    UIView *currentOrderView;
+    UIView *historyOrderView;
+    UIView *scoreView;
 }
+
+@property (nonatomic, strong)JDUserModel *userModel;
 
 @end

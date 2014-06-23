@@ -10,6 +10,7 @@
 #import "JDSettingsViewController.h"
 #import "JDOHttpClient.h"
 #import "JDHXLUtil.h"
+#import "JDHXLModel.h"
 
 @interface JDUserViewController ()
 
@@ -38,7 +39,7 @@
 {
     NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
     if (userinfo) {
-        [self setUpUserView];
+        [self getUserInfoFromNetWork];
     } else {
         [self setUpLoginView];
     }
@@ -46,6 +47,7 @@
 
 - (void)setUpLoginView
 {
+    [userView removeFromSuperview];
     keyBoardShowing = NO;
     [self setNetworkState:NETWORK_STATE_NORMAL];
     [self.contentView setBackgroundColor:BACKGROUND_COLOR];
@@ -333,7 +335,8 @@
         if ([jsonvalue isKindOfClass:[NSNumber class]]) {
             int datavalue = [(NSNumber *)jsonvalue integerValue];
             if (datavalue == 1) {
-                [self showToast:@"验证码已发送"];
+                [[NSUserDefaults standardUserDefaults] setObject:params forKey:@"user_info"];
+                [self getUserInfoFromNetWork];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -341,9 +344,53 @@
     }];
 }
 
+- (void)getUserInfoFromNetWork
+{
+    [centerView removeFromSuperview];
+    
+    [self setNetworkState:NETWORK_STATE_LOADING];
+    NSDictionary *user_info = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
+    NSDictionary *params = @{@"id": @"1", @"tel" : [user_info objectForKey:@"tel"]};
+    // 加载用户信息
+    [[JDOHttpClient sharedClient] getJSONByServiceName:USER_INFO modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
+        DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDUserModel class]];
+        self.userModel = [mapper parseDictionary:dataModel.data];
+        [self setNetworkState:NETWORK_STATE_NORMAL];
+        [self setUpUserView];
+    } failure:^(NSString *errorStr) {
+        [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
+    }];
+}
+
+- (BOOL)automaticallyAdjustsScrollViewInsets
+{
+    return NO;
+}
+
 - (void)setUpUserView
 {
     [self.contentView setBackgroundColor:BACKGROUND_COLOR];
+    userView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 5.0, 320.0, self.contentView.frame.size.height - 5.0)];
+    [userView setContentSize:CGSizeMake(320.0, 470.0)];
+    [userView setBackgroundColor:[UIColor clearColor]];
+    [userView setShowsVerticalScrollIndicator:NO];
+    [self.contentView addSubview:userView];
+    
+    userinfoView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 10.0, 300.0, 100.0)];
+    [userinfoView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_bg"]]];
+    [userView addSubview:userinfoView];
+    
+    currentOrderView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 125.0, 300.0, 100.0)];
+    [currentOrderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_item_bg"]]];
+    [userView addSubview:currentOrderView];
+    
+    historyOrderView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 240.0, 300.0, 100.0)];
+    [historyOrderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_item_bg"]]];
+    [userView addSubview:historyOrderView];
+    
+    scoreView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 355.0, 300.0, 100.0)];
+    [scoreView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_item_bg"]]];
+    [userView addSubview:scoreView];
 }
 
 - (void)onBackButtonClicked
