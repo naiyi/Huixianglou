@@ -426,6 +426,9 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A7597EFF19542534006DB4BA /* dish_add1.png */,
+				A7597F0019542534006DB4BA /* dish_edt_bg1.png */,
+				A7597F0119542534006DB4BA /* dish_sub1.png */,
 				D86D42991958FCD200D32692 /* user_image_default.png */,
 				D86D429A1958FCD200D32692 /* user_image_default@2x.png */,
 				D83BCA7219582E6200903AE7 /* user_info_bg.png */,
@@ -570,6 +573,7 @@
 			files = (
 				D80A7ED31945552E0008E7CF /* icon@2x.png in Resources */,
 				D80A7EF2194560B30008E7CF /* address_icon.png in Resources */,
+				A7597F0319542534006DB4BA /* dish_edt_bg1.png in Resources */,
 				D86D429C1958FCD200D32692 /* user_image_default@2x.png in Resources */,
 				D80A7EF9194560B30008E7CF /* telephone_icon.png in Resources */,
 				D82BE4F21947DECF0051CB09 /* start_btn_bg_1@2x.png in Resources */,
