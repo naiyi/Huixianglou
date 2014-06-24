@@ -209,6 +209,7 @@
 - (void)onStartButtonClicked
 {
     JDMenuController *menuController = [[JDMenuController alloc] initWithNibName:nil bundle:nil];
+    menuController.people = [_pickerView currentSelectedIndex];
     [self.navigationController pushViewController:menuController animated:YES];
 }
 

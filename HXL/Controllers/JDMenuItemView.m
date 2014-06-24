@@ -18,6 +18,7 @@
     UILabel *priceLable;
     UILabel *weightLable;
     UILabel *min_weightLabel;
+    UIView *count_view;
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,8 +26,25 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         float y0 = 5.0f;
-        _dish_img = [[UIImageView alloc] initWithFrame:CGRectMake(165, y0, 60, 60)];
+        _dish_img = [[UIImageView alloc] initWithFrame:CGRectMake(165.0f, 10.0f, 60, 60)];
         [self.contentView addSubview:_dish_img];
+        
+        count_view = [[UIView alloc] initWithFrame:CGRectMake(165.0f, 5.0f, 50, 70)];
+        count_view.hidden = true;
+        _add_btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _dish_img.frame.size.width, 25)];
+        [_add_btn setBackgroundImage:[UIImage imageNamed:@"dish_add1"] forState:UIControlStateNormal];
+        _countLabel = [[UIButton alloc] initWithFrame:CGRectMake(0, _add_btn.frame.size.height, _dish_img.frame.size.width, 20)];
+        [_countLabel setTitle:@"1" forState:UIControlStateNormal];
+        _countLabel.titleLabel.textAlignment=NSTextAlignmentCenter;
+        [_countLabel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_countLabel setBackgroundImage:[UIImage imageNamed:@"dish_edt_bg1"] forState:UIControlStateNormal];
+        _sub_btn = [[UIButton alloc] initWithFrame:CGRectMake(0, _countLabel.frame.origin.y+_countLabel.frame.size.height, _dish_img.frame.size.width, 25)];
+        [_sub_btn setBackgroundImage:[UIImage imageNamed:@"dish_sub1"] forState:UIControlStateNormal];
+        [count_view addSubview:_add_btn];
+        [count_view addSubview:_countLabel];
+        [count_view addSubview:_sub_btn];
+        [self.contentView addSubview:count_view];
+        
         tuijian = [[UIImageView alloc] initWithFrame:CGRectMake(PADDING, y0, 12, 18)];
         tuijian.image = [UIImage imageNamed:@"dish_tuijian"];
         [self.contentView addSubview:tuijian];
@@ -80,22 +98,32 @@
     self.dishModel = dish;
     if (dish.ifOrdered) {
         self.contentView.backgroundColor = [UIColor colorWithRed:1.0f green:250.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
+        _dish_img.hidden = true;
+        count_view.hidden = false;
+        if (dish.price_type==1) {//按重量计价
+            [_countLabel setTitle:[NSString stringWithFormat:@"%ig",dish.checked_weight] forState:UIControlStateNormal];
+        } else {
+            [_countLabel setTitle:[NSString stringWithFormat:@"%i",dish.count] forState:UIControlStateNormal];
+        }
+        
     } else {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        _dish_img.hidden = false;
+        count_view.hidden = true;
+        __block UIImageView *blockImageView = self.imageView;
+        [_dish_img setImageWithURL:[NSURL URLWithString:dish.img_small] placeholderImage:nil noImage:false options:SDWebImageOption success:^(UIImage *image, BOOL cached) {
+            if(!cached){    // 非缓存加载时使用渐变动画
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.3;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionFade;
+                [blockImageView.layer addAnimation:transition forKey:nil];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
     }
-    __block UIImageView *blockImageView = self.imageView;
-    [_dish_img setImageWithURL:[NSURL URLWithString:dish.img_small] placeholderImage:nil noImage:false options:SDWebImageOption success:^(UIImage *image, BOOL cached) {
-        if(!cached){    // 非缓存加载时使用渐变动画
-            CATransition *transition = [CATransition animation];
-            transition.duration = 0.3;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionFade;
-            [blockImageView.layer addAnimation:transition forKey:nil];
-        }
-    } failure:^(NSError *error) {
-        
-    }];
-    tuijian.hidden = dish.recommend==1?false:true;
+    
     if (dish.recommend==1) {
         tuijian.hidden = false;
         [nameLabel setFrame:CGRectMake(tuijian.frame.size.width+PADDING, nameLabel.frame.origin.y, nameLabel.frame.size.width, nameLabel.frame.size.height)];
@@ -107,19 +135,29 @@
         [tasteLabel setFrame:CGRectMake(nameLabel.frame.origin.x+nameLabel.frame.size.width, tasteLabel.frame.origin.y, 40, tuijian.frame.size.height)];
         [taste_bg setFrame:tasteLabel.frame];
     }
-    nameLabel.text = dish.name;
-    if (dish.taste.count == 0) {
+    if ([dish.status isEqualToString:@"正常"]) {
+        nameLabel.text = dish.name;
+        nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, 90, nameLabel.frame.size.height);
+        if (dish.taste.count == 0) {
+            tasteLabel.hidden = true;
+            taste_bg.hidden = true;
+        } else {
+            taste_bg.hidden = false;
+            tasteLabel.hidden = false;
+            NSMutableString *tastestr = [[NSMutableString alloc] init];
+            for (int i = 0; i<dish.taste.count; i++) {
+                [tastestr appendString:[dish.taste objectAtIndex:i]];
+            }
+            tasteLabel.text = tastestr;
+        }
+    } else {
+        nameLabel.text = [dish.name stringByAppendingString:@"(售罄)"];
+        nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, 140, nameLabel.frame.size.height);
         tasteLabel.hidden = true;
         taste_bg.hidden = true;
-    } else {
-        taste_bg.hidden = false;
-        tasteLabel.hidden = false;
-        NSMutableString *tastestr = [[NSMutableString alloc] init];
-        for (int i = 0; i<dish.taste.count; i++) {
-            [tastestr appendString:[dish.taste objectAtIndex:i]];
-        }
-        tasteLabel.text = tastestr;
     }
+    
+    
     eat_countLable.text = [NSString stringWithFormat:@"%i人点过",dish.order_number];
     like_countLable.text = [NSString stringWithFormat:@"%i人喜欢",dish.zan];
     priceLable.text = [NSString stringWithFormat:@"￥%i",dish.price_show];

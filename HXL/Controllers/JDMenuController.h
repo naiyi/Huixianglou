@@ -19,4 +19,5 @@
 @property (nonatomic,strong) UITableView *left;
 @property (nonatomic,strong) UITableView *right;
 @property (nonatomic,strong) UIButton *submit;
+@property (nonatomic) int people;
 @end

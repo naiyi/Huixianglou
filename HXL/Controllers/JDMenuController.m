@@ -15,6 +15,7 @@
 #import "JDDishTypeView.h"
 #import "DCKeyValueObjectMapping.h"
 #import "JDHXLUtil.h"
+#import "JDGestureRecognizer.h"
 
 @implementation JDMenuController
 {
@@ -49,12 +50,12 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     _total.textColor = [UIColor blackColor];
     _total.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [titleView addSubview:_total];
-    _price = [[UILabel alloc] initWithFrame:CGRectMake(0, _total.frame.size.height, 30, 20)];
+    _price = [[UILabel alloc] initWithFrame:CGRectMake(0, _total.frame.size.height, 50, 20)];
     _price.text = @"￥0";
     _price.textColor = [UIColor redColor];
     [titleView addSubview:_price];
     _price_avg = [[UILabel alloc] initWithFrame:CGRectMake(_price.frame.size.width, _total.frame.size.height, 150, 20)];
-    _price_avg.text = @"，0人，人均￥0";
+    _price_avg.text = [NSString stringWithFormat:@"，%i人，人均￥0",_people];
     _price_avg.textColor = [UIColor grayColor];
     [titleView addSubview:_price_avg];
     [self setNavigationTitleView:titleView];
@@ -84,6 +85,8 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
                         dish.price_show = dish.price;
                         dish.checked_weight = dish.weight;
                     }
+                    dish.sort = (i+1)*(k+1);
+                    dish.count = 1;
                     [innerDishes1 addObject:dish];
                 }
                 [dishes addObject:innerDishes1];
@@ -180,30 +183,60 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     _sort.selected = TRUE;
     _sort_bycomment.selected = false;
     _sort_bysale.selected = false;
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"sort" ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObjects:sorter,nil];
+    for (int i=0; i<dishes.count; i++) {
+        [[dishes objectAtIndex:i] sortUsingDescriptors:descriptors];
+    }
+    [_right reloadData];
 }
 - (void)onSortBySaleButtonClicked {
     _sort.selected = false;
     _sort_bycomment.selected = false;
     _sort_bysale.selected = TRUE;
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"order_number" ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObjects:sorter,nil];
+    for (int i=0; i<dishes.count; i++) {
+        [[dishes objectAtIndex:i] sortUsingDescriptors:descriptors];
+    }
+    [_right reloadData];
 }
 - (void)onSortByCommentButtonClicked {
     _sort.selected = false;
     _sort_bycomment.selected = TRUE;
     _sort_bysale.selected = false;
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"zan" ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObjects:sorter,nil];
+    for (int i=0; i<dishes.count; i++) {
+        [[dishes objectAtIndex:i] sortUsingDescriptors:descriptors];
+    }
+    [_right reloadData];
 }
 - (void)onSubmitButtonClicked {
+}
+
+-(void)refreshTop{
+    _total.text = [NSString stringWithFormat:@"已点%i个菜",orderedDishes.count];
+    int p = 0;
+    for (int i=0; i<orderedDishes.count; i++) {
+        JDDishModel *dish = ((JDDishModel *)[orderedDishes objectAtIndex:i]);
+        p+=dish.price_show*dish.count;
+    }
+    _price.text = [NSString stringWithFormat:@"￥%i",p];
+    _price_avg.text = [NSString stringWithFormat:@"，%i人，人均￥%i",_people,p/_people];
 }
 
 - (void)addDish:(JDDishModel *)dish indexPath:(NSIndexPath *)indexPath{
     dish.ifOrdered = !dish.ifOrdered;
     [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
-    [orderedDishes addObject:dish];
     if (dish.ifOrdered) {
+        [orderedDishes addObject:dish];
         orderedDishesCount[indexPath.section]++;
     } else {
+        [orderedDishes removeObject:dish];
         orderedDishesCount[indexPath.section]--;
     }
-    
+    [self refreshTop];
     [_left reloadData];
 }
 
@@ -245,15 +278,63 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
             cell1 = [[JDMenuItemView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId1];
         }
         [cell1 setModel:[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickDishImage)];
-        [cell1.dish_img addGestureRecognizer:tapGesture];
+        JDGestureRecognizer *tapGesture1 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickDishImage:)];
+        tapGesture1.obj = indexPath;
+        [cell1.dish_img addGestureRecognizer:tapGesture1];
+        JDGestureRecognizer *tapGesture2 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickAdd:)];
+        tapGesture2.obj = indexPath;
+        [cell1.add_btn addGestureRecognizer:tapGesture2];
+        JDGestureRecognizer *tapGesture3 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickSub:)];
+        tapGesture3.obj = indexPath;
+        [cell1.sub_btn addGestureRecognizer:tapGesture3];
         return cell1;
     }
     return nil;
 }
 
-- (void)clickDishImage {
+- (void)clickDishImage:(JDGestureRecognizer *)gesture  {
     
+}
+
+- (void)clickAdd:(JDGestureRecognizer *)gesture {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    if (dish.price_type==1) {
+        dish.checked_weight+=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_weight"] intValue];
+        dish.price_show+=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_price"] intValue];
+    } else {
+        dish.count+=1;
+    }
+   
+    [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
+    [_right reloadData];
+    [self refreshTop];
+}
+
+- (void)clickSub:(JDGestureRecognizer *)gesture {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    if (dish.price_type==1) {
+        if (dish.checked_weight<=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"first_weight"] intValue]) {
+            [self addDish:dish indexPath:indexPath];
+            [_right reloadData];
+        } else {
+            dish.checked_weight-=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_weight"] intValue];
+            dish.price_show-=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_price"] intValue];
+            [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
+            [_right reloadData];
+        }
+    } else {
+        if (dish.count <= 1) {
+            [self addDish:dish indexPath:indexPath];
+            [_right reloadData];
+        } else {
+            dish.count-=1;
+            [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
+            [_right reloadData];
+        }
+    }
+    [self refreshTop];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
