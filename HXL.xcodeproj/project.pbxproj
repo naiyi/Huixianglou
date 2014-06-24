@@ -424,6 +424,10 @@
 				A758E68019519B9000374F8F /* JDDishTypeView.m */,
 				A72636CA1959572100BD3E72 /* JDDishDetailView.h */,
 				A72636CB1959572100BD3E72 /* JDDishDetailView.m */,
+				D86D429D19591ABE00D32692 /* JDCurrentOrdersController.h */,
+				D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */,
+				D86D42A019591ADF00D32692 /* JDHistoryOrdersController.h */,
+				D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -714,6 +718,7 @@
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
 				A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */,
 				A72636CC1959572100BD3E72 /* JDDishDetailView.m in Sources */,
+				D86D429F19591ABE00D32692 /* JDCurrentOrdersController.m in Sources */,
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
