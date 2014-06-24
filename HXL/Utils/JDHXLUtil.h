@@ -15,6 +15,7 @@
 #define URI1		@"URI"
 
 typedef enum{
+    DateFormatMDY,
     DateFormatYMD,
     DateFormatMD,
     DateFormatYMDHM,

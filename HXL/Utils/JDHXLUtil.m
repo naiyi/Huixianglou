@@ -104,7 +104,8 @@ static bool isShowingHint;
     }
     NSString *formatString;
     switch (format) {
-        case DateFormatYMD:    formatString = @"yyyy/MM/dd";  break;
+        case DateFormatMDY:    formatString = @"MM/dd/yyyy";  break;
+        case DateFormatYMD:    formatString = @"yyyy-MM-dd";  break;
         case DateFormatMD:     formatString = @"MM/dd";  break;
         case DateFormatYMDHM:  formatString = @"yyyy/MM/dd HH:mm";  break;
         case DateFormatYMDHMS: formatString = @"yyyy/MM/dd HH:mm:ss";  break;
@@ -121,6 +122,7 @@ static bool isShowingHint;
     }
     NSString *formatString;
     switch (format) {
+        case DateFormatMDY:    formatString = @"MM/dd/yyyy";  break;
         case DateFormatYMD:    formatString = @"yyyy/MM/dd";  break;
         case DateFormatMD:     formatString = @"MM/dd";  break;
         case DateFormatYMDHM:  formatString = @"yyyy/MM/dd HH:mm";  break;
