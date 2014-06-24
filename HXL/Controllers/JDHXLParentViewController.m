@@ -43,7 +43,7 @@
     [self.titleLabel setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.titleLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
+    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:22.0]];
     
     [self.navigationItem setTitleView:self.titleLabel];
 }

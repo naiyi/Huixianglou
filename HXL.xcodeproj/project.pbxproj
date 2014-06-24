@@ -89,6 +89,10 @@
 		D83BCA7919582E6200903AE7 /* user_info_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D83BCA7519582E6200903AE7 /* user_info_item_bg@2x.png */; };
 		D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84807A91945492A001573F9 /* JDHXLParentViewController.m */; };
 		D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D84DF96E19483E5D001B266E /* JDHXLModel.m */; };
+		D86D429B1958FCD200D32692 /* user_image_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D42991958FCD200D32692 /* user_image_default.png */; };
+		D86D429C1958FCD200D32692 /* user_image_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D429A1958FCD200D32692 /* user_image_default@2x.png */; };
+		D86D429F19591ABE00D32692 /* JDCurrentOrdersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */; };
+		D86D42A219591ADF00D32692 /* JDHistoryOrdersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */; };
 		D8B120AC1952869000A631E1 /* divider_v.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B120AA1952869000A631E1 /* divider_v.png */; };
 		D8B120AD1952869000A631E1 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B120AB1952869000A631E1 /* divider.png */; };
 		D8D418671949380100471D40 /* loading_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D418631949380100471D40 /* loading_bg.png */; };
@@ -216,6 +220,12 @@
 		D84807A91945492A001573F9 /* JDHXLParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHXLParentViewController.m; sourceTree = "<group>"; };
 		D84DF96D19483E5D001B266E /* JDHXLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHXLModel.h; sourceTree = "<group>"; };
 		D84DF96E19483E5D001B266E /* JDHXLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHXLModel.m; sourceTree = "<group>"; };
+		D86D42991958FCD200D32692 /* user_image_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_image_default.png; sourceTree = "<group>"; };
+		D86D429A1958FCD200D32692 /* user_image_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_image_default@2x.png"; sourceTree = "<group>"; };
+		D86D429D19591ABE00D32692 /* JDCurrentOrdersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDCurrentOrdersController.h; sourceTree = "<group>"; };
+		D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDCurrentOrdersController.m; sourceTree = "<group>"; };
+		D86D42A019591ADF00D32692 /* JDHistoryOrdersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHistoryOrdersController.h; sourceTree = "<group>"; };
+		D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHistoryOrdersController.m; sourceTree = "<group>"; };
 		D8B120AA1952869000A631E1 /* divider_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider_v.png; sourceTree = "<group>"; };
 		D8B120AB1952869000A631E1 /* divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider.png; sourceTree = "<group>"; };
 		D8D418631949380100471D40 /* loading_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_bg.png; sourceTree = "<group>"; };
@@ -394,6 +404,10 @@
 				A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */,
 				A758E67F19519B9000374F8F /* JDDishTypeView.h */,
 				A758E68019519B9000374F8F /* JDDishTypeView.m */,
+				D86D429D19591ABE00D32692 /* JDCurrentOrdersController.h */,
+				D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */,
+				D86D42A019591ADF00D32692 /* JDHistoryOrdersController.h */,
+				D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -401,6 +415,8 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D86D42991958FCD200D32692 /* user_image_default.png */,
+				D86D429A1958FCD200D32692 /* user_image_default@2x.png */,
 				D83BCA7219582E6200903AE7 /* user_info_bg.png */,
 				D83BCA7319582E6200903AE7 /* user_info_bg@2x.png */,
 				D83BCA7419582E6200903AE7 /* user_info_item_bg.png */,
@@ -543,6 +559,7 @@
 			files = (
 				D80A7ED31945552E0008E7CF /* icon@2x.png in Resources */,
 				D80A7EF2194560B30008E7CF /* address_icon.png in Resources */,
+				D86D429C1958FCD200D32692 /* user_image_default@2x.png in Resources */,
 				D80A7EF9194560B30008E7CF /* telephone_icon.png in Resources */,
 				D82BE4F21947DECF0051CB09 /* start_btn_bg_1@2x.png in Resources */,
 				D82A86D51945B5DC00C9C249 /* navigation_bg_44.png in Resources */,
@@ -555,6 +572,7 @@
 				D8D418671949380100471D40 /* loading_bg.png in Resources */,
 				D83BCA7919582E6200903AE7 /* user_info_item_bg@2x.png in Resources */,
 				D80A7EF7194560B30008E7CF /* people_bg.png in Resources */,
+				D86D429B1958FCD200D32692 /* user_image_default.png in Resources */,
 				D80A7EF3194560B30008E7CF /* back_btn_bg.png in Resources */,
 				D80A7EE219455C330008E7CF /* telephone_icon@2x.png in Resources */,
 				2DBA44FC194146FB00F73B66 /* InfoPlist.strings in Resources */,
@@ -652,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */,
+				D86D42A219591ADF00D32692 /* JDHistoryOrdersController.m in Sources */,
 				D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */,
 				D82BE59719482C460051CB09 /* JDOWebClient.m in Sources */,
 				D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */,
@@ -667,6 +686,7 @@
 				A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */,
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
 				A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */,
+				D86D429F19591ABE00D32692 /* JDCurrentOrdersController.m in Sources */,
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,

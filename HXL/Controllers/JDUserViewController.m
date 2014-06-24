@@ -356,18 +356,19 @@
         DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDUserModel class]];
         self.userModel = [mapper parseDictionary:dataModel.data];
         [self setNetworkState:NETWORK_STATE_NORMAL];
-        [self setUpUserView];
+        [self setUpUserView:user_info];
     } failure:^(NSString *errorStr) {
         [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
     }];
 }
 
+//处理UIScrollView自动偏移问题
 - (BOOL)automaticallyAdjustsScrollViewInsets
 {
     return NO;
 }
 
-- (void)setUpUserView
+- (void)setUpUserView:(NSDictionary *)params
 {
     [self.contentView setBackgroundColor:BACKGROUND_COLOR];
     userView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 5.0, 320.0, self.contentView.frame.size.height - 5.0)];
@@ -376,21 +377,195 @@
     [userView setShowsVerticalScrollIndicator:NO];
     [self.contentView addSubview:userView];
     
+    //用户信息项
     userinfoView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 10.0, 300.0, 100.0)];
     [userinfoView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_bg"]]];
+    userImage = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 23.0, 55.0, 55.0)];
+    if (self.userModel.headPic && self.userModel.headPic.length > 0) {
+        UIImageView *blockImageView = userImage;
+        [userImage setImageWithURL:[NSURL URLWithString:self.userModel.headPic] placeholderImage:[UIImage imageNamed:@"user_image_default"] options:SDWebImageOption success:^(UIImage *image, BOOL cached) {
+            if(!cached){    // 非缓存加载时使用渐变动画
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.3;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionFade;
+                [blockImageView.layer addAnimation:transition forKey:nil];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    [userinfoView addSubview:userImage];
+    
+    userName = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 25.0, 200.0, 25.0)];
+    [userName setBackgroundColor:[UIColor clearColor]];
+    [userName setFont:[UIFont systemFontOfSize:16.0]];
+    [userName setTextColor:[UIColor whiteColor]];
+    [userName setTextAlignment:NSTextAlignmentLeft];
+    [userName setText:[params objectForKey:@"nick_name"]];
+    [userinfoView addSubview:userName];
+    
+    userTel = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 50.0, 200.0, 25.0)];
+    [userTel setBackgroundColor:[UIColor clearColor]];
+    [userTel setFont:[UIFont systemFontOfSize:16.0]];
+    [userTel setTextColor:[UIColor whiteColor]];
+    [userTel setTextAlignment:NSTextAlignmentLeft];
+    [userTel setText:[params objectForKey:@"tel"]];
+    [userinfoView addSubview:userTel];
+    
     [userView addSubview:userinfoView];
     
+    //当前订单项
     currentOrderView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 125.0, 300.0, 100.0)];
     [currentOrderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_item_bg"]]];
+    currentTitle = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 10.0, 200.0, 25.0)];
+    [currentTitle setBackgroundColor:[UIColor clearColor]];
+    [currentTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
+    [currentTitle setTextAlignment:NSTextAlignmentLeft];
+    [currentTitle setFont:[UIFont systemFontOfSize:20.0]];
+    [currentTitle setText:[NSString stringWithFormat:@"我的预定(%d)", self.userModel.currentOrderCount]];
+    [currentOrderView addSubview:currentTitle];
+    
+    currentHotel= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 52.0, 135.0, 20.0)];
+    [currentHotel setBackgroundColor:[UIColor clearColor]];
+    [currentHotel setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [currentHotel setTextAlignment:NSTextAlignmentLeft];
+    [currentHotel setFont:[UIFont systemFontOfSize:15.0]];
+    [currentHotel setText:self.userModel.currentOrderHotel];
+    [currentOrderView addSubview:currentHotel];
+    
+    currentDetail= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 72.0, 170.0, 20.0)];
+    [currentDetail setBackgroundColor:[UIColor clearColor]];
+    [currentDetail setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [currentDetail setTextAlignment:NSTextAlignmentLeft];
+    [currentDetail setFont:[UIFont systemFontOfSize:15.0]];
+    [currentDetail setText:self.userModel.currentOrderDetail];
+    [currentOrderView addSubview:currentDetail];
+    
+    currentDate= [[UILabel alloc] initWithFrame:CGRectMake(150.0, 52.0, 135.0, 20.0)];
+    [currentDate setBackgroundColor:[UIColor clearColor]];
+    [currentDate setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [currentDate setTextAlignment:NSTextAlignmentRight];
+    [currentDate setFont:[UIFont systemFontOfSize:15.0]];
+    [currentDate setText:[JDHXLUtil formatDate:[JDHXLUtil formatString:self.userModel.currentOrderDate withFormatter:DateFormatMDY] withFormatter:DateFormatYMD]];
+    [currentOrderView addSubview:currentDate];
+    
+    currentMore= [[UILabel alloc] initWithFrame:CGRectMake(185.0, 72.0, 100.0, 20.0)];
+    [currentMore setBackgroundColor:[UIColor clearColor]];
+    [currentMore setTextColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+    [currentMore setTextAlignment:NSTextAlignmentRight];
+    [currentMore setFont:[UIFont systemFontOfSize:14.0]];
+    [currentMore setText:@"查看详情"];
+    [currentOrderView addSubview:currentMore];
+    
+    UITapGestureRecognizer *currentTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(currentViewTapped)];
+    [currentOrderView setUserInteractionEnabled:YES];
+    [currentOrderView addGestureRecognizer:currentTap];
     [userView addSubview:currentOrderView];
     
+    //历史订单项
     historyOrderView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 240.0, 300.0, 100.0)];
     [historyOrderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_item_bg"]]];
+    historyTitle = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 10.0, 200.0, 25.0)];
+    [historyTitle setBackgroundColor:[UIColor clearColor]];
+    [historyTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
+    [historyTitle setTextAlignment:NSTextAlignmentLeft];
+    [historyTitle setFont:[UIFont systemFontOfSize:20.0]];
+    [historyTitle setText:[NSString stringWithFormat:@"历史订单(%d)", self.userModel.historyOrderCount]];
+    [historyOrderView addSubview:historyTitle];
+    
+    historyHotel= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 52.0, 135.0, 20.0)];
+    [historyHotel setBackgroundColor:[UIColor clearColor]];
+    [historyHotel setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [historyHotel setTextAlignment:NSTextAlignmentLeft];
+    [historyHotel setFont:[UIFont systemFontOfSize:15.0]];
+    [historyHotel setText:self.userModel.historyOrderHotel];
+    [historyOrderView addSubview:historyHotel];
+    
+    historyDetail= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 72.0, 170.0, 20.0)];
+    [historyDetail setBackgroundColor:[UIColor clearColor]];
+    [historyDetail setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [historyDetail setTextAlignment:NSTextAlignmentLeft];
+    [historyDetail setFont:[UIFont systemFontOfSize:15.0]];
+    [historyDetail setText:self.userModel.historyOrderDetail];
+    [historyOrderView addSubview:historyDetail];
+    
+    historyDate= [[UILabel alloc] initWithFrame:CGRectMake(150.0, 52.0, 135.0, 20.0)];
+    [historyDate setBackgroundColor:[UIColor clearColor]];
+    [historyDate setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [historyDate setTextAlignment:NSTextAlignmentRight];
+    [historyDate setFont:[UIFont systemFontOfSize:15.0]];
+    [historyDate setText:[JDHXLUtil formatDate:[JDHXLUtil formatString:self.userModel.historyOrderDate withFormatter:DateFormatMDY] withFormatter:DateFormatYMD]];
+    [historyOrderView addSubview:historyDate];
+    
+    historyMore= [[UILabel alloc] initWithFrame:CGRectMake(185.0, 72.0, 100.0, 20.0)];
+    [historyMore setBackgroundColor:[UIColor clearColor]];
+    [historyMore setTextColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+    [historyMore setTextAlignment:NSTextAlignmentRight];
+    [historyMore setFont:[UIFont systemFontOfSize:14.0]];
+    [historyMore setText:@"查看详情"];
+    [historyOrderView addSubview:historyMore];
+    
+    UITapGestureRecognizer *historyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyViewTapped)];
+    [historyOrderView setUserInteractionEnabled:YES];
+    [historyOrderView addGestureRecognizer:historyTap];
     [userView addSubview:historyOrderView];
     
+    //积分项
     scoreView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 355.0, 300.0, 100.0)];
     [scoreView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"user_info_item_bg"]]];
+    
+    scoreTitle = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 10.0, 200.0, 25.0)];
+    [scoreTitle setBackgroundColor:[UIColor clearColor]];
+    [scoreTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
+    [scoreTitle setTextAlignment:NSTextAlignmentLeft];
+    [scoreTitle setFont:[UIFont systemFontOfSize:20.0]];
+    [scoreTitle setText:[NSString stringWithFormat:@"我的积分(%d)", self.userModel.scoreTotal]];
+    [scoreView addSubview:scoreTitle];
+    
+    scoreDate1= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 52.0, 135.0, 20.0)];
+    [scoreDate1 setBackgroundColor:[UIColor clearColor]];
+    [scoreDate1 setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [scoreDate1 setTextAlignment:NSTextAlignmentLeft];
+    [scoreDate1 setFont:[UIFont systemFontOfSize:15.0]];
+    [scoreDate1 setText:[JDHXLUtil formatDate:[JDHXLUtil formatString:self.userModel.scoreDate1 withFormatter:DateFormatMDY] withFormatter:DateFormatYMD]];
+    [scoreView addSubview:scoreDate1];
+    
+    scoreDate2= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 72.0, 135.0, 20.0)];
+    [scoreDate2 setBackgroundColor:[UIColor clearColor]];
+    [scoreDate2 setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [scoreDate2 setTextAlignment:NSTextAlignmentLeft];
+    [scoreDate2 setFont:[UIFont systemFontOfSize:15.0]];
+    [scoreDate2 setText:[JDHXLUtil formatDate:[JDHXLUtil formatString:self.userModel.scoreDate2 withFormatter:DateFormatMDY] withFormatter:DateFormatYMD]];
+    [scoreView addSubview:scoreDate2];
+    
+    scoreNum1= [[UILabel alloc] initWithFrame:CGRectMake(150.0, 52.0, 135.0, 20.0)];
+    [scoreNum1 setBackgroundColor:[UIColor clearColor]];
+    [scoreNum1 setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [scoreNum1 setTextAlignment:NSTextAlignmentRight];
+    [scoreNum1 setFont:[UIFont systemFontOfSize:15.0]];
+    [scoreNum1 setText:[NSString stringWithFormat:@"积分:%d", self.userModel.scoreNum1]];
+    [scoreView addSubview:scoreNum1];
+    
+    scoreNum2= [[UILabel alloc] initWithFrame:CGRectMake(150.0, 72.0, 135.0, 20.0)];
+    [scoreNum2 setBackgroundColor:[UIColor clearColor]];
+    [scoreNum2 setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
+    [scoreNum2 setTextAlignment:NSTextAlignmentRight];
+    [scoreNum2 setFont:[UIFont systemFontOfSize:15.0]];
+    [scoreNum2 setText:[NSString stringWithFormat:@"积分:%d", self.userModel.scoreNum2]];
+    [scoreView addSubview:scoreNum2];
+    
     [userView addSubview:scoreView];
+}
+
+- (void)currentViewTapped
+{
+    
+}
+
+- (void)historyViewTapped
+{
+    
 }
 
 - (void)onBackButtonClicked

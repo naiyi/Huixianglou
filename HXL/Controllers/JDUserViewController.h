@@ -28,6 +28,28 @@
     UIView *currentOrderView;
     UIView *historyOrderView;
     UIView *scoreView;
+    
+    UILabel *currentTitle;
+    UILabel *currentHotel;
+    UILabel *currentDate;
+    UILabel *currentDetail;
+    UILabel *currentMore;
+    
+    UILabel *historyTitle;
+    UILabel *historyHotel;
+    UILabel *historyDate;
+    UILabel *historyDetail;
+    UILabel *historyMore;
+    
+    UILabel *scoreTitle;
+    UILabel *scoreDate1;
+    UILabel *scoreNum1;
+    UILabel *scoreDate2;
+    UILabel *scoreNum2;
+    
+    UILabel *userName;
+    UILabel *userTel;
+    UIImageView *userImage;
 }
 
 @property (nonatomic, strong)JDUserModel *userModel;
