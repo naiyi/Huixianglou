@@ -49,7 +49,7 @@ typedef enum{
 + (void) deleteURLCacheDirectory;
 + (int) getDiskCacheFileCount;
 + (int) getDiskCacheFileSize;
-
++ (BOOL)isMobileNumber:(NSString *)mobileNum;
 + (BOOL) isShowingHint;
 + (void) showHintHUD:(NSString *)content inView:(UIView *)view;
 + (void) showHintHUD:(NSString *)content inView:(UIView *)view withSlidingMode:(WBNoticeViewSlidingMode)slidingMode;

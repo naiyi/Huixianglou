@@ -8,6 +8,9 @@
 #import "UIImageView+WebCache.h"
 #import "AFHTTPRequestOperation.h"
 #import "UIImageView+WebCache.h"
+#import "DCKeyValueObjectMapping.h"
+#import "JSONKit.h"
+#import "iToast.h"
 
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
@@ -19,6 +22,22 @@
 #define SERVER_QUERY_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define SERVER_RESOURCE_URL @"http://p.jiaodong.net/food/hxl/Pub/"
 #define HOTEL_INFO_SERVICE @"hotel_api"
+#define GET_DISH_TYPE @"dish_type"
+#define GET_DISH_LIST @"dish_list"
+#define GET_SET_DISH @"set_dish"
+#define CREATE_ORDER @"createOrder"
+#define LOGIN @"login_api"
+#define USER_INFO @"client_api"
+#define GET_CAPTCHA @"send_msg"
+#define GET_CURRENT_ORDER_LIST @"currentOrder"
+#define GET_HISTORY_ORDER_LIST @"historyOrder"
+#define CANCEL_ORDER @"order_cancle"
+#define ABOUT_US @"about_us"
+#define FEEDBACK @"feed_back"
+#define GET_VERSION @"get_version"
+#define GET_LAST_VERSION @"get_last_version"
+#define ORDER_DETAIL @"orderDetail"
+#define GOOD_BAD @"rateOrder"
 #define GET_DISH_TYPE_AND_LIST @"type_and_dish"
 #define NETWORK_STATE_LOADING 0
 #define NETWORK_STATE_NOTAVILABLE 1
