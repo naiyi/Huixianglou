@@ -31,9 +31,13 @@
 		A744AEE8194832E800C092BB /* menu_orderby.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE6194832E800C092BB /* menu_orderby.png */; };
 		A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE91948424A00C092BB /* dishtype_item_bg.png */; };
 		A758E68119519B9000374F8F /* JDDishTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A758E68019519B9000374F8F /* JDDishTypeView.m */; };
+		A7597F0219542534006DB4BA /* dish_add1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7597EFF19542534006DB4BA /* dish_add1.png */; };
+		A7597F0319542534006DB4BA /* dish_edt_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7597F0019542534006DB4BA /* dish_edt_bg1.png */; };
+		A7597F0419542534006DB4BA /* dish_sub1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7597F0119542534006DB4BA /* dish_sub1.png */; };
 		A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC74F194AD6920052CD3E /* JDOArrayModel.m */; };
 		A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC751194AD6920052CD3E /* JDODataModel.m */; };
 		A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */; };
+		A76211301957C5AE0037C7E3 /* JDGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A762112F1957C5AE0037C7E3 /* JDGestureRecognizer.m */; };
 		A79969F1194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */; };
 		A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */; };
 		A79969F5194FE7CA003D7DE7 /* JDMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */; };
@@ -64,7 +68,6 @@
 		D82736AD194FD395009E3468 /* count_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736AB194FD395009E3468 /* count_bg.png */; };
 		D82736AE194FD395009E3468 /* count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736AC194FD395009E3468 /* count_bg@2x.png */; };
 		D82736B1194FD8D5009E3468 /* indicator_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736AF194FD8D5009E3468 /* indicator_1.png */; };
-		D82736B2194FD8D5009E3468 /* indicator_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736B0194FD8D5009E3468 /* indicator_2.png */; };
 		D82736B719503CFB009E3468 /* divider_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736B319503CFB009E3468 /* divider_v@2x.png */; };
 		D82736B819503CFB009E3468 /* divider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736B419503CFB009E3468 /* divider@2x.png */; };
 		D82736B919503CFB009E3468 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D82736B519503CFB009E3468 /* login_bg.png */; };
@@ -136,12 +139,17 @@
 		A744AEE91948424A00C092BB /* dishtype_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_item_bg.png; sourceTree = "<group>"; };
 		A758E67F19519B9000374F8F /* JDDishTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeView.h; sourceTree = "<group>"; };
 		A758E68019519B9000374F8F /* JDDishTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeView.m; sourceTree = "<group>"; };
+		A7597EFF19542534006DB4BA /* dish_add1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_add1.png; sourceTree = "<group>"; };
+		A7597F0019542534006DB4BA /* dish_edt_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_edt_bg1.png; sourceTree = "<group>"; };
+		A7597F0119542534006DB4BA /* dish_sub1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_sub1.png; sourceTree = "<group>"; };
 		A75BC74E194AD6920052CD3E /* JDOArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOArrayModel.h; sourceTree = "<group>"; };
 		A75BC74F194AD6920052CD3E /* JDOArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOArrayModel.m; sourceTree = "<group>"; };
 		A75BC750194AD6920052CD3E /* JDODataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDODataModel.h; sourceTree = "<group>"; };
 		A75BC751194AD6920052CD3E /* JDODataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDODataModel.m; sourceTree = "<group>"; };
 		A75BC754194AD97C0052CD3E /* JDDishTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeModel.h; sourceTree = "<group>"; };
 		A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeModel.m; sourceTree = "<group>"; };
+		A762112E1957C5AE0037C7E3 /* JDGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGestureRecognizer.h; sourceTree = "<group>"; };
+		A762112F1957C5AE0037C7E3 /* JDGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGestureRecognizer.m; sourceTree = "<group>"; };
 		A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_ordernumber_bg.png; sourceTree = "<group>"; };
 		A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_ordernumber_bg2.png; sourceTree = "<group>"; };
 		A79969F3194FE7CA003D7DE7 /* JDMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuItemView.h; sourceTree = "<group>"; };
@@ -346,6 +354,8 @@
 				D8D41870194986BA00471D40 /* STKeychain.m */,
 				D8D4186B1949829900471D40 /* JDHXLUtil.h */,
 				D8D4186C1949829900471D40 /* JDHXLUtil.m */,
+				A762112E1957C5AE0037C7E3 /* JDGestureRecognizer.h */,
+				A762112F1957C5AE0037C7E3 /* JDGestureRecognizer.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -389,6 +399,9 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A7597EFF19542534006DB4BA /* dish_add1.png */,
+				A7597F0019542534006DB4BA /* dish_edt_bg1.png */,
+				A7597F0119542534006DB4BA /* dish_sub1.png */,
 				A7228F0519512C31007AF87C /* dish_eat.png */,
 				A7228F0619512C31007AF87C /* dish_like.png */,
 				A7228F0119512AE0007AF87C /* dish_taste_bg.png */,
@@ -527,6 +540,7 @@
 			files = (
 				D80A7ED31945552E0008E7CF /* icon@2x.png in Resources */,
 				D80A7EF2194560B30008E7CF /* address_icon.png in Resources */,
+				A7597F0319542534006DB4BA /* dish_edt_bg1.png in Resources */,
 				D80A7EF9194560B30008E7CF /* telephone_icon.png in Resources */,
 				D82BE4F21947DECF0051CB09 /* start_btn_bg_1@2x.png in Resources */,
 				D82A86D51945B5DC00C9C249 /* navigation_bg_44.png in Resources */,
@@ -534,6 +548,7 @@
 				A7228F0819512C31007AF87C /* dish_like.png in Resources */,
 				D80A7EE319455C330008E7CF /* user_btn_bg@2x.png in Resources */,
 				D8D418691949380100471D40 /* notavilable_bg.png in Resources */,
+				A7597F0219542534006DB4BA /* dish_add1.png in Resources */,
 				D82736B919503CFB009E3468 /* login_bg.png in Resources */,
 				D80A7EF6194560B30008E7CF /* navigation_bg.png in Resources */,
 				D8D418671949380100471D40 /* loading_bg.png in Resources */,
@@ -551,6 +566,7 @@
 				D8D418681949380100471D40 /* loading_bg@2x.png in Resources */,
 				D82736AE194FD395009E3468 /* count_bg@2x.png in Resources */,
 				D82736B819503CFB009E3468 /* divider@2x.png in Resources */,
+				A7597F0419542534006DB4BA /* dish_sub1.png in Resources */,
 				D8292D28194EE19700623611 /* indicator_1@2x.png in Resources */,
 				A744AEE8194832E800C092BB /* menu_orderby.png in Resources */,
 				D80A7EF4194560B30008E7CF /* back_btn_bg@2x.png in Resources */,
@@ -638,6 +654,7 @@
 				D811C83A194839A900788155 /* JDHotelModel.m in Sources */,
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
 				A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */,
+				A76211301957C5AE0037C7E3 /* JDGestureRecognizer.m in Sources */,
 				D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */,
 				A79969F5194FE7CA003D7DE7 /* JDMenuItemView.m in Sources */,
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,

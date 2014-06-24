@@ -13,5 +13,9 @@
 @property (nonatomic,strong) JDDishModel *dishModel;
 @property (nonatomic,strong) UIImageView *dish_img;
 
+@property (nonatomic,strong) UIButton *add_btn;
+@property (nonatomic,strong) UIButton *countLabel;
+@property (nonatomic,strong) UIButton *sub_btn;
+
 - (void)setModel:(JDDishModel *)dishModel;
 @end
