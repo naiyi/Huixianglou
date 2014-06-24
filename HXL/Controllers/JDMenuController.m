@@ -12,6 +12,7 @@
 #import "JDDishModel.h"
 #import "JDDishTypeModel.h"
 #import "JDMenuItemView.h"
+#import "JDDishDetailView.h"
 #import "JDDishTypeView.h"
 #import "DCKeyValueObjectMapping.h"
 #import "JDHXLUtil.h"
@@ -102,6 +103,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
 
 - (void)setContentView
 {
+    _bg_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     UIView *sortView =[[UIView alloc] initWithFrame:CGRectMake(0, 0.0, self.contentView.frame.size.width, 40)];
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"menu_submit_bg.png"]];
     [sortView setBackgroundColor:bgColor];
@@ -147,7 +149,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [_sort_bycomment addSubview:devider3];
     [_sort_bycomment addSubview:devider4];
     [sortView addSubview:_sort_bycomment];
-    [self.contentView addSubview:sortView];
+    [self.bg_view addSubview:sortView];
     
     float scroll_height = self.contentView.frame.size.height-sortView.frame.size.height-sortView.frame.origin.y-60;
     float scroll_y = sortView.frame.origin.y+sortView.frame.size.height;
@@ -156,13 +158,13 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     _left.dataSource = self;
     _left.separatorStyle = UITableViewCellSeparatorStyleNone;
     _left.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dishtype_item_bg"]];
-    [self.contentView addSubview:_left];
+    [self.bg_view addSubview:_left];
     _right = [[UITableView alloc] initWithFrame:CGRectMake(_left.frame.size.width, scroll_y, self.contentView.frame.size.width-_left.frame.size.width, scroll_height)];
     _right.delegate = self;
     _right.dataSource = self;
     _right.separatorStyle = UITableViewCellSeparatorStyleNone;
     _right.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:_right];
+    [self.bg_view addSubview:_right];
     
     UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, _left.frame.origin.y+scroll_height, self.contentView.frame.size.width, 60)];
     submit_frame.backgroundColor = bgColor;
@@ -173,7 +175,8 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [_submit setBackgroundColor:color_selected];
     [_submit addTarget:self action:@selector(onSubmitButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [submit_frame addSubview:_submit];
-    [self.contentView addSubview:submit_frame];
+    [self.bg_view addSubview:submit_frame];
+    [self.contentView addSubview:_bg_view];
 }
 
 - (void)onBackButtonClicked {
@@ -278,6 +281,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
             cell1 = [[JDMenuItemView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId1];
         }
         [cell1 setModel:[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+        cell1.dish_img.userInteractionEnabled = YES;
         JDGestureRecognizer *tapGesture1 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickDishImage:)];
         tapGesture1.obj = indexPath;
         [cell1.dish_img addGestureRecognizer:tapGesture1];
@@ -292,8 +296,39 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     return nil;
 }
 
+-(void)closeDishDetail {
+    [_detail_bg removeFromSuperview];
+    [_detailView removeFromSuperview];
+}
+
 - (void)clickDishImage:(JDGestureRecognizer *)gesture  {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    _detail_bg = [[UIView alloc] initWithFrame:_bg_view.frame];
+    _detail_bg.backgroundColor = [UIColor blackColor];
+    [_detail_bg setBackgroundColor:[UIColor blackColor]];
+    _detail_bg.alpha = 0.1f;
+    UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeDishDetail)];
+    [_detail_bg addGestureRecognizer:g];
+    [self.contentView insertSubview:_detail_bg aboveSubview:_bg_view];
+    _detailView = [[JDDishDetailView alloc] initWithFrame:CGRectMake(20, 10, _detail_bg.frame.size.width-40, 450) andDish:dish];
+    _detailView.userInteractionEnabled = true;
+    JDGestureRecognizer *g1 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickAddDish:)];
+    g1.obj = indexPath;
+    _detailView.addBtn.userInteractionEnabled = true;
+    _detailView.closeBtn.userInteractionEnabled = true;
+    [_detailView.addBtn addGestureRecognizer:g1];
+    [_detailView.closeBtn addGestureRecognizer:g];
+    [self.contentView insertSubview:_detailView aboveSubview:_detail_bg];
     
+}
+
+- (void)clickAddDish:(JDGestureRecognizer *)gesture {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    [self closeDishDetail];
+    [self addDish:dish indexPath:indexPath];
+    [_right reloadData];
 }
 
 - (void)clickAdd:(JDGestureRecognizer *)gesture {
