@@ -17,5 +17,7 @@
 @property (nonatomic,strong) UIButton *countLabel;
 @property (nonatomic,strong) UIButton *sub_btn;
 
+@property (nonatomic,strong) NSMutableArray *btns;
+
 - (void)setModel:(JDDishModel *)dishModel;
 @end

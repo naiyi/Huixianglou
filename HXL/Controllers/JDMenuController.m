@@ -280,7 +280,8 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
         if (cell1 == nil) {
             cell1 = [[JDMenuItemView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId1];
         }
-        [cell1 setModel:[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+        JDDishModel *dish = [[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        [cell1 setModel:dish];
         cell1.dish_img.userInteractionEnabled = YES;
         JDGestureRecognizer *tapGesture1 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickDishImage:)];
         tapGesture1.obj = indexPath;
@@ -291,9 +292,28 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
         JDGestureRecognizer *tapGesture3 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickSub:)];
         tapGesture3.obj = indexPath;
         [cell1.sub_btn addGestureRecognizer:tapGesture3];
+        if (dish.ifOrdered && dish.price_type == 2) {
+            for (int i=0; i<dish.price_list.count; i++) {
+                JDGestureRecognizer *tapGesture4 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickFenliang:)];
+                tapGesture4.obj = indexPath;
+                tapGesture4.what = i;
+                [[cell1.btns objectAtIndex:i] addGestureRecognizer:tapGesture4];
+            }
+        }
         return cell1;
     }
     return nil;
+}
+
+-(void)clickFenliang:(JDGestureRecognizer *)gesture {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    dish.checked_fenliang = gesture.what;
+    dish.checked_weight = [(NSNumber *)[[dish.price_list objectAtIndex:gesture.what] objectForKey:@"weight"] intValue];
+    dish.price_show = [(NSNumber *)[[dish.price_list objectAtIndex:gesture.what] objectForKey:@"price"] intValue];
+    [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
+    [self refreshTop];
+    [_right reloadData];
 }
 
 -(void)closeDishDetail {
@@ -374,6 +394,10 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _right) {
+        JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        if (dish.price_type==2&&dish.ifOrdered) {
+            return 100;
+        }
         return 80;
     }
     return 40;
