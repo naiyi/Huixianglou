@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "JDHXLParentViewController.h"
+#import "JDDishDetailView.h"
 
 @interface JDMenuController : JDHXLParentViewController<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) UIView *bg_view;
+@property (nonatomic,strong) UIView *detail_bg;
+@property (nonatomic,strong) JDDishDetailView *detailView;
+
 @property (nonatomic,strong) UILabel *total;
 @property (nonatomic,strong) UILabel *price;
 @property (nonatomic,strong) UILabel *price_avg;

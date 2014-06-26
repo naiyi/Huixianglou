@@ -10,4 +10,5 @@
 
 @interface JDGestureRecognizer : UITapGestureRecognizer
 @property (nonatomic,strong) id obj;
+@property (nonatomic) int what;
 @end

@@ -19,6 +19,7 @@
     UILabel *weightLable;
     UILabel *min_weightLabel;
     UIView *count_view;
+    UIView *fenliangView;
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -90,6 +91,7 @@
         min_weightLabel = [[UILabel alloc] initWithFrame:CGRectMake(weightLable.frame.origin.x+weightLable.frame.size.width, y2+PADDING, 60, 20)];
         min_weightLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:min_weightLabel];
+        fenliangView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width, 22)];
     }
     return self;
 }
@@ -168,6 +170,45 @@
         min_weightLabel.hidden = false;
     } else {
         min_weightLabel.hidden = true;
+    }
+    
+    if(dish.ifOrdered && dish.price_type == 2) {
+        fenliangView.hidden = false;
+        fenliangView.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:240.0f/255.0f blue:240.0f/255.0f alpha:1.0f];
+        UILabel *fenliangLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, 2, 44, 16)];
+        UIColor *textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
+        fenliangLabel.text = @"份量：";
+        fenliangLabel.textColor = textColor;
+        fenliangLabel.font = [UIFont systemFontOfSize:14];
+        [fenliangView addSubview:fenliangLabel];
+        UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(PADDING+fenliangLabel.frame.size.width, 2, fenliangView.frame.size.width-PADDING-fenliangLabel.frame.size.width, 16)];
+        scroll.contentSize = CGSizeMake(75*dish.price_list.count, 16);
+        scroll.showsHorizontalScrollIndicator = false;
+        scroll.showsVerticalScrollIndicator = false;
+        [fenliangView addSubview:scroll];
+        _btns = [[NSMutableArray alloc] init];
+        float x = PADDING;
+        for (int i=0; i<dish.price_list.count; i++) {
+            UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(x, 1, 75, 16)];
+            NSString *title = [NSString stringWithFormat:@"%@(%ig)",[[dish.price_list objectAtIndex:i] objectForKey:@"name"],[(NSNumber *)[[dish.price_list objectAtIndex:i] objectForKey:@"weight"] intValue]];
+            if (dish.checked_fenliang==i) {
+                b.selected = true;
+            } else {
+                b.selected = false;
+            }
+            [b setTitle:title forState:UIControlStateNormal];
+            [b setTitleColor:textColor forState:UIControlStateNormal];
+            [b setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            [b setBackgroundColor:[UIColor whiteColor]];
+            [b setBackgroundImage:[UIImage imageNamed:@"dishtype_item_bg"] forState:UIControlStateSelected];
+            b.titleLabel.font = [UIFont systemFontOfSize:12];
+            x=x+PADDING+b.frame.size.width;
+            [_btns addObject:b];
+            [scroll addSubview:b];
+        }
+        [self.contentView addSubview:fenliangView];
+    } else {
+        [fenliangView removeFromSuperview];
     }
 }
 @end
