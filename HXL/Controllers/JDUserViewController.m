@@ -11,6 +11,8 @@
 #import "JDOHttpClient.h"
 #import "JDHXLUtil.h"
 #import "JDHXLModel.h"
+#import "JDCurrentOrdersController.h"
+#import "JDHistoryOrdersController.h"
 
 @interface JDUserViewController ()
 
@@ -423,7 +425,7 @@
     [currentTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [currentTitle setTextAlignment:NSTextAlignmentLeft];
     [currentTitle setFont:[UIFont systemFontOfSize:20.0]];
-    [currentTitle setText:[NSString stringWithFormat:@"我的预定(%d)", self.userModel.currentOrderCount]];
+    [currentTitle setText:[NSString stringWithFormat:@"我的预定(%@)", self.userModel.currentOrderCount]];
     [currentOrderView addSubview:currentTitle];
     
     currentHotel= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 52.0, 135.0, 20.0)];
@@ -458,6 +460,20 @@
     [currentMore setText:@"查看详情"];
     [currentOrderView addSubview:currentMore];
     
+    if ((!self.userModel.currentOrderCount)||([self.userModel.currentOrderCount isEqualToString:@"0"])) {
+        [currentTitle setText:@"我的预定(0)"];
+        [currentDate setHidden:YES];
+        [currentDetail setHidden:YES];
+        [currentHotel setHidden:YES];
+        [currentMore setHidden:YES];
+    } else {
+        [currentTitle setText:[NSString stringWithFormat:@"我的预定(%@)", self.userModel.currentOrderCount]];
+        [currentDate setHidden:NO];
+        [currentDetail setHidden:NO];
+        [currentHotel setHidden:NO];
+        [currentMore setHidden:NO];
+    }
+    
     UITapGestureRecognizer *currentTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(currentViewTapped)];
     [currentOrderView setUserInteractionEnabled:YES];
     [currentOrderView addGestureRecognizer:currentTap];
@@ -471,7 +487,7 @@
     [historyTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [historyTitle setTextAlignment:NSTextAlignmentLeft];
     [historyTitle setFont:[UIFont systemFontOfSize:20.0]];
-    [historyTitle setText:[NSString stringWithFormat:@"历史订单(%d)", self.userModel.historyOrderCount]];
+    [historyTitle setText:[NSString stringWithFormat:@"历史订单(%@)", self.userModel.historyOrderCount]];
     [historyOrderView addSubview:historyTitle];
     
     historyHotel= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 52.0, 135.0, 20.0)];
@@ -506,6 +522,20 @@
     [historyMore setText:@"查看详情"];
     [historyOrderView addSubview:historyMore];
     
+    if ((!self.userModel.historyOrderCount)||([self.userModel.historyOrderCount isEqualToString:@"0"])) {
+        [historyTitle setText:@"历史订单(0)"];
+        [historyDate setHidden:YES];
+        [historyDetail setHidden:YES];
+        [historyHotel setHidden:YES];
+        [historyMore setHidden:YES];
+    } else {
+        [historyTitle setText:[NSString stringWithFormat:@"历史订单(%@)", self.userModel.historyOrderCount]];
+        [historyDate setHidden:NO];
+        [historyDetail setHidden:NO];
+        [historyHotel setHidden:NO];
+        [historyMore setHidden:NO];
+    }
+    
     UITapGestureRecognizer *historyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyViewTapped)];
     [historyOrderView setUserInteractionEnabled:YES];
     [historyOrderView addGestureRecognizer:historyTap];
@@ -520,7 +550,7 @@
     [scoreTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [scoreTitle setTextAlignment:NSTextAlignmentLeft];
     [scoreTitle setFont:[UIFont systemFontOfSize:20.0]];
-    [scoreTitle setText:[NSString stringWithFormat:@"我的积分(%d)", self.userModel.scoreTotal]];
+    [scoreTitle setText:[NSString stringWithFormat:@"我的积分(%@)", self.userModel.scoreTotal]];
     [scoreView addSubview:scoreTitle];
     
     scoreDate1= [[UILabel alloc] initWithFrame:CGRectMake(15.0, 52.0, 135.0, 20.0)];
@@ -544,7 +574,7 @@
     [scoreNum1 setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
     [scoreNum1 setTextAlignment:NSTextAlignmentRight];
     [scoreNum1 setFont:[UIFont systemFontOfSize:15.0]];
-    [scoreNum1 setText:[NSString stringWithFormat:@"积分:%d", self.userModel.scoreNum1]];
+    [scoreNum1 setText:[NSString stringWithFormat:@"积分:%@", self.userModel.scoreNum1]];
     [scoreView addSubview:scoreNum1];
     
     scoreNum2= [[UILabel alloc] initWithFrame:CGRectMake(150.0, 72.0, 135.0, 20.0)];
@@ -552,8 +582,22 @@
     [scoreNum2 setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
     [scoreNum2 setTextAlignment:NSTextAlignmentRight];
     [scoreNum2 setFont:[UIFont systemFontOfSize:15.0]];
-    [scoreNum2 setText:[NSString stringWithFormat:@"积分:%d", self.userModel.scoreNum2]];
+    [scoreNum2 setText:[NSString stringWithFormat:@"积分:%@", self.userModel.scoreNum2]];
     [scoreView addSubview:scoreNum2];
+    
+    if ((!self.userModel.scoreTotal)||([self.userModel.scoreTotal isEqualToString:@"0"])) {
+        [scoreTitle setText:@"我的积分(0)"];
+        [scoreDate1 setHidden:YES];
+        [scoreDate2 setHidden:YES];
+        [scoreNum1 setHidden:YES];
+        [scoreNum2 setHidden:YES];
+    } else {
+        [scoreTitle setText:[NSString stringWithFormat:@"我的积分(%@)", self.userModel.scoreTotal]];
+        [scoreDate1 setHidden:NO];
+        [scoreDate2 setHidden:NO];
+        [scoreNum1 setHidden:NO];
+        [scoreNum2 setHidden:NO];
+    }
     
     [userView addSubview:scoreView];
 }

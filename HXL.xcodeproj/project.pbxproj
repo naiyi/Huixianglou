@@ -451,6 +451,8 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A72636CF1959731F00BD3E72 /* dish_detail_devider.png */,
+				A72636CD19595F3500BD3E72 /* dish_detail_close_btn.png */,
 				D81C8CB71959749C008A9EBB /* about_us_icon.png */,
 				D81C8CB81959749C008A9EBB /* about_us_icon@2x.png */,
 				D81C8CB91959749C008A9EBB /* setting_item1.png */,
