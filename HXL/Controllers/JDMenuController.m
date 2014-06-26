@@ -454,4 +454,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
         }
     }
 }
+-(BOOL)automaticallyAdjustsScrollViewInsets{
+    return false;
+}
 @end

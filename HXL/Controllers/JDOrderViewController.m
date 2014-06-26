@@ -83,6 +83,10 @@
     return 80;
 }
 
+-(BOOL)automaticallyAdjustsScrollViewInsets{
+    return false;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"%i",_orderedDishes.count);
     return _orderedDishes.count;
