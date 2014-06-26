@@ -9,5 +9,18 @@
 #import "JDHXLParentViewController.h"
 
 @interface JDSettingsViewController : JDHXLParentViewController
-
+{
+    UIView *settingItem1;
+    UIView *settingItem2;
+    UIView *settingItem3;
+    
+    UILabel *nameLabel;
+    UILabel *nameEdit;
+    UILabel *aboutusLabel;
+    UILabel *feedbackLable;
+    UILabel *clearLabel;
+    UILabel *clearEdit;
+    UILabel *checkupdateLabel;
+    UILabel *scoreLabel;
+}
 @end
