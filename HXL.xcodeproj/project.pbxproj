@@ -504,6 +504,8 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A75F6D4A195C231300DA43BC /* menu_devider.png */,
+				A75F6D48195C1F9700DA43BC /* order_total_bg.png */,
 				D80DF6EB195D48F700AF9BCF /* cancel_order.png */,
 				D80DF6EC195D48F700AF9BCF /* cancel_order@2x.png */,
 				D80DF6ED195D48F700AF9BCF /* commit_order.png */,

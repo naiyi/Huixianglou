@@ -217,7 +217,9 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [_right reloadData];
 }
 - (void)onSubmitButtonClicked {
-    
+    JDOrderViewController *orderController = [[JDOrderViewController alloc] initWithNibName:nil bundle:nil];
+    orderController.orderedDishes = orderedDishes;
+    [self.navigationController pushViewController:orderController animated:YES];
 }
 
 -(void)refreshTop{
