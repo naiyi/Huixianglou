@@ -33,6 +33,7 @@
 		A744AEE7194832E800C092BB /* menu_orderby_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE5194832E800C092BB /* menu_orderby_devider.png */; };
 		A744AEE8194832E800C092BB /* menu_orderby.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE6194832E800C092BB /* menu_orderby.png */; };
 		A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A744AEE91948424A00C092BB /* dishtype_item_bg.png */; };
+		A7481FBC195BB61B00759ADF /* JDOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7481FBB195BB61B00759ADF /* JDOrderViewController.m */; };
 		A758E68119519B9000374F8F /* JDDishTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A758E68019519B9000374F8F /* JDDishTypeView.m */; };
 		A7597F0219542534006DB4BA /* dish_add1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7597EFF19542534006DB4BA /* dish_add1.png */; };
 		A7597F0319542534006DB4BA /* dish_edt_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7597F0019542534006DB4BA /* dish_edt_bg1.png */; };
@@ -40,6 +41,9 @@
 		A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC74F194AD6920052CD3E /* JDOArrayModel.m */; };
 		A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC751194AD6920052CD3E /* JDODataModel.m */; };
 		A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */; };
+		A75F6D47195C162800DA43BC /* JDMenuItemView2.m in Sources */ = {isa = PBXBuildFile; fileRef = A75F6D46195C162800DA43BC /* JDMenuItemView2.m */; };
+		A75F6D49195C1F9700DA43BC /* order_total_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A75F6D48195C1F9700DA43BC /* order_total_bg.png */; };
+		A75F6D4B195C231300DA43BC /* menu_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = A75F6D4A195C231300DA43BC /* menu_devider.png */; };
 		A76211301957C5AE0037C7E3 /* JDGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A762112F1957C5AE0037C7E3 /* JDGestureRecognizer.m */; };
 		A79969F1194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */; };
 		A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */; };
@@ -172,6 +176,8 @@
 		A744AEE5194832E800C092BB /* menu_orderby_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby_devider.png; sourceTree = "<group>"; };
 		A744AEE6194832E800C092BB /* menu_orderby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orderby.png; sourceTree = "<group>"; };
 		A744AEE91948424A00C092BB /* dishtype_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_item_bg.png; sourceTree = "<group>"; };
+		A7481FBA195BB61B00759ADF /* JDOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOrderViewController.h; sourceTree = "<group>"; };
+		A7481FBB195BB61B00759ADF /* JDOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOrderViewController.m; sourceTree = "<group>"; };
 		A758E67F19519B9000374F8F /* JDDishTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeView.h; sourceTree = "<group>"; };
 		A758E68019519B9000374F8F /* JDDishTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeView.m; sourceTree = "<group>"; };
 		A7597EFF19542534006DB4BA /* dish_add1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dish_add1.png; sourceTree = "<group>"; };
@@ -183,6 +189,10 @@
 		A75BC751194AD6920052CD3E /* JDODataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDODataModel.m; sourceTree = "<group>"; };
 		A75BC754194AD97C0052CD3E /* JDDishTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDishTypeModel.h; sourceTree = "<group>"; };
 		A75BC755194AD97C0052CD3E /* JDDishTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDishTypeModel.m; sourceTree = "<group>"; };
+		A75F6D45195C162800DA43BC /* JDMenuItemView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuItemView2.h; sourceTree = "<group>"; };
+		A75F6D46195C162800DA43BC /* JDMenuItemView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuItemView2.m; sourceTree = "<group>"; };
+		A75F6D48195C1F9700DA43BC /* order_total_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_total_bg.png; sourceTree = "<group>"; };
+		A75F6D4A195C231300DA43BC /* menu_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_devider.png; sourceTree = "<group>"; };
 		A762112E1957C5AE0037C7E3 /* JDGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGestureRecognizer.h; sourceTree = "<group>"; };
 		A762112F1957C5AE0037C7E3 /* JDGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGestureRecognizer.m; sourceTree = "<group>"; };
 		A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishtype_ordernumber_bg.png; sourceTree = "<group>"; };
@@ -475,6 +485,8 @@
 				A712034B1946A9EB004CFC3D /* JDMenuController.m */,
 				A79969F3194FE7CA003D7DE7 /* JDMenuItemView.h */,
 				A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */,
+				A75F6D45195C162800DA43BC /* JDMenuItemView2.h */,
+				A75F6D46195C162800DA43BC /* JDMenuItemView2.m */,
 				A758E67F19519B9000374F8F /* JDDishTypeView.h */,
 				A758E68019519B9000374F8F /* JDDishTypeView.m */,
 				A72636CA1959572100BD3E72 /* JDDishDetailView.h */,
@@ -483,6 +495,8 @@
 				D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */,
 				D86D42A019591ADF00D32692 /* JDHistoryOrdersController.h */,
 				D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */,
+				A7481FBA195BB61B00759ADF /* JDOrderViewController.h */,
+				A7481FBB195BB61B00759ADF /* JDOrderViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -689,6 +703,7 @@
 				D82BE4F11947DECF0051CB09 /* start_btn_bg_1.png in Resources */,
 				D80A7EDE19455C330008E7CF /* address_icon@2x.png in Resources */,
 				D82736B1194FD8D5009E3468 /* indicator_1.png in Resources */,
+				A75F6D4B195C231300DA43BC /* menu_devider.png in Resources */,
 				D8D418681949380100471D40 /* loading_bg@2x.png in Resources */,
 				D81C8CC61959749C008A9EBB /* setting_item3@2x.png in Resources */,
 				D82736AE194FD395009E3468 /* count_bg@2x.png in Resources */,
@@ -709,6 +724,7 @@
 				2DBA4504194146FB00F73B66 /* Images.xcassets in Resources */,
 				A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */,
 				D80A7ED719455A820008E7CF /* navigation_bg@2x.png in Resources */,
+				A75F6D49195C1F9700DA43BC /* order_total_bg.png in Resources */,
 				D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */,
 				A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */,
 				D8292D29194EE19700623611 /* indicator_2@2x.png in Resources */,
@@ -791,6 +807,7 @@
 				D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */,
 				D82BE59719482C460051CB09 /* JDOWebClient.m in Sources */,
 				D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */,
+				A7481FBC195BB61B00759ADF /* JDOrderViewController.m in Sources */,
 				D83BCA7119580FF700903AE7 /* JDUserModel.m in Sources */,
 				D811C83A194839A900788155 /* JDHotelModel.m in Sources */,
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
@@ -800,6 +817,7 @@
 				A79969F5194FE7CA003D7DE7 /* JDMenuItemView.m in Sources */,
 				2DBA4502194146FB00F73B66 /* JDAppDelegate.m in Sources */,
 				2DBA44FE194146FB00F73B66 /* main.m in Sources */,
+				A75F6D47195C162800DA43BC /* JDMenuItemView2.m in Sources */,
 				D8D41871194986BA00471D40 /* STKeychain.m in Sources */,
 				A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */,
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,

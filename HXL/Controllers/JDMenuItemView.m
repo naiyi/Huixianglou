@@ -49,7 +49,9 @@
         tuijian = [[UIImageView alloc] initWithFrame:CGRectMake(PADDING, y0, 12, 18)];
         tuijian.image = [UIImage imageNamed:@"dish_tuijian"];
         [self.contentView addSubview:tuijian];
-        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(tuijian.frame.size.width+tuijian.frame.origin.x, y0, 90, tuijian.frame.size.height)];
+        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(tuijian.frame.size.width+tuijian.frame.origin.x, y0, 160, tuijian.frame.size.height)];
+        nameLabel.frame = CGRectMake(0, 0, 0, 0);
+        [nameLabel setNumberOfLines:0];
         nameLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
         nameLabel.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:nameLabel];
@@ -92,6 +94,9 @@
         min_weightLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:min_weightLabel];
         fenliangView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width, 22)];
+        UIImageView *devider = [[UIImageView alloc] initWithFrame:CGRectMake(0, _dish_img.frame.size.height+_dish_img.frame.origin.y+9, self.contentView.frame.size.width, 1)];
+        devider.image = [UIImage imageNamed:@"menu_devider"];
+        [self.contentView addSubview:devider];
     }
     return self;
 }
@@ -125,21 +130,20 @@
             
         }];
     }
-    
+    CGSize nameSize = [dish.name sizeWithFont:nameLabel.font];
     if (dish.recommend==1) {
         tuijian.hidden = false;
-        [nameLabel setFrame:CGRectMake(tuijian.frame.size.width+PADDING, nameLabel.frame.origin.y, nameLabel.frame.size.width, nameLabel.frame.size.height)];
+        [nameLabel setFrame:CGRectMake(tuijian.frame.size.width+PADDING, nameLabel.frame.origin.y, nameSize.width, nameSize.height)];
         [tasteLabel setFrame:CGRectMake(nameLabel.frame.origin.x+nameLabel.frame.size.width, tasteLabel.frame.origin.y, 40, tuijian.frame.size.height)];
         [taste_bg setFrame:tasteLabel.frame];
     } else {
         tuijian.hidden = true;
-        [nameLabel setFrame:CGRectMake(PADDING, nameLabel.frame.origin.y, nameLabel.frame.size.width, nameLabel.frame.size.height)];
+        [nameLabel setFrame:CGRectMake(PADDING, nameLabel.frame.origin.y, nameSize.width, nameSize.height)];
         [tasteLabel setFrame:CGRectMake(nameLabel.frame.origin.x+nameLabel.frame.size.width, tasteLabel.frame.origin.y, 40, tuijian.frame.size.height)];
         [taste_bg setFrame:tasteLabel.frame];
     }
     if ([dish.status isEqualToString:@"正常"]) {
         nameLabel.text = dish.name;
-        nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, 90, nameLabel.frame.size.height);
         if (dish.taste.count == 0) {
             tasteLabel.hidden = true;
             taste_bg.hidden = true;
