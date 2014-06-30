@@ -11,6 +11,8 @@
 #import "DCKeyValueObjectMapping.h"
 #import "JSONKit.h"
 #import "iToast.h"
+#import "DCArrayMapping.h"
+#import "JDHXLUtil.h"
 
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."

@@ -216,6 +216,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [_right reloadData];
 }
 - (void)onSubmitButtonClicked {
+    
 }
 
 -(void)refreshTop{

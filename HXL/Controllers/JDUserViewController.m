@@ -9,7 +9,6 @@
 #import "JDUserViewController.h"
 #import "JDSettingsViewController.h"
 #import "JDOHttpClient.h"
-#import "JDHXLUtil.h"
 #import "JDHXLModel.h"
 #import "JDCurrentOrdersController.h"
 #import "JDHistoryOrdersController.h"
@@ -460,24 +459,26 @@
     [currentMore setText:@"查看详情"];
     [currentOrderView addSubview:currentMore];
     
+    UITapGestureRecognizer *currentTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(currentViewTapped)];
+    [currentOrderView setUserInteractionEnabled:YES];
+    [currentOrderView addGestureRecognizer:currentTap];
+    [userView addSubview:currentOrderView];
+    
     if ((!self.userModel.currentOrderCount)||([self.userModel.currentOrderCount isEqualToString:@"0"])) {
         [currentTitle setText:@"我的预定(0)"];
         [currentDate setHidden:YES];
         [currentDetail setHidden:YES];
         [currentHotel setHidden:YES];
         [currentMore setHidden:YES];
+        [currentOrderView setUserInteractionEnabled:NO];
     } else {
         [currentTitle setText:[NSString stringWithFormat:@"我的预定(%@)", self.userModel.currentOrderCount]];
         [currentDate setHidden:NO];
         [currentDetail setHidden:NO];
         [currentHotel setHidden:NO];
         [currentMore setHidden:NO];
+        [currentOrderView setUserInteractionEnabled:YES];
     }
-    
-    UITapGestureRecognizer *currentTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(currentViewTapped)];
-    [currentOrderView setUserInteractionEnabled:YES];
-    [currentOrderView addGestureRecognizer:currentTap];
-    [userView addSubview:currentOrderView];
     
     //历史订单项
     historyOrderView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 240.0, 300.0, 100.0)];
@@ -522,24 +523,26 @@
     [historyMore setText:@"查看详情"];
     [historyOrderView addSubview:historyMore];
     
+    UITapGestureRecognizer *historyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyViewTapped)];
+    [historyOrderView setUserInteractionEnabled:YES];
+    [historyOrderView addGestureRecognizer:historyTap];
+    [userView addSubview:historyOrderView];
+    
     if ((!self.userModel.historyOrderCount)||([self.userModel.historyOrderCount isEqualToString:@"0"])) {
         [historyTitle setText:@"历史订单(0)"];
         [historyDate setHidden:YES];
         [historyDetail setHidden:YES];
         [historyHotel setHidden:YES];
         [historyMore setHidden:YES];
+        [historyOrderView setUserInteractionEnabled:NO];
     } else {
         [historyTitle setText:[NSString stringWithFormat:@"历史订单(%@)", self.userModel.historyOrderCount]];
         [historyDate setHidden:NO];
         [historyDetail setHidden:NO];
         [historyHotel setHidden:NO];
         [historyMore setHidden:NO];
+        [historyOrderView setUserInteractionEnabled:YES];
     }
-    
-    UITapGestureRecognizer *historyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyViewTapped)];
-    [historyOrderView setUserInteractionEnabled:YES];
-    [historyOrderView addGestureRecognizer:historyTap];
-    [userView addSubview:historyOrderView];
     
     //积分项
     scoreView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 355.0, 300.0, 100.0)];
@@ -604,12 +607,14 @@
 
 - (void)currentViewTapped
 {
-    
+    JDCurrentOrdersController *currentOrders = [[JDCurrentOrdersController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:currentOrders animated:YES];
 }
 
 - (void)historyViewTapped
 {
-    
+    JDHistoryOrdersController *historyOrders = [[JDHistoryOrdersController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:historyOrders animated:YES];
 }
 
 - (void)onBackButtonClicked

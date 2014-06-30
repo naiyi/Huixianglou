@@ -12,7 +12,6 @@
 #import "JDMenuController.h"
 #import "JDOHttpClient.h"
 #import "DCKeyValueObjectMapping.h"
-#import "JDHXLUtil.h"
 
 #define Default_Image @"aaaaa"
 

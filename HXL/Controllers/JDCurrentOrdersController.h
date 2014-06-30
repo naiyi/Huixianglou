@@ -8,6 +8,10 @@
 
 #import "JDHXLParentViewController.h"
 
-@interface JDCurrentOrdersController : JDHXLParentViewController
+@interface JDCurrentOrdersController : JDHXLParentViewController<UITableViewDataSource, UITableViewDelegate>
+{
+    NSArray *orderDatas;
+    UITableView *orderTableView;
+}
 
 @end
