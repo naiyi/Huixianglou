@@ -18,5 +18,6 @@
 @property (nonatomic) int lon;
 @property (nonatomic) int lat;
 @property (nonatomic,strong) NSString *about_us;
+@property (nonatomic) int hotel_id;
 
 @end

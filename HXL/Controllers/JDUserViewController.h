@@ -57,5 +57,6 @@
 @property (nonatomic, strong) JDHotelModel *hotelModel;
 @property (nonatomic, strong) NSArray *orderedDishes;
 @property (nonatomic) BOOL backToOrderController;
+@property (nonatomic) int people;;
 
 @end

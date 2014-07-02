@@ -220,6 +220,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     JDOrderViewController *orderController = [[JDOrderViewController alloc] initWithNibName:nil bundle:nil];
     orderController.orderedDishes = orderedDishes;
     orderController.hotelModel = self.hotelModel;
+    orderController.people = self.people;
     [self.navigationController pushViewController:orderController animated:YES];
 }
 

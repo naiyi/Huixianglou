@@ -43,6 +43,7 @@
     [[JDOHttpClient sharedClient] getJSONByServiceName:HOTEL_INFO_SERVICE modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
         DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDHotelModel class]];
         self.hotelModel = [mapper parseDictionary:dataModel.data];
+        self.hotelModel.hotel_id = [[params objectForKey:@"id"] integerValue];
         [self setNetworkState:NETWORK_STATE_NORMAL];
     } failure:^(NSString *errorStr) {
         [self setNetworkState:NETWORK_STATE_NOTAVILABLE];

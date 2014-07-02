@@ -75,6 +75,7 @@
         JDSubmitOrderController *submitController = [[JDSubmitOrderController alloc] initWithNibName:nil bundle:nil];
         submitController.orderedDishes = self.orderedDishes;
         submitController.hotelModel = self.hotelModel;
+        submitController.people = self.people;
         [self.navigationController pushViewController:submitController animated:YES];
     } else {
         JDUserViewController *userController = [[JDUserViewController alloc] initWithNibName:nil bundle:nil];

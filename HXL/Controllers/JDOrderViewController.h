@@ -14,5 +14,6 @@
 @property (nonatomic,strong) NSMutableArray *orderedDishes;//已经点过的菜集合
 @property (nonatomic,strong) UIView *bg_view;
 @property (nonatomic,strong) JDHotelModel *hotelModel;
+@property (nonatomic) int people;
 
 @end

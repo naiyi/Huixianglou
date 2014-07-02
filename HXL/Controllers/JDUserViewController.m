@@ -347,6 +347,7 @@
                     JDSubmitOrderController *submitController = [[JDSubmitOrderController alloc] initWithNibName:nil bundle:nil];
                     submitController.hotelModel = self.hotelModel;
                     submitController.orderedDishes = self.orderedDishes;
+                    submitController.people = self.people;
                     [self.navigationController pushViewController:submitController animated:YES];
                 }
             }

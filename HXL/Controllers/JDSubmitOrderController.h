@@ -8,6 +8,7 @@
 
 #import "JDHXLParentViewController.h"
 #import "IZValueSelectorView.h"
+#import "JDDishModel.h"
 
 @interface JDSubmitOrderController : JDHXLParentViewController<IZValueSelectorViewDataSource, IZValueSelectorViewDelegate, UITextFieldDelegate>
 {
@@ -39,5 +40,6 @@
 @property (nonatomic, strong)NSString *currentSelectedRoom;
 @property (nonatomic, strong)NSString *currentSelectedDate;
 @property (nonatomic, strong)NSString *currentSelectedTime;
+@property (nonatomic) int people;
 
 @end

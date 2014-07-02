@@ -8,6 +8,7 @@
 
 #import "JDSubmitOrderController.h"
 #import "JDUserViewController.h"
+#import "JDDishModel.h"
 
 @interface JDSubmitOrderController ()
 
@@ -216,6 +217,9 @@
     [moreField setFont:[UIFont systemFontOfSize:17.0]];
     [moreField setDelegate:self];
     [centerView addSubview:moreField];
+    
+    self.currentSelectedDate = [dateArray objectAtIndex:0];
+    self.currentSelectedTime = [timeArray objectAtIndex:0];
 }
 
 - (void)setupBottomView
@@ -234,7 +238,38 @@
 
 - (void)onSubmitButtonClicked
 {
-
+    int p = 0;
+    for (int i = 0; i < self.orderedDishes.count; i++) {
+        JDDishModel *dish = ((JDDishModel *)[self.orderedDishes objectAtIndex:i]);
+        p += dish.price_show * dish.count;
+    }
+    NSDictionary *user_info = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:[NSString stringWithFormat:@"%d", self.hotelModel.hotel_id] forKey:@"id"];
+    [params setObject:[NSString stringWithFormat:@"%d", self.people] forKey:@"people"];
+    [params setObject:[user_info objectForKey:@"nick_name"] forKey:@"name"];
+    [params setObject:[user_info objectForKey:@"tel"] forKey:@"tel"];
+    [params setObject:self.currentSelectedDate forKey:@"date"];
+    [params setObject:self.currentSelectedTime forKey:@"time"];
+    [params setObject:self.currentSelectedRoom forKey:@"room"];
+    [params setObject:[NSString stringWithFormat:@"%d", p] forKey:@"price"];
+    [params setObject:[moreField text] forKey:@"remark"];
+    
+    NSMutableString *dishString = [[NSMutableString alloc] init];
+    for (int i = 0; i < self.orderedDishes.count; i++) {
+        JDDishModel *model = [self.orderedDishes objectAtIndex:i];
+        [dishString appendFormat:@"%d_%d", model.id, model.count];
+        /*
+        if(model.price_type == 1) {
+            [dishString appendFormat:@"_%d", model.checked_weight];
+        } else if(model.price_type == 2){
+            [dishString appendFormat:@"_%d", [model.price_list objectAtIndex:model.checked_fenliang]];
+            sb.append("_").append(dish.getPrice_list().get(dish.getChecked_fenliang()).getDish_price_id());
+        } else {
+            sb.append("_").append("0");
+        }
+         */
+    }
 }
 
 - (void)onChangeButtonClicked
@@ -301,7 +336,11 @@
 
 - (void)selector:(IZValueSelectorView *)valueSelector didSelectRowAtIndex:(NSInteger)index
 {
-    
+    if (valueSelector == dateSelector) {
+        self.currentSelectedDate = [dateArray objectAtIndex:index];
+    } else {
+        self.currentSelectedTime = [timeArray objectAtIndex:index];
+    }
 }
 
 - (void)hideKeyboard
