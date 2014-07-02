@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JDHXLParentViewController.h"
 #import "JDUserModel.h"
+#import "JDSubmitOrderController.h"
 
 @interface JDUserViewController : JDHXLParentViewController<UITextFieldDelegate>
 {
@@ -52,6 +53,9 @@
     UIImageView *userImage;
 }
 
-@property (nonatomic, strong)JDUserModel *userModel;
+@property (nonatomic, strong) JDUserModel *userModel;
+@property (nonatomic, strong) JDHotelModel *hotelModel;
+@property (nonatomic, strong) NSArray *orderedDishes;
+@property (nonatomic) BOOL backToOrderController;
 
 @end

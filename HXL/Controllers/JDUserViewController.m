@@ -23,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        self.backToOrderController = NO;
     }
     return self;
 }
@@ -38,11 +38,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
-    if (userinfo) {
-        [self getUserInfoFromNetWork];
-    } else {
+    if (self.backToOrderController) {
         [self setUpLoginView];
+    } else {
+        NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
+        if (userinfo) {
+            [self getUserInfoFromNetWork];
+        } else {
+            [self setUpLoginView];
+        }
     }
 }
 
@@ -65,7 +69,7 @@
     [nameLabel setTextAlignment:NSTextAlignmentLeft];
     [nameLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
     [centerView addSubview:nameLabel];
-    nameField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 13.0, 150.0, 17.0)];
+    nameField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 12.0, 150.0, 17.0)];
     [nameField setPlaceholder:@"请输入名字"];
     [nameField setFont:[UIFont systemFontOfSize:16.0]];
     [nameField setTextAlignment:NSTextAlignmentLeft];
@@ -81,7 +85,7 @@
     [telLabel setTextAlignment:NSTextAlignmentLeft];
     [telLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
     [centerView addSubview:telLabel];
-    telField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 52.0, 150.0, 17.0)];
+    telField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 51.0, 150.0, 17.0)];
     [telField setPlaceholder:@"请输入电话"];
     [telField setFont:[UIFont systemFontOfSize:16.0]];
     [telField setTextAlignment:NSTextAlignmentLeft];
@@ -98,7 +102,7 @@
     [codeLabel setTextAlignment:NSTextAlignmentLeft];
     [codeLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
     [centerView addSubview:codeLabel];
-    codeField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 90.0, 100.0, 17.0)];
+    codeField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 89.0, 100.0, 17.0)];
     [codeField setPlaceholder:@"请输入验证码"];
     [codeField setFont:[UIFont systemFontOfSize:16.0]];
     [codeField setTextAlignment:NSTextAlignmentLeft];
@@ -337,7 +341,14 @@
             int datavalue = [(NSNumber *)jsonvalue integerValue];
             if (datavalue == 1) {
                 [[NSUserDefaults standardUserDefaults] setObject:params forKey:@"user_info"];
-                [self getUserInfoFromNetWork];
+                if (!self.orderedDishes) {
+                    [self getUserInfoFromNetWork];
+                } else {
+                    JDSubmitOrderController *submitController = [[JDSubmitOrderController alloc] initWithNibName:nil bundle:nil];
+                    submitController.hotelModel = self.hotelModel;
+                    submitController.orderedDishes = self.orderedDishes;
+                    [self.navigationController pushViewController:submitController animated:YES];
+                }
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

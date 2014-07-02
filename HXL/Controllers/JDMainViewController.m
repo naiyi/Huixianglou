@@ -183,7 +183,6 @@
 {
     bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, addrAndTelView.frame.origin.y + 96.0, 320.0, 49.0)];
     [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
-    //[bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
     [self.contentView addSubview:bottomView];
     
     startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
@@ -209,6 +208,7 @@
 {
     JDMenuController *menuController = [[JDMenuController alloc] initWithNibName:nil bundle:nil];
     menuController.people = [_pickerView currentSelectedIndex];
+    menuController.hotelModel = self.hotelModel;
     [self.navigationController pushViewController:menuController animated:YES];
 }
 
@@ -251,6 +251,22 @@
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
         [startButton setUserInteractionEnabled:NO];
     }
+    self.currentSelectedCount = index;
+    [indicatorLabel setText:[NSString stringWithFormat:@"%d", index]];
+}
+
+- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index
+{
+    if (index != 0) {
+        [selectLabel setHidden:YES];
+        [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+        [startButton setUserInteractionEnabled:YES];
+    } else {
+        [selectLabel setHidden:NO];
+        [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
+        [startButton setUserInteractionEnabled:NO];
+    }
+    
     self.currentSelectedCount = index;
     [indicatorLabel setText:[NSString stringWithFormat:@"%d", index]];
 }

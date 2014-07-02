@@ -9,6 +9,8 @@
 #import "JDOrderViewController.h"
 #import "JDDishModel.h"
 #import "JDMenuItemView2.h"
+#import "JDSubmitOrderController.h"
+#import "JDUserViewController.h"
 
 @implementation JDOrderViewController{
     UITableView *scrollView;
@@ -38,6 +40,7 @@
     scrollView.delegate = self;
     scrollView.dataSource = self;
     scrollView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    scrollView.bounces = NO;
     [self.bg_view addSubview:scrollView];
     
     totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, scroll_height, self.contentView.frame.size.width, 50)];
@@ -68,7 +71,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)onSubmitButtonClicked {
-    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"]) {
+        JDSubmitOrderController *submitController = [[JDSubmitOrderController alloc] initWithNibName:nil bundle:nil];
+        submitController.orderedDishes = self.orderedDishes;
+        submitController.hotelModel = self.hotelModel;
+        [self.navigationController pushViewController:submitController animated:YES];
+    } else {
+        JDUserViewController *userController = [[JDUserViewController alloc] initWithNibName:nil bundle:nil];
+        userController.orderedDishes = self.orderedDishes;
+        userController.hotelModel = self.hotelModel;
+        [self.navigationController pushViewController:userController animated:YES];
+    }
 }
 
 - (void) refreshPrice{
@@ -79,12 +92,13 @@
     }
     totalLabel.text = [NSString stringWithFormat:@"共计%i个菜,￥%i",self.orderedDishes.count,p];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
-}
 
 -(BOOL)automaticallyAdjustsScrollViewInsets{
     return false;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

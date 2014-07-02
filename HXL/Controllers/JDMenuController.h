@@ -25,4 +25,6 @@
 @property (nonatomic,strong) UITableView *right;
 @property (nonatomic,strong) UIButton *submit;
 @property (nonatomic) int people;
+@property (nonatomic,strong) JDHotelModel *hotelModel;
+
 @end
