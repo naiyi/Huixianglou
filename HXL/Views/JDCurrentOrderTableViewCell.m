@@ -29,6 +29,8 @@
 {
     [self setBackgroundColor:[UIColor clearColor]];
     
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     [self.centerView setFrame:CGRectMake(10.0, 7.5, 300.0, 65.0)];
     [self.centerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"current_order_item_bg"]]];
     [self addSubview:self.centerView];
@@ -57,17 +59,31 @@
     
     [self.orderState setBackgroundColor:[UIColor clearColor]];
     [self.orderState setFrame:CGRectMake(260.0, 0.0, 40.0, 65.0)];
+    UITapGestureRecognizer *tapGestureTel1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onStateClicked)];
+    [self.orderState addGestureRecognizer:tapGestureTel1];
     [self.centerView addSubview:self.orderState];
     
     [self.orderDail setBackgroundColor:[UIColor clearColor]];
     [self.orderDail setFrame:CGRectMake(235.0, 22.0, 20.0, 20.0)];
     [self.orderDail setImage:[UIImage imageNamed:@"telephone_icon"]];
+    UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTelClicked)];
+    [self.orderDail setUserInteractionEnabled:YES];
+    [self.orderDail addGestureRecognizer:tapGestureTel];
+    
     [self.centerView addSubview:self.orderDail];
 }
 
-- (void)setModel:(JDOrderModel *)model
+- (void)onTelClicked
+{
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.tel]];
+    UIWebView *phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
+
+- (void)setModel:(JDOrderModel *)model andTel:(NSString *)tel
 {
     self.orderModel = model;
+    self.tel = tel;
     CGSize size = [model.hotel sizeWithFont:[UIFont systemFontOfSize:17.0]];
     [self.orderTitle setFrame:CGRectMake(65.0, 32.0 - size.height, size.width, size.height)];
     [self.orderTitle setText:model.hotel];
@@ -81,7 +97,13 @@
     [self.orderDetail setFrame:CGRectMake(65.0, 38.0, size.width, size.height)];
     [self.orderDetail setText:model.detail];
     
-    [self.orderState setImage:[UIImage imageNamed:@"cancel_order"]];
+    if ([self.orderModel.status integerValue] == 0) {
+        [self.orderState setImage:[UIImage imageNamed:@"cancel_order"]];
+        [self.orderState setUserInteractionEnabled:YES];
+    } else if ([self.orderModel.status integerValue] == 5) {
+        [self.orderState setImage:[UIImage imageNamed:@"commit_order"]];
+        [self.orderState setUserInteractionEnabled:NO];
+    }
     
     if (model.hotel_mpic && model.hotel_mpic.length > 0) {
         UIImageView *blockImageView = self.orderImage;
@@ -97,6 +119,32 @@
             
         }];
     }
+}
+
+- (void)onStateClicked
+{
+    if ([self.orderModel.status integerValue] == 0) {
+        NSDictionary *params = @{@"tel" : [[[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"] objectForKey:@"tel"], @"order_id" : self.orderModel.order_id};
+        JDOHttpClient *httpclient = [JDOHttpClient sharedClient];
+        [httpclient getPath:CANCEL_ORDER parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *json = [(NSData *)responseObject objectFromJSONData];
+            int jsonvalue = [[json objectForKey:@"data"] integerValue];
+            if (jsonvalue == 1) {
+                [self showToast:@"订单取消成功"];
+                [self.controller reloadData];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        }];
+    }
+}
+
+- (void)showToast:(NSString *)message
+{
+    iToast *toast = [iToast makeText:message];
+    [toast setDuration:3000];
+    [toast setGravity:iToastGravityBottom];
+    [toast show];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

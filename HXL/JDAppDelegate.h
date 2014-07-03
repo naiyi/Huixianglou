@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JDAppDelegate : UIResponder <UIApplicationDelegate>
+@interface JDAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
+{
+    BOOL manualCheckUpdate;
+    UIImageView *image;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navigation;

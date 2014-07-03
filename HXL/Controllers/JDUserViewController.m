@@ -204,7 +204,9 @@
     [self.contentView addSubview:bottomView];
     
     loginButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
-    [loginButton setImage:[UIImage imageNamed:@"start_btn_bg_1"] forState:UIControlStateNormal];
+    [loginButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_r"]]];
+    [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(onLoginButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setUserInteractionEnabled:YES];
     [bottomView addSubview:loginButton];

@@ -14,4 +14,8 @@
     UITableView *orderTableView;
 }
 
+@property (nonatomic, strong) JDHotelModel *hotelModel;
+
+- (void)reloadData;
+
 @end

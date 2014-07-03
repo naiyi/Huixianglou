@@ -14,9 +14,10 @@
 @property (strong, nonatomic) UIImageView *orderImage;
 @property (strong, nonatomic) UILabel *orderTitle;
 @property (strong, nonatomic) UILabel *orderTime;
+@property (strong, nonatomic) UILabel *orderName;
 @property (strong, nonatomic) UILabel *orderDetail;
 @property (strong, nonatomic) JDOrderModel *orderModel;
 
-- (void)setModel:(JDOrderModel *)model;
+- (void)setModel:(JDOrderModel *)model andBG:(int)index;
 
 @end

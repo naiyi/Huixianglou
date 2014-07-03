@@ -54,12 +54,11 @@
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"menu_submit_bg.png"]];
     UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, totalLabel.frame.origin.y+totalLabel.frame.size.height, self.contentView.frame.size.width, 49)];
     submit_frame.backgroundColor = bgColor;
-    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 29)];
-    [submit setTitle:@"预览菜单" forState:UIControlStateNormal];
+    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 94, 29)];
+    [submit setTitle:@"确认菜单" forState:UIControlStateNormal];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     submit.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    UIColor *color_selected = [UIColor colorWithRed:195.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
-    [submit setBackgroundColor:color_selected];
+    [submit setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_r"]]];
     [submit addTarget:self action:@selector(onSubmitButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [submit_frame addSubview:submit];
     

@@ -229,7 +229,9 @@
     [self.contentView addSubview:bottomView];
     
     submitButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
-    [submitButton setImage:[UIImage imageNamed:@"start_btn_bg_1"] forState:UIControlStateNormal];
+    [submitButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_r"]]];
+    [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submitButton setTitle:@"提交订单" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(onSubmitButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [submitButton setUserInteractionEnabled:YES];
     [bottomView addSubview:submitButton];

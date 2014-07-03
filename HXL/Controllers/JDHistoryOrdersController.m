@@ -75,7 +75,11 @@
     if (cell == nil) {
         cell = [[JDHistoryOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell setModel:[orderDatas objectAtIndex:indexPath.row]];
+    int bg = 0;
+    if (indexPath.row == orderDatas.count - 1) {
+        bg = 1;
+    }
+    [cell setModel:[orderDatas objectAtIndex:indexPath.row] andBG:bg];
     return cell;
 }
 

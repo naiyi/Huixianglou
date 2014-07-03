@@ -76,7 +76,8 @@
     if (cell == nil) {
         cell = [[JDCurrentOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell setModel:[orderDatas objectAtIndex:indexPath.row]];
+    cell.controller = self;
+    [cell setModel:[orderDatas objectAtIndex:indexPath.row] andTel:self.hotelModel.tel];
     return cell;
 }
 
@@ -88,6 +89,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80.0;
+}
+
+- (void)reloadData
+{
+    [self setNetworkState:NETWORK_STATE_LOADING];
+    NSDictionary *user_info = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
+    NSDictionary *params = @{@"tel": [user_info objectForKey:@"tel"]};
+    
+    DCParserConfiguration *config = [DCParserConfiguration configuration];
+    DCArrayMapping *mapper = [DCArrayMapping mapperForClassElements:[JDOrderModel class] forAttribute:@"data" onClass:[JDHXLArrayModel class]];
+    [config addArrayMapper:mapper];
+    
+    [[JDOHttpClient sharedClient] getJSONByServiceName:GET_CURRENT_ORDER_LIST modelClass:@"JDHXLArrayModel" config:config params:params success:^(JDHXLArrayModel *dataModel) {
+        orderDatas = dataModel.data;
+        [self setNetworkState:NETWORK_STATE_NORMAL];
+        [orderTableView reloadData];
+    } failure:^(NSString *errorStr) {
+        [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -130,7 +130,7 @@
 
 - (void)onTelClicked
 {
-    NSString *phoneNum = @"";// 电话号码
+    NSString *phoneNum = self.hotelModel.tel;// 电话号码
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
     UIWebView *phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
@@ -187,7 +187,9 @@
     [self.contentView addSubview:bottomView];
     
     startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
-    [startButton setImage:[UIImage imageNamed:@"start_btn_bg_1"] forState:UIControlStateNormal];
+    [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg"]]];
+    [startButton setTitle:@"开始点餐" forState:UIControlStateNormal];
+    [startButton setTitleColor:[UIColor colorWithRed:0.784 green:0.784 blue:0.784 alpha:1.0] forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(onStartButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [startButton setUserInteractionEnabled:NO];
     [bottomView addSubview:startButton];
@@ -247,10 +249,12 @@
         [selectLabel setHidden:YES];
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
         [startButton setUserInteractionEnabled:YES];
+        [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
         [selectLabel setHidden:NO];
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
         [startButton setUserInteractionEnabled:NO];
+        [startButton setTitleColor:[UIColor colorWithRed:0.784 green:0.784 blue:0.784 alpha:1.0] forState:UIControlStateNormal];
     }
     self.currentSelectedCount = index;
     [indicatorLabel setText:[NSString stringWithFormat:@"%d", index]];
@@ -262,10 +266,12 @@
         [selectLabel setHidden:YES];
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
         [startButton setUserInteractionEnabled:YES];
+        [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
         [selectLabel setHidden:NO];
         [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
         [startButton setUserInteractionEnabled:NO];
+        [startButton setTitleColor:[UIColor colorWithRed:0.784 green:0.784 blue:0.784 alpha:1.0] forState:UIControlStateNormal];
     }
     
     self.currentSelectedCount = index;

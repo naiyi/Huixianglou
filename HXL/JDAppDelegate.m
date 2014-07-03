@@ -8,20 +8,107 @@
 
 #import "JDAppDelegate.h"
 #import "JDMainViewController.h"
+#import "iVersion.h"
 
 @implementation JDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
+    [self checkForUpdate];
+    return YES;
+}
+
+-(void)checkForUpdate
+{
+    manualCheckUpdate = true;
+    JDOHttpClient *httpclient = [JDOHttpClient sharedClient];
+    [httpclient getPath:GET_VERSION parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *json = [(NSData *)responseObject objectFromJSONData];
+        float jsonvalue = [[json objectForKey:@"data"] floatValue];
+        if (jsonvalue > 1.0) {
+            manualCheckUpdate = false;
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒"
+                                                            message:@"您当前使用的版本过低，请更新后使用"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"更新"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            [self toMainCOntroller];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [iVersion sharedInstance].ignoredVersion = nil;
+        [[iVersion sharedInstance] checkForNewVersion];
+    }
+}
+
+- (void)toMainCOntroller
+{
+    if (manualCheckUpdate) {
+        manualCheckUpdate = false;
+        [[iVersion sharedInstance] checkForNewVersion];
+    }
     JDMainViewController *mainController = [[JDMainViewController alloc] init];
     self.navigation = [[UINavigationController alloc] initWithRootViewController:mainController];
     //[self.navigation setNavigationBarHidden:YES];
     // Override point for customization after application launch.
     self.window.rootViewController = self.navigation;
-    [self.window makeKeyAndVisible];
-    return YES;
 }
+
++ (void)initialize{
+    //发布时替换bundleId,注释掉就可以
+    //NSString *bundleID = @"com.glavesoft.app.17lu";
+    //[iVersion sharedInstance].applicationBundleID = bundleID;
+    //[iVersion sharedInstance].applicationVersion = @"1.0.0.0"; // 覆盖bundle中的版本信息,测试用
+    
+    [iVersion sharedInstance].verboseLogging = true;   // 调试信息
+    [iVersion sharedInstance].appStoreCountry = @"CN";
+    [iVersion sharedInstance].showOnFirstLaunch = false; // 不显示当前版本特性
+    [iVersion sharedInstance].remindPeriod = 1.0f;
+    [iVersion sharedInstance].ignoreButtonLabel = @"忽略此版本";
+    [iVersion sharedInstance].remindButtonLabel = @"以后提醒";
+    // 由于视图层级的原因,在程序内弹出appstore会被覆盖到下层导致看不到
+    [iVersion sharedInstance].displayAppUsingStorekitIfAvailable = false;
+    //[iVersion sharedInstance].checkAtLaunch = NO;
+}
+
+
+#pragma mark - 版本检查相关
+
+- (void)iVersionUserDidIgnoreUpdate:(NSString *)version{
+
+}
+
+- (void)iVersionVersionCheckDidFailWithError:(NSError *)error{
+
+}
+
+- (void)iVersionDidNotDetectNewVersion{
+
+}
+
+- (void)iVersionDidDetectNewVersion:(NSString *)version details:(NSString *)versionDetails{
+
+}
+
+- (BOOL)iVersionShouldDisplayNewVersion:(NSString *)version details:(NSString *)versionDetails{
+	return !manualCheckUpdate;
+}
+
+// 不显示当前版本信息
+- (BOOL)iVersionShouldDisplayCurrentVersionDetails{
+    return false;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -49,5 +136,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end

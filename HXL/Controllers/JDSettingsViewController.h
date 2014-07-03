@@ -22,5 +22,8 @@
     UILabel *clearEdit;
     UILabel *checkupdateLabel;
     UILabel *scoreLabel;
+    
+    UIView *bottomView;
+    UIButton *logoutButton;
 }
 @end

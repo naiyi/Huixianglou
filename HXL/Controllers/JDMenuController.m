@@ -170,11 +170,10 @@
     
     UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, _left.frame.origin.y+scroll_height, self.contentView.frame.size.width, 49.0)];
     submit_frame.backgroundColor = bgColor;
-    _submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 29)];
+    _submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 94, 29)];
     [_submit setTitle:@"预览菜单" forState:UIControlStateNormal];
     [_submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _submit.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    [_submit setBackgroundColor:color_selected];
+    [_submit setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_r"]]];
     [_submit addTarget:self action:@selector(onSubmitButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [submit_frame addSubview:_submit];
     [self.bg_view addSubview:submit_frame];

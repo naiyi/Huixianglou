@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JDOrderModel.h"
+#import "JDCurrentOrdersController.h"
 
 @interface JDCurrentOrderTableViewCell : UITableViewCell
 
@@ -19,7 +20,9 @@
 @property (strong, nonatomic) UIImageView *orderDail;
 @property (strong, nonatomic) UIImageView *orderState;
 @property (strong, nonatomic) JDOrderModel *orderModel;
+@property (strong, nonatomic) NSString *tel;
+@property (strong, nonatomic) JDCurrentOrdersController *controller;
 
-- (void)setModel:(JDOrderModel *)model;
+- (void)setModel:(JDOrderModel *)model andTel:(NSString *)tel;
 
 @end

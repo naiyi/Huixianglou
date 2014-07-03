@@ -103,6 +103,30 @@
     [scoreLabel setText:@"给我打分"];
     [settingItem3 addSubview:scoreLabel];
     [self.contentView addSubview:settingItem3];
+    
+    [self setupBottomView];
+}
+
+- (void)setupBottomView
+{
+    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.contentView.frame.size.height - 49.0, 320.0, 49.0)];
+    [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
+    [self.contentView addSubview:bottomView];
+    
+    logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
+    [logoutButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_r"]]];
+    [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [logoutButton setTitle:@"注 销" forState:UIControlStateNormal];
+    [logoutButton addTarget:self action:@selector(onLogoutButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [logoutButton setUserInteractionEnabled:YES];
+    [bottomView addSubview:logoutButton];
+    [self.contentView addSubview:bottomView];
+}
+
+- (void)onLogoutButtonClicked
+{
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"user_info"];
+    [nameEdit setText:@""];
 }
 
 - (void)onBackButtonClicked

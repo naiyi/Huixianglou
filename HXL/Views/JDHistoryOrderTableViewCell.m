@@ -16,6 +16,7 @@
     if (self) {
         self.orderImage = [[UIImageView alloc] init];
         self.orderTitle = [[UILabel alloc] init];
+        self.orderName = [[UILabel alloc] init];
         self.orderTime = [[UILabel alloc] init];
         self.orderDetail = [[UILabel alloc] init];
     }
@@ -24,9 +25,7 @@
 
 - (void)layoutSubviews
 {
-    [self setBackgroundColor:[UIColor clearColor]];
-    
-    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg"]]];
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [self.orderImage setFrame:CGRectMake(240.0, 5.0, 55.0, 55.0)];
     [self.orderImage setImage:[UIImage imageNamed:@"hotel_bg"]];
@@ -44,6 +43,12 @@
     [self.orderTime setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.orderTime];
     
+    [self.orderName setFont:[UIFont systemFontOfSize:14.0]];
+    [self.orderName setTextAlignment:NSTextAlignmentCenter];
+    [self.orderName setTextColor:[UIColor whiteColor]];
+    [self.orderName setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:self.orderName];
+    
     [self.orderDetail setFont:[UIFont systemFontOfSize:14.0]];
     [self.orderDetail setTextAlignment:NSTextAlignmentLeft];
     [self.orderDetail setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
@@ -51,17 +56,27 @@
     [self addSubview:self.orderDetail];
 }
 
-- (void)setModel:(JDOrderModel *)model
+- (void)setModel:(JDOrderModel *)model andBG:(int)index
 {
+    if (index == 1) {
+        [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg2"]]];
+    } else {
+        [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg"]]];
+    }
+    
     self.orderModel = model;
     CGSize size = [model.hotel sizeWithFont:[UIFont systemFontOfSize:17.0]];
     [self.orderTitle setFrame:CGRectMake(80.0, 32.0 - size.height, size.width, size.height)];
     [self.orderTitle setText:model.hotel];
     
-    NSString *time = [[NSString alloc] initWithFormat:@"%@\n%@", [[JDHXLUtil formatDate:[JDHXLUtil formatString:model.date withFormatter:DateFormatMDY] withFormatter:DateFormatYMD] substringFromIndex:5], [model.time substringToIndex:5]];
+    NSString *time = [[JDHXLUtil formatDate:[JDHXLUtil formatString:model.date withFormatter:DateFormatMDY] withFormatter:DateFormatYMD] substringFromIndex:5];
+    
     size = [time sizeWithFont:[UIFont systemFontOfSize:14.0]];
-    [self.orderTime setFrame:CGRectMake(10.0, 20.0 - size.height, size.width, size.height)];
+    [self.orderTime setFrame:CGRectMake(1.0, 15.0, size.width, size.height)];
     [self.orderTime setText:time];
+    
+    [self.orderName setFrame:CGRectMake(1.0, 30.0, 38.0, 21.0)];
+    [self.orderName setText:model.diner_name];
     
     size = [model.detail sizeWithFont:[UIFont systemFontOfSize:14.0]];
     [self.orderDetail setFrame:CGRectMake(80.0, 38.0, size.width, size.height)];
