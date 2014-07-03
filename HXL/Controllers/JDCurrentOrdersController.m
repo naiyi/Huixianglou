@@ -7,7 +7,6 @@
 //
 
 #import "JDCurrentOrdersController.h"
-#import "JDOHttpClient.h"
 #import "JDHXLArrayModel.h"
 #import "JDOrderModel.h"
 #import "JDCurrentOrderTableViewCell.h"

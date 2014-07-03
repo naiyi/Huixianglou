@@ -27,7 +27,7 @@
     NSMutableArray *orderedDishes;//已经点过的菜集合
     int selectPos;//左侧listview的选中位置
 }
-int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在左侧菜系表中
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,6 +39,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    orderedDishesCount = [[NSMutableArray alloc] initWithArray:@[@"0", @"0", @"0", @"0", @"0"]];
     dish_types = [[NSMutableArray alloc] init];
     dishes = [[NSMutableArray alloc] init];
     allDishes = [[NSMutableArray alloc] init];
@@ -152,7 +153,7 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [sortView addSubview:_sort_bycomment];
     [self.bg_view addSubview:sortView];
     
-    float scroll_height = self.contentView.frame.size.height-sortView.frame.size.height-sortView.frame.origin.y-60;
+    float scroll_height = self.contentView.frame.size.height-sortView.frame.size.height-sortView.frame.origin.y-49;
     float scroll_y = sortView.frame.origin.y+sortView.frame.size.height;
     _left = [[UITableView alloc] initWithFrame:CGRectMake(0, scroll_y, 90, scroll_height)];
     _left.delegate = self;
@@ -167,9 +168,9 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     _right.backgroundColor = [UIColor whiteColor];
     [self.bg_view addSubview:_right];
     
-    UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, _left.frame.origin.y+scroll_height, self.contentView.frame.size.width, 60)];
+    UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, _left.frame.origin.y+scroll_height, self.contentView.frame.size.width, 49.0)];
     submit_frame.backgroundColor = bgColor;
-    _submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 40)];
+    _submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 29)];
     [_submit setTitle:@"预览菜单" forState:UIControlStateNormal];
     [_submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _submit.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
@@ -178,6 +179,14 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [submit_frame addSubview:_submit];
     [self.bg_view addSubview:submit_frame];
     [self.contentView addSubview:_bg_view];
+}
+
+- (void)showToast:(NSString *)message
+{
+    iToast *toast = [iToast makeText:message];
+    [toast setDuration:3000];
+    [toast setGravity:iToastGravityBottom];
+    [toast show];
 }
 
 - (void)onBackButtonClicked {
@@ -217,6 +226,10 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [_right reloadData];
 }
 - (void)onSubmitButtonClicked {
+    if ((orderedDishes == nil)||(orderedDishes.count == 0)) {
+        [self showToast:@"您还未点菜"];
+        return;
+    }
     JDOrderViewController *orderController = [[JDOrderViewController alloc] initWithNibName:nil bundle:nil];
     orderController.orderedDishes = orderedDishes;
     orderController.hotelModel = self.hotelModel;
@@ -240,10 +253,10 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
     [[dishes objectAtIndex:indexPath.section] setObject:dish atIndex:indexPath.row];
     if (dish.ifOrdered) {
         [orderedDishes addObject:dish];
-        orderedDishesCount[indexPath.section]++;
+        [orderedDishesCount setObject:[NSString stringWithFormat:@"%d", [[orderedDishesCount objectAtIndex:indexPath.section] integerValue] + 1] atIndexedSubscript:indexPath.section];
     } else {
         [orderedDishes removeObject:dish];
-        orderedDishesCount[indexPath.section]--;
+        [orderedDishesCount setObject:[NSString stringWithFormat:@"%d", [[orderedDishesCount objectAtIndex:indexPath.section] integerValue] - 1] atIndexedSubscript:indexPath.section];
     }
     [self refreshTop];
     [_left reloadData];
@@ -256,13 +269,13 @@ int orderedDishesCount[5] = {0,0,0,0,0};//已经点过的菜计数，显示在�
         if (cell == nil) {
             cell = [[JDDishTypeView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
         }
-        if (orderedDishesCount[indexPath.row] == 0) {
+        if ([[orderedDishesCount objectAtIndex:indexPath.row] integerValue] == 0) {
             cell.countLabel.hidden = true;
             cell.count_bg.hidden = true;
         } else {
             cell.countLabel.hidden = false;
             cell.count_bg.hidden = false;
-            cell.countLabel.text = [NSString stringWithFormat:@"%i",orderedDishesCount[indexPath.row]];
+            cell.countLabel.text = [NSString stringWithFormat:@"%@",[orderedDishesCount objectAtIndex:indexPath.row]];
         }
         if (indexPath.row == selectPos) {
             cell.backgroundColor = [UIColor whiteColor];

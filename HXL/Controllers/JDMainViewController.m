@@ -57,14 +57,14 @@
 
 - (void)setContentView{
     centerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, App_Height - 96.0 - 49.0 - Nav_Height + 4.0)];
-    [centerScrollView setBackgroundColor:[UIColor redColor]];
+    [centerScrollView setBackgroundColor:[UIColor whiteColor]];
     [centerScrollView setContentSize:CGSizeMake(320.0*self.hotelModel.img.count, centerScrollView.frame.size.height)];
     [centerScrollView setBounces:NO];
     [centerScrollView setPagingEnabled:YES];
     for (int i = 0; i < self.hotelModel.img.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(320.0*i, 0.0, 320.0, centerScrollView.frame.size.height)];
         UIImageView *blockImageView = imageView;
-        [imageView setImageWithURL:[NSURL URLWithString:[self.hotelModel.img objectAtIndex:0]] placeholderImage:[UIImage imageNamed:Default_Image] options:SDWebImageOption success:^(UIImage *image, BOOL cached) {
+        [imageView setImageWithURL:[NSURL URLWithString:[self.hotelModel.img objectAtIndex:i]] placeholderImage:[UIImage imageNamed:Default_Image] options:SDWebImageOption success:^(UIImage *image, BOOL cached) {
             if(!cached){    // 非缓存加载时使用渐变动画
                 CATransition *transition = [CATransition animation];
                 transition.duration = 0.3;

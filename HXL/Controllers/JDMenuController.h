@@ -11,6 +11,9 @@
 #import "JDDishDetailView.h"
 
 @interface JDMenuController : JDHXLParentViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *orderedDishesCount;
+}
 @property (nonatomic,strong) UIView *bg_view;
 @property (nonatomic,strong) UIView *detail_bg;
 @property (nonatomic,strong) JDDishDetailView *detailView;

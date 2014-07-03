@@ -34,7 +34,7 @@
 - (void)setContentView{
     _bg_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     
-    float scroll_height = _bg_view.frame.size.height-110;
+    float scroll_height = _bg_view.frame.size.height-99;
     scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, _bg_view.frame.size.width, scroll_height)];
     scrollView.backgroundColor = [UIColor colorWithRed:1.0 green:250.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
     scrollView.delegate = self;
@@ -52,9 +52,9 @@
     [self.bg_view addSubview:totalLabel];
     
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"menu_submit_bg.png"]];
-    UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, totalLabel.frame.origin.y+totalLabel.frame.size.height, self.contentView.frame.size.width, 60)];
+    UIView *submit_frame = [[UIView alloc] initWithFrame:CGRectMake(0, totalLabel.frame.origin.y+totalLabel.frame.size.height, self.contentView.frame.size.width, 49)];
     submit_frame.backgroundColor = bgColor;
-    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 40)];
+    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 29)];
     [submit setTitle:@"预览菜单" forState:UIControlStateNormal];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     submit.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
@@ -70,7 +70,21 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)showToast:(NSString *)message
+{
+    iToast *toast = [iToast makeText:message];
+    [toast setDuration:3000];
+    [toast setGravity:iToastGravityBottom];
+    [toast show];
+}
+
 - (void)onSubmitButtonClicked {
+    if ((!self.orderedDishes)||(self.orderedDishes.count == 0)) {
+        [self showToast:@"您还未点菜"];
+        return;
+    }
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"]) {
         JDSubmitOrderController *submitController = [[JDSubmitOrderController alloc] initWithNibName:nil bundle:nil];
         submitController.orderedDishes = self.orderedDishes;

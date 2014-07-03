@@ -7,7 +7,12 @@
 //
 
 #import "JDHXLParentViewController.h"
+#import "JDOrderModel.h"
+#import "JDHXLArrayModel.h"
 
-@interface JDHistoryOrdersController : JDHXLParentViewController
-
+@interface JDHistoryOrdersController : JDHXLParentViewController<UITableViewDataSource, UITableViewDelegate>
+{
+    NSArray *orderDatas;
+    UITableView *orderTableView;
+}
 @end

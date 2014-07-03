@@ -31,8 +31,6 @@
     [self setNavigationTitle:@"提交订单"];
     [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"back_btn_bg"] Target:self Action:@selector(onBackButtonClicked)];
     
-    [self setNetworkState:NETWORK_STATE_NORMAL];
-    
     timeArray = [self getDinnerTime];
     
     dateArray = [[NSMutableArray alloc] initWithArray:@[@"今天", @"明天", @"后天"]];
@@ -40,6 +38,8 @@
     if ([lastTime compare:[NSDate date]] == NSOrderedAscending) {
         [dateArray removeObjectAtIndex:0];
     }
+    
+    [self setNetworkState:NETWORK_STATE_NORMAL];
 }
 
 - (NSMutableArray *)getDinnerTime
@@ -218,8 +218,8 @@
     [moreField setDelegate:self];
     [centerView addSubview:moreField];
     
-    self.currentSelectedDate = [dateArray objectAtIndex:0];
-    self.currentSelectedTime = [timeArray objectAtIndex:0];
+    self.currentSelectedDate = @"0";
+    self.currentSelectedTime = [[NSString alloc] initWithString:[timeArray objectAtIndex:0]];
 }
 
 - (void)setupBottomView
@@ -259,17 +259,25 @@
     for (int i = 0; i < self.orderedDishes.count; i++) {
         JDDishModel *model = [self.orderedDishes objectAtIndex:i];
         [dishString appendFormat:@"%d_%d", model.id, model.count];
-        /*
+        
         if(model.price_type == 1) {
             [dishString appendFormat:@"_%d", model.checked_weight];
         } else if(model.price_type == 2){
-            [dishString appendFormat:@"_%d", [model.price_list objectAtIndex:model.checked_fenliang]];
-            sb.append("_").append(dish.getPrice_list().get(dish.getChecked_fenliang()).getDish_price_id());
+            [dishString appendFormat:@"_%d", [[[model.price_list objectAtIndex:model.checked_fenliang] objectForKey:@"price"] integerValue]];
         } else {
-            sb.append("_").append("0");
+            [dishString appendString:@"_0"];
         }
-         */
     }
+    [params setObject:dishString forKey:@"dish"];
+    
+    [[JDOHttpClient sharedClient] getJSONByServiceName:CREATE_ORDER modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
+        if ([dataModel.status integerValue] == 0) {
+            [self showToast:@"订单提交成功"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    } failure:^(NSString *errorStr) {
+        [self showToast:@"订单提交失败，请检查网络"];
+    }];
 }
 
 - (void)onChangeButtonClicked
@@ -337,7 +345,7 @@
 - (void)selector:(IZValueSelectorView *)valueSelector didSelectRowAtIndex:(NSInteger)index
 {
     if (valueSelector == dateSelector) {
-        self.currentSelectedDate = [dateArray objectAtIndex:index];
+        self.currentSelectedDate = [NSString stringWithFormat:@"%d", index];
     } else {
         self.currentSelectedTime = [timeArray objectAtIndex:index];
     }
@@ -427,6 +435,14 @@
     }
     [UIView commitAnimations];
     keyBoardShowing = YES;
+}
+
+- (void)showToast:(NSString *)message
+{
+    iToast *toast = [iToast makeText:message];
+    [toast setDuration:3000];
+    [toast setGravity:iToastGravityBottom];
+    [toast show];
 }
 
 - (void)didReceiveMemoryWarning
