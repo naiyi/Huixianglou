@@ -43,6 +43,7 @@
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, 12, 160, 20)];
         nameLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
         nameLabel.font = [UIFont systemFontOfSize:20];
+        [nameLabel setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:nameLabel];
         
         float y2 = 40;
@@ -50,10 +51,12 @@
         priceLable = [[UILabel alloc] initWithFrame:CGRectMake(x2, y2, 70, 25)];
         priceLable.textColor = [UIColor colorWithRed:195.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
         priceLable.font = [UIFont boldSystemFontOfSize:16];
+        [priceLable setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:priceLable];
         
         weightLable = [[UILabel alloc] initWithFrame:CGRectMake(priceLable.frame.size.width+priceLable.frame.origin.x+PADDING, y2+PADDING, 40, 20)];
         weightLable.font = [UIFont systemFontOfSize:13];
+        [weightLable setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:weightLable];
 
         UIImageView *devider = [[UIImageView alloc] initWithFrame:CGRectMake(0, _dish_img.frame.size.height+_dish_img.frame.origin.y+9, self.contentView.frame.size.width, 1)];
@@ -90,6 +93,6 @@
     
     priceLable.text = [NSString stringWithFormat:@"￥%i*%i",dish.price_show,dish.count];
     weightLable.text = [NSString stringWithFormat:@"/%ig",dish.checked_weight];
-    
+    [self setBackgroundColor:[UIColor whiteColor]];
 }
 @end

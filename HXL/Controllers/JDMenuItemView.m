@@ -52,11 +52,13 @@
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(tuijian.frame.size.width+tuijian.frame.origin.x, y0, 160, tuijian.frame.size.height)];
         nameLabel.frame = CGRectMake(0, 0, 0, 0);
         [nameLabel setNumberOfLines:0];
+        [nameLabel setBackgroundColor:[UIColor clearColor]];
         nameLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
         nameLabel.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:nameLabel];
         tasteLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x+nameLabel.frame.size.width, y0, 40, tuijian.frame.size.height)];
         tasteLabel.textColor = [UIColor colorWithRed:195.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
+        [tasteLabel setBackgroundColor:[UIColor clearColor]];
         tasteLabel.textAlignment = UITextAlignmentCenter;
         tasteLabel.font = [UIFont systemFontOfSize:12];
         taste_bg = [[UIImageView alloc] initWithFrame:tasteLabel.frame];
@@ -71,12 +73,14 @@
         eat_countLable = [[UILabel alloc] initWithFrame:CGRectMake(eat_img.frame.origin.x+eat_img.frame.size.width+PADDING, y1, 58, eat_img.frame.size.height)];
         eat_countLable.font = [UIFont systemFontOfSize:12];
         eat_countLable.textColor = [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1.0f];
+        [eat_countLable setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:eat_countLable];
         UIImageView *like_img = [[UIImageView alloc] initWithFrame:CGRectMake(eat_countLable.frame.origin.x+eat_countLable.frame.size.width+PADDING, y1, 14, 14)];
         like_img.image = [UIImage imageNamed:@"dish_like"];
         [self.contentView addSubview:like_img];
         like_countLable = [[UILabel alloc] initWithFrame:CGRectMake(like_img.frame.origin.x+like_img.frame.size.width+PADDING, y1, 58, like_img.frame.size.height)];
         like_countLable.textColor = [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1.0f];
+        [like_countLable setBackgroundColor:[UIColor clearColor]];
         like_countLable.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:like_countLable];
         
@@ -84,14 +88,17 @@
         priceLable = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, y2, 50, 25)];
         priceLable.textColor = [UIColor colorWithRed:195.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
         priceLable.font = [UIFont boldSystemFontOfSize:16];
+        [priceLable setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:priceLable];
         
         weightLable = [[UILabel alloc] initWithFrame:CGRectMake(priceLable.frame.size.width+priceLable.frame.origin.x, y2+PADDING, 40, 20)];
         weightLable.font = [UIFont systemFontOfSize:13];
+        [weightLable setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:weightLable];
         
         min_weightLabel = [[UILabel alloc] initWithFrame:CGRectMake(weightLable.frame.origin.x+weightLable.frame.size.width, y2+PADDING, 60, 20)];
         min_weightLabel.font = [UIFont systemFontOfSize:13];
+        [min_weightLabel setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:min_weightLabel];
         fenliangView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width, 22)];
         UIImageView *devider = [[UIImageView alloc] initWithFrame:CGRectMake(0, _dish_img.frame.size.height+_dish_img.frame.origin.y+9, self.contentView.frame.size.width, 1)];
