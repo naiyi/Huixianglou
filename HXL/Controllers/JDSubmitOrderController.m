@@ -255,7 +255,9 @@
     [params setObject:self.currentSelectedTime forKey:@"time"];
     [params setObject:self.currentSelectedRoom forKey:@"room"];
     [params setObject:[NSString stringWithFormat:@"%d", p] forKey:@"price"];
-    [params setObject:[moreField text] forKey:@"remark"];
+    if (moreField.text) {
+        [params setObject:[moreField text] forKey:@"remark"];
+    }
     
     NSMutableString *dishString = [[NSMutableString alloc] init];
     for (int i = 0; i < self.orderedDishes.count; i++) {
@@ -269,6 +271,7 @@
         } else {
             [dishString appendString:@"_0"];
         }
+        [dishString appendString:@"-"];
     }
     [params setObject:dishString forKey:@"dish"];
     

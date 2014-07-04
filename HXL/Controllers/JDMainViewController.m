@@ -183,7 +183,7 @@
 - (void)setupBottomView
 {
     bottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0, addrAndTelView.frame.origin.y + 96.0, 320.0, 49.0)];
-    [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
+    [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
     [self.contentView addSubview:bottomView];
     
     startButton = [[UIButton alloc] initWithFrame:CGRectMake(113.0, 10.0, 94.0, 29.0)];
@@ -247,13 +247,13 @@
 {
     if (index != 0) {
         [selectLabel setHidden:YES];
-        [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
         [startButton setUserInteractionEnabled:YES];
+        [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_trans"]]];
         [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
         [selectLabel setHidden:NO];
-        [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
         [startButton setUserInteractionEnabled:NO];
+        [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg"]]];
         [startButton setTitleColor:[UIColor colorWithRed:0.784 green:0.784 blue:0.784 alpha:1.0] forState:UIControlStateNormal];
     }
     self.currentSelectedCount = index;
@@ -264,13 +264,13 @@
 {
     if (index != 0) {
         [selectLabel setHidden:YES];
-        [bottomView setBackgroundColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
         [startButton setUserInteractionEnabled:YES];
+        [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_trans"]]];
         [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
         [selectLabel setHidden:NO];
-        [bottomView setBackgroundColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0]];
         [startButton setUserInteractionEnabled:NO];
+        [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg"]]];
         [startButton setTitleColor:[UIColor colorWithRed:0.784 green:0.784 blue:0.784 alpha:1.0] forState:UIControlStateNormal];
     }
     
