@@ -9,5 +9,10 @@
 #import "JDHXLParentViewController.h"
 
 @interface JDAboutusViewController : JDHXLParentViewController
+{
+    NSString *about_us;
+    UIScrollView *scrollView;
+    UILabel *aboutLabel;
+}
 
 @end

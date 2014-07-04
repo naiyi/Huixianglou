@@ -7,6 +7,7 @@
 //
 
 #import "JDSettingsViewController.h"
+#import "JDAboutusViewController.h"
 
 @interface JDSettingsViewController ()
 
@@ -69,7 +70,11 @@
     [aboutusLabel setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [aboutusLabel setTextAlignment:NSTextAlignmentLeft];
     [aboutusLabel setText:@"关于我们"];
+    UITapGestureRecognizer *about_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(about_usClicked)];
+    [aboutusLabel addGestureRecognizer:about_tap];
+    [aboutusLabel setUserInteractionEnabled:YES];
     [settingItem2 addSubview:aboutusLabel];
+    
     feedbackLable = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 45.0, 285.0, 45.0)];
     [feedbackLable setBackgroundColor:[UIColor clearColor]];
     [feedbackLable setFont:[UIFont systemFontOfSize:18.0]];
@@ -132,6 +137,12 @@
 - (void)onBackButtonClicked
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)about_usClicked
+{
+    JDAboutusViewController *about_us = [[JDAboutusViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:about_us animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

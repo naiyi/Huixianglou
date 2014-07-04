@@ -26,7 +26,51 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setNavigationTitle:@"关于我们"];
+    [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"back_btn_bg"] Target:self Action:@selector(onBackButtonClicked)];
+    
+    [self setNetworkState:NETWORK_STATE_LOADING];
+    NSDictionary *params = @{@"hotel_id" : @"1"};
+    [[JDOHttpClient sharedClient] getJSONByServiceName:ABOUT_US modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
+        [self setNetworkState:NETWORK_STATE_NORMAL];
+        about_us = (NSString *)dataModel.data;
+    } failure:^(NSString *errorStr) {
+        [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
+    }];
+}
+
+- (void)setContentView
+{
+    [self.contentView setBackgroundColor:BACKGROUND_COLOR];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(120.0, 40.0, 80.0, 110.0)];
+    [imageView setImage:[UIImage imageNamed:@"about_us_icon"]];
+    [self.contentView addSubview:imageView];
+    
+    aboutLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 0.0, 0.0)];
+    [aboutLabel setNumberOfLines:0];
+    [aboutLabel setBackgroundColor:[UIColor clearColor]];
+    if (about_us) {
+        UIFont *font = [UIFont systemFontOfSize:14.0];
+        CGSize size = CGSizeMake(300,2000);
+        CGSize labelsize = [about_us sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+        aboutLabel.frame = CGRectMake(0.0, 0.0, labelsize.width, labelsize.height );
+        aboutLabel.backgroundColor = [UIColor purpleColor];
+        aboutLabel.textColor = [UIColor blackColor];
+        aboutLabel.text = about_us;
+        aboutLabel.font = font;
+    }
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(10.0, 160.0, 300.0, self.contentView.frame.size.height - 170.0)];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
+    [scrollView setContentSize:aboutLabel.frame.size];
+    [scrollView addSubview:aboutLabel];
+    [self.contentView addSubview:scrollView];
+    
+}
+
+- (void)onBackButtonClicked
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,16 +78,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

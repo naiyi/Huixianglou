@@ -9,5 +9,11 @@
 #import "JDHXLParentViewController.h"
 
 @interface JDOrderDetailController : JDHXLParentViewController
+{
+    NSArray *orderDetailDatas;
+    UITableView *orderTableView;
+}
+
+@property (nonatomic, strong) NSString *order_id;
 
 @end

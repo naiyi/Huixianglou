@@ -123,6 +123,7 @@
 		D82BE59819482C460051CB09 /* JDOXmlClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D82BE59419482C460051CB09 /* JDOXmlClient.m */; };
 		D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4611941B54200022E33 /* JDMainViewController.m */; };
 		D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4651941BE5200022E33 /* JDUserViewController.m */; };
+		D82E7001196628C0006C2FF1 /* JDOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D82E7000196628C0006C2FF1 /* JDOrderDetailModel.m */; };
 		D83BCA7119580FF700903AE7 /* JDUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D83BCA7019580FF700903AE7 /* JDUserModel.m */; };
 		D83BCA7619582E6200903AE7 /* user_info_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D83BCA7219582E6200903AE7 /* user_info_bg.png */; };
 		D83BCA7719582E6200903AE7 /* user_info_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D83BCA7319582E6200903AE7 /* user_info_bg@2x.png */; };
@@ -314,6 +315,8 @@
 		D82CF4611941B54200022E33 /* JDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMainViewController.m; sourceTree = "<group>"; };
 		D82CF4641941BE5200022E33 /* JDUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDUserViewController.h; sourceTree = "<group>"; };
 		D82CF4651941BE5200022E33 /* JDUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDUserViewController.m; sourceTree = "<group>"; };
+		D82E6FFF196628C0006C2FF1 /* JDOrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOrderDetailModel.h; sourceTree = "<group>"; };
+		D82E7000196628C0006C2FF1 /* JDOrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOrderDetailModel.m; sourceTree = "<group>"; };
 		D83BCA6F19580FF700903AE7 /* JDUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDUserModel.h; sourceTree = "<group>"; };
 		D83BCA7019580FF700903AE7 /* JDUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDUserModel.m; sourceTree = "<group>"; };
 		D83BCA7219582E6200903AE7 /* user_info_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info_bg.png; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 		A7120346194691E2004CFC3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D82E6FFF196628C0006C2FF1 /* JDOrderDetailModel.h */,
+				D82E7000196628C0006C2FF1 /* JDOrderDetailModel.m */,
 				D80DF6FB195D513100AF9BCF /* JDHXLArrayModel.h */,
 				D80DF6FC195D513100AF9BCF /* JDHXLArrayModel.m */,
 				D80DF6E8195D46A700AF9BCF /* JDOrderModel.h */,
@@ -926,6 +931,7 @@
 				D80DF701195D596600AF9BCF /* JDCurrentOrderTableViewCell.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
 				A758E68119519B9000374F8F /* JDDishTypeView.m in Sources */,
+				D82E7001196628C0006C2FF1 /* JDOrderDetailModel.m in Sources */,
 				D80DF6EA195D46A700AF9BCF /* JDOrderModel.m in Sources */,
 				A75BC756194AD97C0052CD3E /* JDDishTypeModel.m in Sources */,
 				D8D4186D1949829900471D40 /* JDHXLUtil.m in Sources */,

@@ -7,6 +7,8 @@
 //
 
 #import "JDOrderDetailController.h"
+#import "JDOrderDetailModel.h"
+#import "JDHXLArrayModel.h"
 
 @interface JDOrderDetailController ()
 
@@ -26,7 +28,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setNavigationTitle:@"订单详情"];
+    [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"back_btn_bg"] Target:self Action:@selector(onBackButtonClicked)];
+    
+    [self setNetworkState:NETWORK_STATE_LOADING];
+    NSDictionary *user_info = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"];
+    NSDictionary *params = @{@"tel" : [user_info objectForKey:@"tel"], @"order_id" : self.order_id};
+    
+    DCParserConfiguration *config = [DCParserConfiguration configuration];
+    DCArrayMapping *mapper = [DCArrayMapping mapperForClassElements:[JDOrderDetailModel class] forAttribute:@"data" onClass:[JDHXLArrayModel class]];
+    [config addArrayMapper:mapper];
+    
+    [[JDOHttpClient sharedClient] getJSONByServiceName:ORDER_DETAIL modelClass:@"JDHXLArrayModel" config:config params:params success:^(JDHXLArrayModel *dataModel) {
+        orderDetailDatas = dataModel.data;
+        [self setNetworkState:NETWORK_STATE_NORMAL];
+    } failure:^(NSString *errorStr) {
+        [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
+    }];
+}
+
+- (void)setContentView
+{
+    [self.contentView setBackgroundColor:BACKGROUND_COLOR];
+}
+
+- (void)onBackButtonClicked
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,16 +62,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
