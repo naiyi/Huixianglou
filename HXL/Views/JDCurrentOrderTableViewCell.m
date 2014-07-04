@@ -75,9 +75,8 @@
 
 - (void)onTelClicked
 {
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.tel]];
-    UIWebView *phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    NSString *num = [[NSString alloc] initWithFormat:@"telprompt://%@",self.tel];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
 }
 
 - (void)setModel:(JDOrderModel *)model andTel:(NSString *)tel

@@ -131,9 +131,8 @@
 - (void)onTelClicked
 {
     NSString *phoneNum = self.hotelModel.tel;// 电话号码
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
-    UIWebView *phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    NSString *num = [[NSString alloc] initWithFormat:@"telprompt://%@",phoneNum];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
 }
 
 - (void)onAddrClicked
