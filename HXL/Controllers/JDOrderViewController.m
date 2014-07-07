@@ -11,6 +11,7 @@
 #import "JDMenuItemView2.h"
 #import "JDSubmitOrderController.h"
 #import "JDUserViewController.h"
+#import "JDGestureRecognizer.h"
 
 @implementation JDOrderViewController{
     UITableView *scrollView;
@@ -107,6 +108,47 @@
     totalLabel.text = [NSString stringWithFormat:@"共计%i个菜,￥%i",self.orderedDishes.count,p];
 }
 
+- (void)clickAdd:(JDGestureRecognizer *)gesture {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[_orderedDishes objectAtIndex:indexPath.row];
+    if (dish.price_type==1) {
+        dish.checked_weight+=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_weight"] intValue];
+        dish.price_show+=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_price"] intValue];
+    } else {
+        dish.count+=1;
+    }
+    [_orderedDishes setObject:dish atIndexedSubscript:indexPath.row];
+    [scrollView reloadData];
+    [self refreshPrice];
+}
+
+- (void)clickSub:(JDGestureRecognizer *)gesture {
+    NSIndexPath *indexPath = (NSIndexPath *)gesture.obj;
+    JDDishModel *dish = (JDDishModel *)[_orderedDishes objectAtIndex:indexPath.row];
+    if (dish.price_type==1) {
+        if (dish.checked_weight<=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"first_weight"] intValue]) {
+            [_orderedDishes removeObject:dish];
+            [scrollView reloadData];
+        } else {
+            dish.checked_weight-=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_weight"] intValue];
+            dish.price_show-=[(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_price"] intValue];
+            [_orderedDishes setObject:dish atIndexedSubscript:indexPath.row];
+            [scrollView reloadData];
+        }
+    } else {
+        if (dish.count <= 1) {
+            [_orderedDishes removeObject:dish];
+            [scrollView reloadData];
+        } else {
+            dish.count-=1;
+            [_orderedDishes setObject:dish atIndexedSubscript:indexPath.row];
+            [scrollView reloadData];
+        }
+    }
+    [self refreshPrice];
+}
+
+
 -(BOOL)automaticallyAdjustsScrollViewInsets{
     return false;
 }
@@ -128,6 +170,12 @@
     JDDishModel *dish = [_orderedDishes objectAtIndex:indexPath.row];
     [cell1 setModel:dish];
     cell1.dish_img.userInteractionEnabled = YES;
+    JDGestureRecognizer *tapGesture2 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickAdd:)];
+    tapGesture2.obj = indexPath;
+    [cell1.add_btn addGestureRecognizer:tapGesture2];
+    JDGestureRecognizer *tapGesture3 = [[JDGestureRecognizer alloc] initWithTarget:self action:@selector(clickSub:)];
+    tapGesture3.obj = indexPath;
+    [cell1.sub_btn addGestureRecognizer:tapGesture3];
     return cell1;
 }
 @end
