@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D4EEE6219667D2700809413 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4EEE6019667D2700809413 /* Default@2x.png */; };
+		2D4EEE6319667D2700809413 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4EEE6119667D2700809413 /* Default-568h@2x.png */; };
 		2DBA44F2194146FB00F73B66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBA44F1194146FB00F73B66 /* Foundation.framework */; };
 		2DBA44F4194146FB00F73B66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBA44F3194146FB00F73B66 /* CoreGraphics.framework */; };
 		2DBA44F6194146FB00F73B66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBA44F5194146FB00F73B66 /* UIKit.framework */; };
@@ -48,8 +50,6 @@
 		A79969F1194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969EF194FD8D1003D7DE7 /* dishtype_ordernumber_bg.png */; };
 		A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = A79969F0194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png */; };
 		A79969F5194FE7CA003D7DE7 /* JDMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */; };
-		D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECA194551240008E7CF /* Default-568h@2x.png */; };
-		D80A7ECD194551240008E7CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECB194551240008E7CF /* Default@2x.png */; };
 		D80A7ED11945552E0008E7CF /* icon-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECE1945552E0008E7CF /* icon-120@2x.png */; };
 		D80A7ED21945552E0008E7CF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ECF1945552E0008E7CF /* icon.png */; };
 		D80A7ED31945552E0008E7CF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80A7ED01945552E0008E7CF /* icon@2x.png */; };
@@ -167,6 +167,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D4EEE6019667D2700809413 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2D4EEE6119667D2700809413 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2DBA44EE194146FB00F73B66 /* HXL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HXL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DBA44F1194146FB00F73B66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2DBA44F3194146FB00F73B66 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -224,8 +226,6 @@
 		A79969F4194FE7CA003D7DE7 /* JDMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuItemView.m; sourceTree = "<group>"; };
 		B4428FFB5D7F48E198537D5A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		D80A7ECA194551240008E7CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D80A7ECB194551240008E7CF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D80A7ECE1945552E0008E7CF /* icon-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120@2x.png"; sourceTree = "<group>"; };
 		D80A7ECF1945552E0008E7CF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D80A7ED01945552E0008E7CF /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
@@ -670,8 +670,8 @@
 				D80A7ECE1945552E0008E7CF /* icon-120@2x.png */,
 				D80A7ECF1945552E0008E7CF /* icon.png */,
 				D80A7ED01945552E0008E7CF /* icon@2x.png */,
-				D80A7ECA194551240008E7CF /* Default-568h@2x.png */,
-				D80A7ECB194551240008E7CF /* Default@2x.png */,
+				2D4EEE6019667D2700809413 /* Default@2x.png */,
+				2D4EEE6119667D2700809413 /* Default-568h@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -726,6 +726,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "胶东在线";
 				TargetAttributes = {
+					2DBA44ED194146FB00F73B66 = {
+						DevelopmentTeam = 5BA6RP6GDL;
+					};
 					2DBA4508194146FB00F73B66 = {
 						TestTargetID = 2DBA44ED194146FB00F73B66;
 					};
@@ -765,7 +768,6 @@
 				D80A7EF9194560B30008E7CF /* telephone_icon.png in Resources */,
 				D82A86D51945B5DC00C9C249 /* navigation_bg_44.png in Resources */,
 				A72636D01959731F00BD3E72 /* dish_detail_devider.png in Resources */,
-				D80A7ECD194551240008E7CF /* Default@2x.png in Resources */,
 				A72636CE19595F3500BD3E72 /* dish_detail_close_btn.png in Resources */,
 				D80DF6F4195D48F700AF9BCF /* cancel_order@2x.png in Resources */,
 				D82463331963F3C50095CAA7 /* history_bg2.png in Resources */,
@@ -800,6 +802,8 @@
 				D80A7EDE19455C330008E7CF /* address_icon@2x.png in Resources */,
 				D82736B1194FD8D5009E3468 /* indicator_1.png in Resources */,
 				A75F6D4B195C231300DA43BC /* menu_devider.png in Resources */,
+				2D4EEE6319667D2700809413 /* Default-568h@2x.png in Resources */,
+				2D4EEE6219667D2700809413 /* Default@2x.png in Resources */,
 				D8D418681949380100471D40 /* loading_bg@2x.png in Resources */,
 				D81C8CC61959749C008A9EBB /* setting_item3@2x.png in Resources */,
 				D82736AE194FD395009E3468 /* count_bg@2x.png in Resources */,
@@ -824,7 +828,6 @@
 				A744AEEA1948424A00C092BB /* dishtype_item_bg.png in Resources */,
 				D80A7ED719455A820008E7CF /* navigation_bg@2x.png in Resources */,
 				A75F6D49195C1F9700DA43BC /* order_total_bg.png in Resources */,
-				D80A7ECC194551240008E7CF /* Default-568h@2x.png in Resources */,
 				A79969F2194FD8D1003D7DE7 /* dishtype_ordernumber_bg2.png in Resources */,
 				D8292D29194EE19700623611 /* indicator_2@2x.png in Resources */,
 				A7228F0719512C31007AF87C /* dish_eat.png in Resources */,
@@ -1012,7 +1015,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1044,7 +1047,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1058,11 +1061,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXL/HXL-Prefix.pch";
 				INFOPLIST_FILE = "HXL/HXL-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F6EFEF45-BB6C-4622-A7CF-90A45B0482BC";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1071,11 +1078,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5F4334235FC4D7C88D04F50 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXL/HXL-Prefix.pch";
 				INFOPLIST_FILE = "HXL/HXL-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F6EFEF45-BB6C-4622-A7CF-90A45B0482BC";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
