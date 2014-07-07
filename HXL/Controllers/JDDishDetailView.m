@@ -137,7 +137,13 @@
         eat_countLable.text = [NSString stringWithFormat:@"%i人点过",dish.order_number];
         like_countLable.text = [NSString stringWithFormat:@"%i人喜欢",dish.zan];
         priceLable.text = [NSString stringWithFormat:@"￥%i",dish.price_show];
-        weightLable.text = [NSString stringWithFormat:@"/%ig",dish.checked_weight];
+        if (dish.checked_weight != 0) {
+            weightLable.hidden = false;
+            weightLable.text = [NSString stringWithFormat:@"/%ig",dish.checked_weight];
+        } else {
+            weightLable.hidden = true;
+        }
+        
         if(dish.price_type == 1){
             int min = [(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"first_weight"] intValue];
             int addp = [(NSNumber *)[[dish.price_list objectAtIndex:0] objectForKey:@"add_price"] intValue];

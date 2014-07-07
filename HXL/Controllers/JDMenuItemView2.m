@@ -23,8 +23,7 @@
         _dish_img = [[UIImageView alloc] initWithFrame:CGRectMake(5.0f, 10.0f, 60, 60)];
         [self.contentView addSubview:_dish_img];
         
-        count_view = [[UIView alloc] initWithFrame:CGRectMake(165.0f, 5.0f, 50, 70)];
-        count_view.hidden = true;
+        count_view = [[UIView alloc] initWithFrame:CGRectMake(240.0f, 5.0f, 50, 70)];
         _add_btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _dish_img.frame.size.width, 25)];
         [_add_btn setBackgroundImage:[UIImage imageNamed:@"dish_add1"] forState:UIControlStateNormal];
         _countLabel = [[UIButton alloc] initWithFrame:CGRectMake(0, _add_btn.frame.size.height, _dish_img.frame.size.width, 20)];
@@ -92,7 +91,12 @@
     }
     
     priceLable.text = [NSString stringWithFormat:@"￥%i*%i",dish.price_show,dish.count];
-    weightLable.text = [NSString stringWithFormat:@"/%ig",dish.checked_weight];
+    if (dish.checked_weight != 0) {
+        weightLable.hidden = false;
+        weightLable.text = [NSString stringWithFormat:@"/%ig",dish.checked_weight];
+    } else {
+        weightLable.hidden = true;
+    }
     [self setBackgroundColor:[UIColor whiteColor]];
 }
 @end
