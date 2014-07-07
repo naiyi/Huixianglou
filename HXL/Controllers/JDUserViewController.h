@@ -11,7 +11,7 @@
 #import "JDUserModel.h"
 #import "JDSubmitOrderController.h"
 
-@interface JDUserViewController : JDHXLParentViewController<UITextFieldDelegate>
+@interface JDUserViewController : JDHXLParentViewController<UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     UIImageView *centerView;
     UIView *bottomView;

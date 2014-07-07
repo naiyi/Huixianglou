@@ -1,5 +1,18 @@
 PODS:
   - AFNetworking (0.10.1)
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest
+    - ASIHTTPRequest/CloudFiles
+    - ASIHTTPRequest/Core
+    - ASIHTTPRequest/S3
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
   - CocoaLumberjack (1.9.0):
     - CocoaLumberjack/Extensions
   - CocoaLumberjack/Core (1.9.0)
@@ -22,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 0.10.1)
+  - ASIHTTPRequest
   - CocoaLumberjack
   - DCIntrospect
   - DCKeyValueObjectMapping
@@ -38,6 +52,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: e4f53a4734a39d58809cb19a71b4cbcc3eb60176
+  ASIHTTPRequest: 2c8335b49410c0e2ad42829c438e74d454b77590
   CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
   DCIntrospect: 0b013d593593fa70169bc876eeed0579c8a1cc66
   DCKeyValueObjectMapping: c3561709f296ddffba7768a9d7ccf234307fd3c9
