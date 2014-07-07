@@ -60,6 +60,7 @@
     [centerScrollView setBackgroundColor:[UIColor whiteColor]];
     [centerScrollView setContentSize:CGSizeMake(320.0*self.hotelModel.img.count, centerScrollView.frame.size.height)];
     [centerScrollView setBounces:NO];
+    [centerScrollView setDelegate:self];
     [centerScrollView setPagingEnabled:YES];
     for (int i = 0; i < self.hotelModel.img.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(320.0*i, 0.0, 320.0, centerScrollView.frame.size.height)];
@@ -82,6 +83,21 @@
     [self setupAddrAndTelView];
     [self setupBottomView];
     [self setupCountSelectView];
+    
+    imageindex = 0;
+    imageTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(imageTimerStart) userInfo:nil repeats:NO];
+}
+
+- (void)imageTimerStart
+{
+    imageindex++;
+    if (imageindex == self.hotelModel.img.count) {
+        imageindex = 0;
+    }
+
+    CGPoint offset = CGPointMake(imageindex * 320.0, 0.0);
+    [centerScrollView setContentOffset:offset animated:YES];
+    imageTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(imageTimerStart) userInfo:nil repeats:NO];
 }
 
 - (void)setupAddrAndTelView
@@ -156,6 +172,7 @@
 	// add carat or other view to indicate selected element
 	indicator = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 61.0, 61.0)];
     [indicator setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"indicator_1"]]];
+    indicator_bg = 1;
     indicatorLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 41.0, 41.0)];
     [indicatorLabel setBackgroundColor:[UIColor clearColor]];
     [indicatorLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
@@ -177,6 +194,19 @@
     
     [self.contentView addSubview:self.pickerView];
     [self.pickerView scrollToElement:0 animated:NO];
+    
+}
+
+- (void)peopleTimerStart
+{
+    if (indicator_bg ==1) {
+        [indicator setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"indicator_2"]]];
+        indicator_bg = 2;
+    } else {
+        [indicator setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"indicator_1"]]];
+        indicator_bg = 1;
+    }
+    peopleTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(peopleTimerStart) userInfo:nil repeats:NO];
 }
 
 - (void)setupBottomView
@@ -245,11 +275,18 @@
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker currentSelectingElementAtIndex:(NSInteger)index
 {
     if (index != 0) {
+        [peopleTimer invalidate];
+        peopleTimer = nil;
+        [indicator setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"indicator_1"]]];
+        indicator_bg = 1;
         [selectLabel setHidden:YES];
         [startButton setUserInteractionEnabled:YES];
         [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_trans"]]];
         [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
+        if (!peopleTimer) {
+            peopleTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(peopleTimerStart) userInfo:nil repeats:NO];
+        }
         [selectLabel setHidden:NO];
         [startButton setUserInteractionEnabled:NO];
         [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg"]]];
@@ -262,11 +299,18 @@
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index
 {
     if (index != 0) {
+        [peopleTimer invalidate];
+        peopleTimer = nil;
+        [indicator setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"indicator_1"]]];
+        indicator_bg = 1;
         [selectLabel setHidden:YES];
         [startButton setUserInteractionEnabled:YES];
         [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg_trans"]]];
         [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
+        if (!peopleTimer) {
+            peopleTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(peopleTimerStart) userInfo:nil repeats:NO];
+        }
         [selectLabel setHidden:NO];
         [startButton setUserInteractionEnabled:NO];
         [startButton setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"start_btn_bg"]]];
@@ -275,6 +319,34 @@
     
     self.currentSelectedCount = index;
     [indicatorLabel setText:[NSString stringWithFormat:@"%d", index]];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [imageTimer invalidate];
+    imageTimer = nil;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        float x = scrollView.contentOffset.x;
+        imageindex = x / 320;
+        NSLog(@"%d", imageindex);
+        if (!imageTimer) {
+            imageTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(imageTimerStart) userInfo:nil repeats:NO];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    float x = scrollView.contentOffset.x;
+    imageindex = x / 320;
+    NSLog(@"%d", imageindex);
+    if (!imageTimer) {
+        imageTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(imageTimerStart) userInfo:nil repeats:NO];
+    }
 }
 
 @end

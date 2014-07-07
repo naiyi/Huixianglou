@@ -13,7 +13,7 @@
 #import "JDHXLModel.h"
 #import "V8HorizontalPickerView.h"
 
-@interface JDMainViewController : JDHXLParentViewController<V8HorizontalPickerViewDataSource, V8HorizontalPickerViewDelegate>
+@interface JDMainViewController : JDHXLParentViewController<V8HorizontalPickerViewDataSource, V8HorizontalPickerViewDelegate, UIScrollViewDelegate>
 {
     UIScrollView *centerScrollView;
     UIView *addrAndTelView;
@@ -22,6 +22,11 @@
     UILabel *indicatorLabel;
     UILabel *selectLabel;
     UIButton *startButton;
+    
+    NSTimer *peopleTimer;
+    NSTimer *imageTimer;
+    int indicator_bg;
+    int imageindex;
 }
 
 @property (nonatomic, strong) NSMutableArray *centerImageViews;
