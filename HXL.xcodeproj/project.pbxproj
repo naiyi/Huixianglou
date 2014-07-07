@@ -144,6 +144,7 @@
 		D86D429C1958FCD200D32692 /* user_image_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D429A1958FCD200D32692 /* user_image_default@2x.png */; };
 		D86D429F19591ABE00D32692 /* JDCurrentOrdersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */; };
 		D86D42A219591ADF00D32692 /* JDHistoryOrdersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */; };
+		D87757AF196A94DF0055A1D6 /* JDOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D87757AE196A94DF0055A1D6 /* JDOrderDetailCell.m */; };
 		D8B120AC1952869000A631E1 /* divider_v.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B120AA1952869000A631E1 /* divider_v.png */; };
 		D8B120AD1952869000A631E1 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B120AB1952869000A631E1 /* divider.png */; };
 		D8B71DFE196651D80060E58C /* start_btn_bg_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B71DFC196651D80060E58C /* start_btn_bg_trans.png */; };
@@ -345,6 +346,8 @@
 		D86D429E19591ABE00D32692 /* JDCurrentOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDCurrentOrdersController.m; sourceTree = "<group>"; };
 		D86D42A019591ADF00D32692 /* JDHistoryOrdersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHistoryOrdersController.h; sourceTree = "<group>"; };
 		D86D42A119591ADF00D32692 /* JDHistoryOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHistoryOrdersController.m; sourceTree = "<group>"; };
+		D87757AD196A94DF0055A1D6 /* JDOrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOrderDetailCell.h; sourceTree = "<group>"; };
+		D87757AE196A94DF0055A1D6 /* JDOrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOrderDetailCell.m; sourceTree = "<group>"; };
 		D8B120AA1952869000A631E1 /* divider_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider_v.png; sourceTree = "<group>"; };
 		D8B120AB1952869000A631E1 /* divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider.png; sourceTree = "<group>"; };
 		D8B71DFC196651D80060E58C /* start_btn_bg_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_btn_bg_trans.png; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 				D8212E9A19619B960085C0B2 /* IZValueSelectorView.m */,
 				D80DF6FF195D596600AF9BCF /* JDCurrentOrderTableViewCell.h */,
 				D80DF700195D596600AF9BCF /* JDCurrentOrderTableViewCell.m */,
+				D87757AD196A94DF0055A1D6 /* JDOrderDetailCell.h */,
+				D87757AE196A94DF0055A1D6 /* JDOrderDetailCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -918,6 +923,7 @@
 				D811C83A194839A900788155 /* JDHotelModel.m in Sources */,
 				D80A7EE819455EA60008E7CF /* JDSettingsViewController.m in Sources */,
 				A712034C1946A9EB004CFC3D /* JDMenuController.m in Sources */,
+				D87757AF196A94DF0055A1D6 /* JDOrderDetailCell.m in Sources */,
 				A76211301957C5AE0037C7E3 /* JDGestureRecognizer.m in Sources */,
 				D81E42CC19657E6F002F1B11 /* JDAboutusViewController.m in Sources */,
 				D81E42C019654D3D002F1B11 /* iVersion.m in Sources */,

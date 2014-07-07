@@ -11,6 +11,7 @@
 
 @interface JDHistoryOrderTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) UIView *centerView;
 @property (strong, nonatomic) UIImageView *orderImage;
 @property (strong, nonatomic) UILabel *orderTitle;
 @property (strong, nonatomic) UILabel *orderTime;

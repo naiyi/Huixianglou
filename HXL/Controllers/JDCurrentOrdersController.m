@@ -10,6 +10,7 @@
 #import "JDHXLArrayModel.h"
 #import "JDOrderModel.h"
 #import "JDCurrentOrderTableViewCell.h"
+#import "JDOrderDetailController.h"
 
 @interface JDCurrentOrdersController ()
 
@@ -59,6 +60,7 @@
     orderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 7.0, 320.0, self.contentView.frame.size.height - 20.0) style:UITableViewStylePlain];
     [orderTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [orderTableView setBackgroundColor:[UIColor clearColor]];
+    [orderTableView setShowsVerticalScrollIndicator:NO];
     [orderTableView setDelegate:self];
     [orderTableView setDataSource:self];
     [self.contentView addSubview:orderTableView];
@@ -89,6 +91,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80.0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    JDOrderDetailController *detailController = [[JDOrderDetailController alloc] initWithNibName:nil bundle:nil];
+    detailController.needGoodBad = NO;
+    detailController.order_id = [[orderDatas objectAtIndex:indexPath.row] order_id];
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 - (void)reloadData

@@ -19,6 +19,7 @@
         self.orderName = [[UILabel alloc] init];
         self.orderTime = [[UILabel alloc] init];
         self.orderDetail = [[UILabel alloc] init];
+        self.centerView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 80.0)];
     }
     return self;
 }
@@ -26,42 +27,44 @@
 - (void)layoutSubviews
 {
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:self.centerView];
     
     [self.orderImage setFrame:CGRectMake(240.0, 5.0, 55.0, 55.0)];
     [self.orderImage setImage:[UIImage imageNamed:@"hotel_bg"]];
-    [self addSubview:self.orderImage];
+    [self.centerView addSubview:self.orderImage];
     
     [self.orderTitle setFont:[UIFont systemFontOfSize:17.0]];
     [self.orderTitle setTextAlignment:NSTextAlignmentLeft];
     [self.orderTitle setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [self.orderTitle setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:self.orderTitle];
+    [self.centerView addSubview:self.orderTitle];
     
     [self.orderTime setFont:[UIFont systemFontOfSize:14.0]];
     [self.orderTime setTextAlignment:NSTextAlignmentLeft];
     [self.orderTime setTextColor:[UIColor whiteColor]];
     [self.orderTime setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:self.orderTime];
+    [self.centerView addSubview:self.orderTime];
     
     [self.orderName setFont:[UIFont systemFontOfSize:14.0]];
     [self.orderName setTextAlignment:NSTextAlignmentCenter];
     [self.orderName setTextColor:[UIColor whiteColor]];
     [self.orderName setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:self.orderName];
+    [self.centerView addSubview:self.orderName];
     
     [self.orderDetail setFont:[UIFont systemFontOfSize:14.0]];
     [self.orderDetail setTextAlignment:NSTextAlignmentLeft];
     [self.orderDetail setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
     [self.orderDetail setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:self.orderDetail];
+    [self.centerView addSubview:self.orderDetail];
 }
 
 - (void)setModel:(JDOrderModel *)model andBG:(int)index
 {
     if (index == 1) {
-        [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg2"]]];
+        [self.centerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg2"]]];
     } else {
-        [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg"]]];
+        [self.centerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"history_bg"]]];
     }
     
     self.orderModel = model;

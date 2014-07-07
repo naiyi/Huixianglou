@@ -12,6 +12,7 @@
 #import "JDHXLModel.h"
 #import "JDCurrentOrdersController.h"
 #import "JDHistoryOrdersController.h"
+#import "ASIFormDataRequest.h"
 
 @interface JDUserViewController ()
 
@@ -714,11 +715,45 @@
 	[picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 100.0);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     UIImage *compressedImage = [UIImage imageWithData:imageData];
     [userImage setImage:compressedImage];
+    [self saveImage:image WithName:@"temp_user_img.jpg"];
+}
+
+- (void)upLoadImage:(UIImage *)image
+{
+    NSURL *url = [NSURL URLWithString:SERVER_QUERY_URL];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+
+    [request setFile:[NSHomeDirectory() stringByAppendingString:@"Documents/temp_user_img.jpg"] forKey:@"image"];
+    [request setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"] objectForKey:@"tel"] forKeyPath:@"tel"];
+    [request buildPostBody];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    [request setDidFinishSelector:@selector(imagePostSuccess)];
+    [request setDidFailSelector:@selector(imagePostFailed)];
+}
+
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    [imageData writeToFile:fullPathToFile atomically:NO];
+}
+
+
+- (void)imagePostSuccess
+{
+    
+}
+
+- (void)imagePostFailed
+{
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

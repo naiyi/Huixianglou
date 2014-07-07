@@ -8,6 +8,7 @@
 
 #import "JDHistoryOrdersController.h"
 #import "JDHistoryOrderTableViewCell.h"
+#import "JDOrderDetailController.h"
 
 @interface JDHistoryOrdersController ()
 
@@ -55,8 +56,9 @@
 - (void)setContentView
 {
     [self.contentView setBackgroundColor:BACKGROUND_COLOR];
-    orderTableView = [[UITableView alloc] initWithFrame:CGRectMake(10.0, 12.0, 300.0, self.contentView.frame.size.height - 22.0) style:UITableViewStylePlain];
+    orderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 12.0, 320.0, self.contentView.frame.size.height - 22.0) style:UITableViewStylePlain];
     [orderTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [orderTableView setShowsVerticalScrollIndicator:NO];
     [orderTableView setBackgroundColor:[UIColor clearColor]];
     [orderTableView setDelegate:self];
     [orderTableView setDataSource:self];
@@ -91,6 +93,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80.0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    JDOrderDetailController *detailController = [[JDOrderDetailController alloc] initWithNibName:nil bundle:nil];
+    if ([[[orderDatas objectAtIndex:indexPath.row] status] integerValue] == 3) {
+        detailController.needGoodBad = YES;
+    } else {
+        detailController.needGoodBad = NO;
+    }
+    detailController.order_id = [[orderDatas objectAtIndex:indexPath.row] order_id];
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

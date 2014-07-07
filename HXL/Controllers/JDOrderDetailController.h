@@ -15,5 +15,6 @@
 }
 
 @property (nonatomic, strong) NSString *order_id;
+@property (nonatomic)BOOL needGoodBad;
 
 @end
