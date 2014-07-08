@@ -731,6 +731,7 @@
     [request setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"] objectForKey:@"tel"] forKeyPath:@"tel"];
     [request buildPostBody];
     [request setDelegate:self];
+    [request setTimeOutSeconds:5.0];
     [request startAsynchronous];
     [request setDidFinishSelector:@selector(imagePostSuccess)];
     [request setDidFailSelector:@selector(imagePostFailed)];

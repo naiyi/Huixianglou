@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UILabel *orderName;
 @property (strong, nonatomic) UILabel *orderDetail;
 @property (strong, nonatomic) JDOrderModel *orderModel;
+@property (nonatomic, strong) UILabel *orderState;
 
 - (void)setModel:(JDOrderModel *)model andBG:(int)index;
 

@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JDOrderDetailModel.h"
 
 @interface JDOrderDetailCell : UITableViewCell
+{
+    UIView *centerView;
+    UILabel *titleLabel;
+    UILabel *priceLabel;
+    UILabel *countLabel;
+    UIButton *goodButton;
+    UIButton *badButton;
+}
+
+- (void)setModel:(JDOrderDetailModel *)model andOrderID:(NSString *)order_id andIndex:(int)index;
+
+@property (nonatomic)BOOL needGoodBad;
+@property (nonatomic, strong)JDOrderDetailModel *model;
+@property (nonatomic, strong)NSString *order_id;
 
 @end

@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.orderImage = [[UIImageView alloc] init];
+        self.orderState = [[UILabel alloc] init];
         self.orderTitle = [[UILabel alloc] init];
         self.orderName = [[UILabel alloc] init];
         self.orderTime = [[UILabel alloc] init];
@@ -52,6 +53,12 @@
     [self.orderName setBackgroundColor:[UIColor clearColor]];
     [self.centerView addSubview:self.orderName];
     
+    [self.orderState setFont:[UIFont systemFontOfSize:12.0]];
+    [self.orderState setTextAlignment:NSTextAlignmentCenter];
+    [self.orderState setTextColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0]];
+    [self.orderState setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"order_state_bg"]]];
+    [self.centerView addSubview:self.orderState];
+    
     [self.orderDetail setFont:[UIFont systemFontOfSize:14.0]];
     [self.orderDetail setTextAlignment:NSTextAlignmentLeft];
     [self.orderDetail setTextColor:[UIColor colorWithRed:0.588 green:0.588 blue:0.588 alpha:1.0]];
@@ -80,6 +87,19 @@
     
     [self.orderName setFrame:CGRectMake(1.0, 30.0, 38.0, 21.0)];
     [self.orderName setText:model.diner_name];
+    
+    [self.orderState setFrame:CGRectMake(self.orderTitle.frame.size.width + 90.0, 15.0, 49.0, 14.0)];
+    if ([model.status isEqualToString:@"0"]) {
+        [self.orderState setText:@"等待确认"];
+    } else if ([model.status isEqualToString:@"1"]) {
+        [self.orderState setText:@"用户取消"];
+    } else if ([model.status isEqualToString:@"2"]) {
+        [self.orderState setText:@"商家取消"];
+    } else if ([model.status isEqualToString:@"3"]) {
+        [self.orderState setText:@"消费完成"];
+    } else if ([model.status isEqualToString:@"5"]) {
+        [self.orderState setText:@"预定成功"];
+    }
     
     size = [model.detail sizeWithFont:[UIFont systemFontOfSize:14.0]];
     [self.orderDetail setFrame:CGRectMake(80.0, 38.0, size.width, size.height)];
