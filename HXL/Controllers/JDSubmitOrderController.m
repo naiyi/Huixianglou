@@ -201,18 +201,12 @@
     [moreLabel setText:@"备注："];
     [centerView addSubview:moreLabel];
     
-    moreField = [[UITextField alloc] initWithFrame:CGRectMake(60.0, 275.0, 230.0, 60.0)];
+    moreField = [[UITextView alloc] initWithFrame:CGRectMake(60.0, 275.0, 230.0, 60.0)];
     moreField.layer.cornerRadius = 2;//设置视图圆角
     moreField.layer.masksToBounds = YES;
     CGColorRef cgColor = [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0].CGColor;
     moreField.layer.borderColor = cgColor;
     moreField.layer.borderWidth = 1.0;
-    [moreField setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 7.0, 60.0)]];
-    [moreField setLeftViewMode:UITextFieldViewModeAlways];
-    [moreField.leftView setUserInteractionEnabled:NO];
-    [moreField setRightView:[[UIView alloc] initWithFrame:CGRectMake(223.0, 0.0, 7.0, 60.0)]];
-    [moreField setRightViewMode:UITextFieldViewModeAlways];
-    [moreField.rightView setUserInteractionEnabled:NO];
     [moreField setTextColor:[UIColor colorWithRed:0.706 green:0.706 blue:0.706 alpha:1.0]];
     [moreField setFont:[UIFont systemFontOfSize:17.0]];
     [moreField setDelegate:self];
@@ -384,38 +378,7 @@
     }
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    if (!keyBoardShowing) {
-        return YES;
-    }
-    CGRect frame = bottomView.frame;
-    CGRect frame2 = centerView.frame;
-    int offset = frame.origin.y + 216.0;//键盘高度216
-    int offset2 = frame2.origin.y + 216.0;
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    float width = bottomView.frame.size.width;
-    float height = bottomView.frame.size.height;
-    float width2 = centerView.frame.size.width;
-    float height2 = centerView.frame.size.height;
-    if(offset > 0)
-    {
-        CGRect rect = CGRectMake(0.0f, offset, width, height);
-        CGRect rect2 = CGRectMake(10.0f, offset2, width2, height2);
-        bottomView.frame = rect;
-        centerView.frame = rect2;
-    }
-    [UIView commitAnimations];
-    keyBoardShowing = NO;
-    [textField resignFirstResponder];
-    return YES;
-}
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if (keyBoardShowing) {
         return;

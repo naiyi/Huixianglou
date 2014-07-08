@@ -8,6 +8,7 @@
 
 #import "JDSettingsViewController.h"
 #import "JDAboutusViewController.h"
+#import "JDFeedbackViewController.h"
 
 @interface JDSettingsViewController ()
 
@@ -81,6 +82,9 @@
     [feedbackLable setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [feedbackLable setTextAlignment:NSTextAlignmentLeft];
     [feedbackLable setText:@"意见反馈"];
+    UITapGestureRecognizer *feedback_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(feedBackClicked)];
+    [feedbackLable addGestureRecognizer:feedback_tap];
+    [feedbackLable setUserInteractionEnabled:YES];
     [settingItem2 addSubview:feedbackLable];
     clearLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 90.0, 285.0, 45.0)];
     [clearLabel setBackgroundColor:[UIColor clearColor]];
@@ -143,6 +147,12 @@
 {
     JDAboutusViewController *about_us = [[JDAboutusViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:about_us animated:YES];
+}
+
+- (void)feedBackClicked
+{
+    JDFeedbackViewController *feedback = [[JDFeedbackViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:feedback animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

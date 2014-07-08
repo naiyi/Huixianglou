@@ -8,6 +8,12 @@
 
 #import "JDHXLParentViewController.h"
 
-@interface JDFeedbackViewController : JDHXLParentViewController
+@interface JDFeedbackViewController : JDHXLParentViewController<UITextViewDelegate>
+{
+    UIView *bottomView;
+    UIButton *submitButton;
+    UITextView *contentField;
+    BOOL keyBoardShowing;
+}
 
 @end

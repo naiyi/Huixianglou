@@ -10,7 +10,7 @@
 #import "IZValueSelectorView.h"
 #import "JDDishModel.h"
 
-@interface JDSubmitOrderController : JDHXLParentViewController<IZValueSelectorViewDataSource, IZValueSelectorViewDelegate, UITextFieldDelegate>
+@interface JDSubmitOrderController : JDHXLParentViewController<IZValueSelectorViewDataSource, IZValueSelectorViewDelegate, UITextViewDelegate>
 {
     UIImageView *centerView;
     UIView *bottomView;
@@ -22,7 +22,7 @@
     NSMutableArray *dateArray;
     NSMutableArray *timeArray;
     
-    UITextField *moreField;
+    UITextView *moreField;
     
     IZValueSelectorView *dateSelector;
     IZValueSelectorView *timeSelector;

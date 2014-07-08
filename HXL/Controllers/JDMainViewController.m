@@ -332,7 +332,6 @@
     if (!decelerate) {
         float x = scrollView.contentOffset.x;
         imageindex = x / 320;
-        NSLog(@"%d", imageindex);
         if (!imageTimer) {
             imageTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(imageTimerStart) userInfo:nil repeats:NO];
         }
@@ -343,7 +342,6 @@
 {
     float x = scrollView.contentOffset.x;
     imageindex = x / 320;
-    NSLog(@"%d", imageindex);
     if (!imageTimer) {
         imageTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(imageTimerStart) userInfo:nil repeats:NO];
     }
