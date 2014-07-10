@@ -44,6 +44,7 @@
         DCKeyValueObjectMapping *mapper = [DCKeyValueObjectMapping mapperForClass:[JDHotelModel class]];
         self.hotelModel = [mapper parseDictionary:dataModel.data];
         self.hotelModel.hotel_id = [[params objectForKey:@"id"] integerValue];
+        
         [self setNetworkState:NETWORK_STATE_NORMAL];
     } failure:^(NSString *errorStr) {
         [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
@@ -153,7 +154,12 @@
 
 - (void)onAddrClicked
 {
-    
+    JDMapViewController *mapController = [[JDMapViewController alloc] initWithNibName:nil bundle:nil];
+    mapController.lon = [self.hotelModel.lon doubleValue];
+    mapController.lat = [self.hotelModel.lat doubleValue];
+    mapController.hotelTitle = @"汇湘楼";
+    mapController.hotelSubTitle = self.hotelModel.address;
+    [self.navigationController pushViewController:mapController animated:YES];
 }
 
 - (void)setupCountSelectView

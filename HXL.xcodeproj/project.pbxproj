@@ -138,6 +138,23 @@
 		D83CEAF3196BC9DC00AC8D68 /* JDOrderDetailBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D83CEAF2196BC9DC00AC8D68 /* JDOrderDetailBottomCell.m */; };
 		D83CEAF6196BDE0400AC8D68 /* order_state_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D83CEAF4196BDE0400AC8D68 /* order_state_bg.png */; };
 		D83CEAF7196BDE0400AC8D68 /* order_state_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D83CEAF5196BDE0400AC8D68 /* order_state_bg@2x.png */; };
+		D84221E3196E79E500CC5170 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221E2196E79E500CC5170 /* MAMapKit.framework */; };
+		D84221E5196E7A0900CC5170 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221E4196E7A0900CC5170 /* QuartzCore.framework */; };
+		D84221E7196E7A1900CC5170 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221E6196E7A1900CC5170 /* CoreLocation.framework */; };
+		D84221E9196E7A2700CC5170 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221E8196E7A2700CC5170 /* SystemConfiguration.framework */; };
+		D84221EB196E7A3700CC5170 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221EA196E7A3700CC5170 /* CoreTelephony.framework */; };
+		D84221ED196E7A4900CC5170 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221EC196E7A4900CC5170 /* libz.dylib */; };
+		D84221EF196E7A5500CC5170 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221EE196E7A5500CC5170 /* OpenGLES.framework */; };
+		D84221F1196E7A6D00CC5170 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221F0196E7A6D00CC5170 /* libstdc++.6.0.9.dylib */; };
+		D84221F3196E7A7900CC5170 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221F2196E7A7900CC5170 /* Security.framework */; };
+		D84221F6196E84A100CC5170 /* JDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84221F5196E84A100CC5170 /* JDMapViewController.m */; };
+		D84221F8196E9A9F00CC5170 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84221F7196E9A9F00CC5170 /* AMapSearchKit.framework */; };
+		D84221FD196E9B2600CC5170 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D84221FA196E9B2600CC5170 /* CommonUtility.m */; };
+		D84221FE196E9B2600CC5170 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = D84221FC196E9B2600CC5170 /* LineDashPolyline.m */; };
+		D8422200196EA12D00CC5170 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D84221FF196EA12D00CC5170 /* AMap.bundle */; };
+		D8422203196EA68200CC5170 /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = D8422201196EA68200CC5170 /* endPoint.png */; };
+		D8422204196EA68200CC5170 /* endPoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8422202196EA68200CC5170 /* endPoint@2x.png */; };
+		D8422207196EBDD100CC5170 /* GeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D8422206196EBDD100CC5170 /* GeocodeAnnotation.m */; };
 		D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84807A91945492A001573F9 /* JDHXLParentViewController.m */; };
 		D8495464196107D90016F863 /* JDSubmitOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8495463196107D90016F863 /* JDSubmitOrderController.m */; };
 		D849546919611AD90016F863 /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = D849546519611AD90016F863 /* tab.png */; };
@@ -359,6 +376,27 @@
 		D83CEAF2196BC9DC00AC8D68 /* JDOrderDetailBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOrderDetailBottomCell.m; sourceTree = "<group>"; };
 		D83CEAF4196BDE0400AC8D68 /* order_state_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_state_bg.png; sourceTree = "<group>"; };
 		D83CEAF5196BDE0400AC8D68 /* order_state_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_state_bg@2x.png"; sourceTree = "<group>"; };
+		D84221E2196E79E500CC5170 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = HXL/MAMapKit.framework; sourceTree = "<group>"; };
+		D84221E4196E7A0900CC5170 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D84221E6196E7A1900CC5170 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D84221E8196E7A2700CC5170 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D84221EA196E7A3700CC5170 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D84221EC196E7A4900CC5170 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D84221EE196E7A5500CC5170 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D84221F0196E7A6D00CC5170 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		D84221F2196E7A7900CC5170 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D84221F4196E84A100CC5170 /* JDMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMapViewController.h; sourceTree = "<group>"; };
+		D84221F5196E84A100CC5170 /* JDMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMapViewController.m; sourceTree = "<group>"; };
+		D84221F7196E9A9F00CC5170 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = HXL/AMapSearchKit.framework; sourceTree = "<group>"; };
+		D84221F9196E9B2600CC5170 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		D84221FA196E9B2600CC5170 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
+		D84221FB196E9B2600CC5170 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		D84221FC196E9B2600CC5170 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
+		D84221FF196EA12D00CC5170 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		D8422201196EA68200CC5170 /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
+		D8422202196EA68200CC5170 /* endPoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endPoint@2x.png"; sourceTree = "<group>"; };
+		D8422205196EBDD100CC5170 /* GeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeAnnotation.h; sourceTree = "<group>"; };
+		D8422206196EBDD100CC5170 /* GeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeAnnotation.m; sourceTree = "<group>"; };
 		D84807A81945492A001573F9 /* JDHXLParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDHXLParentViewController.h; sourceTree = "<group>"; };
 		D84807A91945492A001573F9 /* JDHXLParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDHXLParentViewController.m; sourceTree = "<group>"; };
 		D8495462196107D90016F863 /* JDSubmitOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSubmitOrderController.h; sourceTree = "<group>"; };
@@ -414,6 +452,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84221F8196E9A9F00CC5170 /* AMapSearchKit.framework in Frameworks */,
+				D84221F3196E7A7900CC5170 /* Security.framework in Frameworks */,
+				D84221F1196E7A6D00CC5170 /* libstdc++.6.0.9.dylib in Frameworks */,
+				D84221EF196E7A5500CC5170 /* OpenGLES.framework in Frameworks */,
+				D84221ED196E7A4900CC5170 /* libz.dylib in Frameworks */,
+				D84221EB196E7A3700CC5170 /* CoreTelephony.framework in Frameworks */,
+				D84221E9196E7A2700CC5170 /* SystemConfiguration.framework in Frameworks */,
+				D84221E7196E7A1900CC5170 /* CoreLocation.framework in Frameworks */,
+				D84221E5196E7A0900CC5170 /* QuartzCore.framework in Frameworks */,
+				D84221E3196E79E500CC5170 /* MAMapKit.framework in Frameworks */,
 				2DBA44F4194146FB00F73B66 /* CoreGraphics.framework in Frameworks */,
 				2DBA44F6194146FB00F73B66 /* UIKit.framework in Frameworks */,
 				2DBA44F2194146FB00F73B66 /* Foundation.framework in Frameworks */,
@@ -437,6 +485,7 @@
 		2DBA44E5194146FA00F73B66 = {
 			isa = PBXGroup;
 			children = (
+				D84221FF196EA12D00CC5170 /* AMap.bundle */,
 				2DBA44F7194146FB00F73B66 /* HXL */,
 				2DBA4503194146FB00F73B66 /* Images.xcassets */,
 				2DBA4510194146FC00F73B66 /* HXLTests */,
@@ -458,6 +507,16 @@
 		2DBA44F0194146FB00F73B66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D84221F7196E9A9F00CC5170 /* AMapSearchKit.framework */,
+				D84221F2196E7A7900CC5170 /* Security.framework */,
+				D84221F0196E7A6D00CC5170 /* libstdc++.6.0.9.dylib */,
+				D84221EE196E7A5500CC5170 /* OpenGLES.framework */,
+				D84221EC196E7A4900CC5170 /* libz.dylib */,
+				D84221EA196E7A3700CC5170 /* CoreTelephony.framework */,
+				D84221E8196E7A2700CC5170 /* SystemConfiguration.framework */,
+				D84221E6196E7A1900CC5170 /* CoreLocation.framework */,
+				D84221E4196E7A0900CC5170 /* QuartzCore.framework */,
+				D84221E2196E79E500CC5170 /* MAMapKit.framework */,
 				2DBA44F1194146FB00F73B66 /* Foundation.framework */,
 				2DBA44F3194146FB00F73B66 /* CoreGraphics.framework */,
 				2DBA44F5194146FB00F73B66 /* UIKit.framework */,
@@ -559,6 +618,12 @@
 		D82BE58B19482BB40051CB09 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D8422205196EBDD100CC5170 /* GeocodeAnnotation.h */,
+				D8422206196EBDD100CC5170 /* GeocodeAnnotation.m */,
+				D84221F9196E9B2600CC5170 /* CommonUtility.h */,
+				D84221FA196E9B2600CC5170 /* CommonUtility.m */,
+				D84221FB196E9B2600CC5170 /* LineDashPolyline.h */,
+				D84221FC196E9B2600CC5170 /* LineDashPolyline.m */,
 				D81E42BE19654D3D002F1B11 /* iVersion.h */,
 				D81E42BF19654D3D002F1B11 /* iVersion.m */,
 				D8D4186F194986BA00471D40 /* STKeychain.h */,
@@ -621,6 +686,8 @@
 				D81E42CB19657E6F002F1B11 /* JDAboutusViewController.m */,
 				D81E42CD19657E7F002F1B11 /* JDFeedbackViewController.h */,
 				D81E42CE19657E7F002F1B11 /* JDFeedbackViewController.m */,
+				D84221F4196E84A100CC5170 /* JDMapViewController.h */,
+				D84221F5196E84A100CC5170 /* JDMapViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -628,6 +695,8 @@
 		D82CF4671941C17F00022E33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8422201196EA68200CC5170 /* endPoint.png */,
+				D8422202196EA68200CC5170 /* endPoint@2x.png */,
 				D83CEAF4196BDE0400AC8D68 /* order_state_bg.png */,
 				D83CEAF5196BDE0400AC8D68 /* order_state_bg@2x.png */,
 				D82B5A87196B9C1B00981B78 /* detail_top1.png */,
@@ -851,12 +920,14 @@
 				D859A1DF196B836F00F9A932 /* good_selected@2x.png in Resources */,
 				D82463331963F3C50095CAA7 /* history_bg2.png in Resources */,
 				D859A1D9196B836F00F9A932 /* bad_normal@2x.png in Resources */,
+				D8422200196EA12D00CC5170 /* AMap.bundle in Resources */,
 				A7228F0819512C31007AF87C /* dish_like.png in Resources */,
 				D80A7EE319455C330008E7CF /* user_btn_bg@2x.png in Resources */,
 				D83CEAF7196BDE0400AC8D68 /* order_state_bg@2x.png in Resources */,
 				D8D418691949380100471D40 /* notavilable_bg.png in Resources */,
 				A7597F0219542534006DB4BA /* dish_add1.png in Resources */,
 				D85473391962C6FD00D00214 /* upshadow@2x.png in Resources */,
+				D8422203196EA68200CC5170 /* endPoint.png in Resources */,
 				D81E42C619656AEF002F1B11 /* start_btn_bg_r@2x.png in Resources */,
 				D859A1DE196B836F00F9A932 /* good_selected.png in Resources */,
 				D83CEAF6196BDE0400AC8D68 /* order_state_bg.png in Resources */,
@@ -872,6 +943,7 @@
 				D80A7EF3194560B30008E7CF /* back_btn_bg.png in Resources */,
 				D859A1DD196B836F00F9A932 /* good_normal@2x.png in Resources */,
 				D80A7EE219455C330008E7CF /* telephone_icon@2x.png in Resources */,
+				D8422204196EA68200CC5170 /* endPoint@2x.png in Resources */,
 				2DBA44FC194146FB00F73B66 /* InfoPlist.strings in Resources */,
 				D8B71DFE196651D80060E58C /* start_btn_bg_trans.png in Resources */,
 				D82736B719503CFB009E3468 /* divider_v@2x.png in Resources */,
@@ -1008,6 +1080,7 @@
 				D8212E9B19619B960085C0B2 /* IZValueSelectorView.m in Sources */,
 				D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */,
 				D86D42A219591ADF00D32692 /* JDHistoryOrdersController.m in Sources */,
+				D84221FD196E9B2600CC5170 /* CommonUtility.m in Sources */,
 				D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */,
 				D82BE59719482C460051CB09 /* JDOWebClient.m in Sources */,
 				D84807AA1945492A001573F9 /* JDHXLParentViewController.m in Sources */,
@@ -1030,6 +1103,8 @@
 				A75BC753194AD6920052CD3E /* JDODataModel.m in Sources */,
 				D82BE59519482C460051CB09 /* JDOHttpClient.m in Sources */,
 				A75BC752194AD6920052CD3E /* JDOArrayModel.m in Sources */,
+				D8422207196EBDD100CC5170 /* GeocodeAnnotation.m in Sources */,
+				D84221F6196E84A100CC5170 /* JDMapViewController.m in Sources */,
 				D80DF6FD195D513100AF9BCF /* JDHXLArrayModel.m in Sources */,
 				A72636CC1959572100BD3E72 /* JDDishDetailView.m in Sources */,
 				D8495464196107D90016F863 /* JDSubmitOrderController.m in Sources */,
@@ -1040,6 +1115,7 @@
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D81E42CF19657E7F002F1B11 /* JDFeedbackViewController.m in Sources */,
 				D80DF701195D596600AF9BCF /* JDCurrentOrderTableViewCell.m in Sources */,
+				D84221FE196E9B2600CC5170 /* LineDashPolyline.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,
 				A758E68119519B9000374F8F /* JDDishTypeView.m in Sources */,
 				D82E7001196628C0006C2FF1 /* JDOrderDetailModel.m in Sources */,
@@ -1163,6 +1239,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HXL",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXL/HXL-Prefix.pch";
 				INFOPLIST_FILE = "HXL/HXL-Info.plist";
@@ -1180,6 +1260,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yantai Jiaodong Online Network Media Co., Ltd (5BA6RP6GDL)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HXL",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXL/HXL-Prefix.pch";
 				INFOPLIST_FILE = "HXL/HXL-Info.plist";

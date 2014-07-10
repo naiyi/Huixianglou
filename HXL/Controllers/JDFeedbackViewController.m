@@ -73,7 +73,6 @@
 {
     if (([contentField text])&&([contentField text].length > 0)) {
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        [params setObject:@"1" forKey:@"id"];
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"]) {
             [params setObject:[[[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"] objectForKey:@"tel"] forKey:@"tel"];
             [params setObject:[[[NSUserDefaults standardUserDefaults] objectForKey:@"user_info"] objectForKey:@"nick_name"] forKey:@"nick_names"];
@@ -81,7 +80,16 @@
             [params setObject:@"" forKey:@"tel"];
             [params setObject:@"匿名用户" forKey:@"nick_names"];
         }
+        [params setObject:[contentField text] forKey:@"content"];
         
+        [[JDOHttpClient sharedClient] getJSONByServiceName:FEEDBACK modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
+            if ([(NSNumber *)dataModel.data integerValue] == 1) {
+                [self showToast:@"提交成功"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        } failure:^(NSString *errorStr) {
+            [self showToast:@"提交失败，请检查网络"];
+        }];
     } else {
         [self showToast:@"请填写意见"];
     }

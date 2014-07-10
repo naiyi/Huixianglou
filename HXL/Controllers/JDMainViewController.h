@@ -12,6 +12,7 @@
 #import "JDHotelModel.h"
 #import "JDHXLModel.h"
 #import "V8HorizontalPickerView.h"
+#import "JDMapViewController.h"
 
 @interface JDMainViewController : JDHXLParentViewController<V8HorizontalPickerViewDataSource, V8HorizontalPickerViewDelegate, UIScrollViewDelegate>
 {

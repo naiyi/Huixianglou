@@ -17,8 +17,8 @@
         self.address = [aDecoder decodeObjectForKey:@"address"];
         self.tel = [aDecoder decodeObjectForKey:@"tel"];
         self.max = [aDecoder decodeIntForKey:@"max"];
-        self.lon = [aDecoder decodeIntForKey:@"lon"];
-        self.lat = [aDecoder decodeIntForKey:@"lat"];
+        self.lon = [aDecoder decodeObjectForKey:@"lon"];
+        self.lat = [aDecoder decodeObjectForKey:@"lat"];
         self.about_us = [aDecoder decodeObjectForKey:@"about_us"];
         self.time = [aDecoder decodeObjectForKey:@"times"];
         self.img = [aDecoder decodeObjectForKey:@"img"];
@@ -31,8 +31,8 @@
     [aCoder encodeObject:self.address forKey:@"address"];
     [aCoder encodeObject:self.tel forKey:@"tel"];
     [aCoder encodeInt:self.max forKey:@"max"];
-    [aCoder encodeInt:self.lon forKey:@"lon"];
-    [aCoder encodeInt:self.lat forKey:@"lat"];
+    [aCoder encodeObject:self.lon forKey:@"lon"];
+    [aCoder encodeObject:self.lat forKey:@"lat"];
     [aCoder encodeObject:self.about_us forKey:@"about_us"];
     [aCoder encodeObject:self.time forKey:@"time"];
     [aCoder encodeObject:self.img forKey:@"img"];

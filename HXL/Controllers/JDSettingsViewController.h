@@ -8,7 +8,7 @@
 
 #import "JDHXLParentViewController.h"
 
-@interface JDSettingsViewController : JDHXLParentViewController
+@interface JDSettingsViewController : JDHXLParentViewController<UIAlertViewDelegate>
 {
     UIView *settingItem1;
     UIView *settingItem2;

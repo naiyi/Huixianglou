@@ -15,8 +15,8 @@
 @property (nonatomic) int max;
 @property (nonatomic,strong) NSArray *time;
 @property (nonatomic,strong) NSArray *img;
-@property (nonatomic) int lon;
-@property (nonatomic) int lat;
+@property (nonatomic,strong) NSString *lon;
+@property (nonatomic,strong) NSString *lat;
 @property (nonatomic,strong) NSString *about_us;
 @property (nonatomic) int hotel_id;
 

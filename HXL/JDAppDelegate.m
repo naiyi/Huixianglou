@@ -9,6 +9,7 @@
 #import "JDAppDelegate.h"
 #import "JDMainViewController.h"
 #import "iVersion.h"
+#import <MAMapKit/MAMapKit.h>
 
 @implementation JDAppDelegate
 
@@ -17,6 +18,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     [self checkForUpdate];
+    
+    [MAMapServices sharedServices].apiKey = @"eb36708956f817a1bd9b65af142918c4";
+    
     return YES;
 }
 
