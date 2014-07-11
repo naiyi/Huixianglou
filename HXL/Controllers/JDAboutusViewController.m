@@ -30,10 +30,10 @@
     [self setNavigationLeftButtonWithImage:[UIImage imageNamed:@"back_btn_bg"] Target:self Action:@selector(onBackButtonClicked)];
     
     [self setNetworkState:NETWORK_STATE_LOADING];
-    NSDictionary *params = @{@"hotel_id" : @"1"};
+    NSDictionary *params = @{@"id" : @"1"};
     [[JDOHttpClient sharedClient] getJSONByServiceName:ABOUT_US modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
-        [self setNetworkState:NETWORK_STATE_NORMAL];
         about_us = (NSString *)dataModel.data;
+        [self setNetworkState:NETWORK_STATE_NORMAL];
     } failure:^(NSString *errorStr) {
         [self setNetworkState:NETWORK_STATE_NOTAVILABLE];
     }];
@@ -50,17 +50,17 @@
     [aboutLabel setNumberOfLines:0];
     [aboutLabel setBackgroundColor:[UIColor clearColor]];
     if (about_us) {
-        UIFont *font = [UIFont systemFontOfSize:14.0];
+        UIFont *font = [UIFont systemFontOfSize:15.0];
         CGSize size = CGSizeMake(300,2000);
         CGSize labelsize = [about_us sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
         aboutLabel.frame = CGRectMake(0.0, 0.0, labelsize.width, labelsize.height );
-        aboutLabel.backgroundColor = [UIColor purpleColor];
+        aboutLabel.backgroundColor = [UIColor clearColor];
         aboutLabel.textColor = [UIColor blackColor];
         aboutLabel.text = about_us;
         aboutLabel.font = font;
     }
     
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(10.0, 160.0, 300.0, self.contentView.frame.size.height - 170.0)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(15.0, 160.0, 300.0, self.contentView.frame.size.height - 175.0)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setContentSize:aboutLabel.frame.size];
     [scrollView addSubview:aboutLabel];
