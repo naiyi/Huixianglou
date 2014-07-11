@@ -130,6 +130,7 @@
 		D82CF4621941B54200022E33 /* JDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4611941B54200022E33 /* JDMainViewController.m */; };
 		D82CF4661941BE5200022E33 /* JDUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CF4651941BE5200022E33 /* JDUserViewController.m */; };
 		D82E7001196628C0006C2FF1 /* JDOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D82E7000196628C0006C2FF1 /* JDOrderDetailModel.m */; };
+		D82EBB67196F64900048E8DF /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EBB66196F64900048E8DF /* iRate.m */; };
 		D83BCA7119580FF700903AE7 /* JDUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D83BCA7019580FF700903AE7 /* JDUserModel.m */; };
 		D83BCA7619582E6200903AE7 /* user_info_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D83BCA7219582E6200903AE7 /* user_info_bg.png */; };
 		D83BCA7719582E6200903AE7 /* user_info_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D83BCA7319582E6200903AE7 /* user_info_bg@2x.png */; };
@@ -366,6 +367,8 @@
 		D82CF4651941BE5200022E33 /* JDUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDUserViewController.m; sourceTree = "<group>"; };
 		D82E6FFF196628C0006C2FF1 /* JDOrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOrderDetailModel.h; sourceTree = "<group>"; };
 		D82E7000196628C0006C2FF1 /* JDOrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOrderDetailModel.m; sourceTree = "<group>"; };
+		D82EBB65196F64900048E8DF /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		D82EBB66196F64900048E8DF /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		D83BCA6F19580FF700903AE7 /* JDUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDUserModel.h; sourceTree = "<group>"; };
 		D83BCA7019580FF700903AE7 /* JDUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDUserModel.m; sourceTree = "<group>"; };
 		D83BCA7219582E6200903AE7 /* user_info_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info_bg.png; sourceTree = "<group>"; };
@@ -618,6 +621,8 @@
 		D82BE58B19482BB40051CB09 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D82EBB65196F64900048E8DF /* iRate.h */,
+				D82EBB66196F64900048E8DF /* iRate.m */,
 				D8422205196EBDD100CC5170 /* GeocodeAnnotation.h */,
 				D8422206196EBDD100CC5170 /* GeocodeAnnotation.m */,
 				D84221F9196E9B2600CC5170 /* CommonUtility.h */,
@@ -1114,6 +1119,7 @@
 				D82BE59619482C460051CB09 /* JDOJsonClient.m in Sources */,
 				A71203491946954A004CFC3D /* JDDishModel.m in Sources */,
 				D81E42CF19657E7F002F1B11 /* JDFeedbackViewController.m in Sources */,
+				D82EBB67196F64900048E8DF /* iRate.m in Sources */,
 				D80DF701195D596600AF9BCF /* JDCurrentOrderTableViewCell.m in Sources */,
 				D84221FE196E9B2600CC5170 /* LineDashPolyline.m in Sources */,
 				D84DF96F19483E5D001B266E /* JDHXLModel.m in Sources */,

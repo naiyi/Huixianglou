@@ -665,7 +665,7 @@
     
     [response.geocodes enumerateObjectsUsingBlock:^(AMapGeocode *obj, NSUInteger idx, BOOL *stop) {
         GeocodeAnnotation *geocodeAnnotation = [[GeocodeAnnotation alloc] initWithGeocode:obj];
-        
+        self.startCoordinate = CLLocationCoordinate2DMake(obj.location.latitude, obj.location.longitude);
         [annotations addObject:geocodeAnnotation];
     }];
     

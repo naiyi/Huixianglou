@@ -9,6 +9,7 @@
 #import "JDAppDelegate.h"
 #import "JDMainViewController.h"
 #import "iVersion.h"
+#import "iRate.h"
 #import <MAMapKit/MAMapKit.h>
 
 @implementation JDAppDelegate
@@ -83,6 +84,15 @@
     // 由于视图层级的原因,在程序内弹出appstore会被覆盖到下层导致看不到
     [iVersion sharedInstance].displayAppUsingStorekitIfAvailable = false;
     //[iVersion sharedInstance].checkAtLaunch = NO;
+    
+    [iRate sharedInstance].verboseLogging = false;
+    [iRate sharedInstance].appStoreCountry = @"CN";
+    [iRate sharedInstance].applicationName = @"汇湘楼客户端";
+    //    [iRate sharedInstance].daysUntilPrompt = 10;
+    //    [iRate sharedInstance].usesUntilPrompt = 10;
+	[iRate sharedInstance].onlyPromptIfLatestVersion = false;
+    [iRate sharedInstance].displayAppUsingStorekitIfAvailable = false;
+    [iRate sharedInstance].promptAtLaunch = NO;
 }
 
 

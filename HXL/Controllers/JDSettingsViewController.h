@@ -7,6 +7,8 @@
 //
 
 #import "JDHXLParentViewController.h"
+#import "iRate.h"
+#import "MBProgressHUD.h"
 
 @interface JDSettingsViewController : JDHXLParentViewController<UIAlertViewDelegate>
 {
@@ -25,5 +27,7 @@
     
     UIView *bottomView;
     UIButton *logoutButton;
+    
+    MBProgressHUD *HUD;
 }
 @end

@@ -133,6 +133,9 @@
     [scoreLabel setTextColor:[UIColor colorWithRed:0.392 green:0.235 blue:0.196 alpha:1.0]];
     [scoreLabel setTextAlignment:NSTextAlignmentLeft];
     [scoreLabel setText:@"给我打分"];
+    UITapGestureRecognizer *rate_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(promptForRating)];
+    [scoreLabel addGestureRecognizer:rate_tap];
+    [scoreLabel setUserInteractionEnabled:YES];
     [settingItem3 addSubview:scoreLabel];
     [self.contentView addSubview:settingItem3];
     
@@ -212,6 +215,37 @@
         [JDHXLUtil deleteURLCacheDirectory];    // URL在sqlite的缓存(cache.db)
         [clearEdit setText:@"0.00K"];
     }
+}
+
+#pragma mark - 评价应用相关
+- (void)promptForRating{
+    
+    [[iRate sharedInstance] promptIfNetworkAvailable];
+    HUD = [[MBProgressHUD alloc] initWithView:self.contentView];
+    [self.contentView addSubview:HUD];
+    HUD.margin = 15.f;
+    HUD.removeFromSuperViewOnHide = true;
+    HUD.labelText = @"连接AppStore";
+    [HUD show:true];
+}
+
+- (void)iRateCouldNotConnectToAppStore:(NSError *)error{
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"status_icon_error"]];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"无法连接";
+    [HUD hide:true afterDelay:1.0];
+    HUD = nil;
+}
+
+- (BOOL)iRateShouldPromptForRating{
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"status_icon_success"]];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"连接成功";
+    [HUD hide:true afterDelay:1.0];
+    HUD = nil;
+    [[iRate sharedInstance] performSelector:@selector(openRatingsPageInAppStore) withObject:nil afterDelay:1.0f];
+    //    [[iRate sharedInstance] openRatingsPageInAppStore];
+    return false;
 }
 
 - (void)didReceiveMemoryWarning
