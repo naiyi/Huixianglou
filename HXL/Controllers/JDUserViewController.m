@@ -14,7 +14,7 @@
 #import "JDHistoryOrdersController.h"
 #import "ASIFormDataRequest.h"
 
-@interface JDUserViewController ()
+@interface JDUserViewController () <UIGestureRecognizerDelegate>
 
 @end
 
@@ -61,6 +61,7 @@
     [centerView setUserInteractionEnabled:YES];
     [centerView setImage:[UIImage imageNamed:@"login_bg"]];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    tapGesture.delegate = self;
     [centerView addGestureRecognizer:tapGesture];
     [self.contentView addSubview:centerView];
     
@@ -70,7 +71,7 @@
     [nameLabel setTextAlignment:NSTextAlignmentLeft];
     [nameLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
     [centerView addSubview:nameLabel];
-    nameField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 12.0, 150.0, 17.0)];
+    nameField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 10.0, 150.0, 21.0)];
     [nameField setPlaceholder:@"请输入名字"];
     [nameField setFont:[UIFont systemFontOfSize:16.0]];
     [nameField setTextAlignment:NSTextAlignmentLeft];
@@ -86,7 +87,7 @@
     [telLabel setTextAlignment:NSTextAlignmentLeft];
     [telLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
     [centerView addSubview:telLabel];
-    telField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 51.0, 150.0, 17.0)];
+    telField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 49.0, 150.0, 21.0)];
     [telField setPlaceholder:@"请输入电话"];
     [telField setFont:[UIFont systemFontOfSize:16.0]];
     [telField setTextAlignment:NSTextAlignmentLeft];
@@ -103,7 +104,7 @@
     [codeLabel setTextAlignment:NSTextAlignmentLeft];
     [codeLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];
     [centerView addSubview:codeLabel];
-    codeField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 89.0, 100.0, 17.0)];
+    codeField = [[UITextField alloc] initWithFrame:CGRectMake(90.0, 87.0, 100.0, 21.0)];
     [codeField setPlaceholder:@"请输入验证码"];
     [codeField setFont:[UIFont systemFontOfSize:16.0]];
     [codeField setTextAlignment:NSTextAlignmentLeft];
@@ -114,13 +115,14 @@
     UIImageView *divider4 = [[UIImageView alloc] initWithFrame:CGRectMake(200.0, 78.0, 1.0, 38.0)];
     [divider4 setImage:[UIImage imageNamed:@"divider_v"]];
     [centerView addSubview:divider4];
-    codeButton = [[UIButton alloc] initWithFrame:CGRectMake(201.0, 89.0, 99.0, 38.0)];
+    codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    codeButton.frame = CGRectMake(201.0, 78.0, 99.0, 38.0);
     [codeButton setBackgroundColor:[UIColor clearColor]];
     [codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [codeButton setTitleColor:[UIColor colorWithRed:0.765 green:0.039 blue:0.039 alpha:1.0] forState:UIControlStateNormal];
-    [codeButton setTitleEdgeInsets:UIEdgeInsetsMake(-20.0, 0.0, 0.0, 0.0)];
+//    [codeButton setTitleEdgeInsets:UIEdgeInsetsMake(-20.0, 0.0, 0.0, 0.0)];
     [[codeButton titleLabel] setFont:[UIFont systemFontOfSize:16.0]];
-    [codeButton addTarget:self action:@selector(onCodeButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [codeButton addTarget:self action:@selector(onCodeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [centerView addSubview:codeButton];
     UIImageView *divider3 = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 115.0, 300.0, 1.0)];
     [divider3 setImage:[UIImage imageNamed:@"divider"]];
@@ -137,6 +139,18 @@
                                               object:codeField];
     
     [self setupBottomView];
+}
+
+/*
+ 在一个视图也就是UIView上添加一个手势，然后又在这个Ｖiew上添加一个UIButton，然后给按钮添加事件，不管是点击按钮还是视图上的别的地方执行的都是手势所拥有的方法，是手势把按钮的方法给屏蔽了，正确的解决方法是给手势设置代理，然后在代理中进行判断如果点击事件是由Button执行的，那就不执行手势，那么系统会调用按钮所拥有的方法。具体的如下：
+ */
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if([touch.view isKindOfClass:[UIButton class]])
+    {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)hideKeyboard
@@ -222,7 +236,7 @@
     [toast show];
 }
 
-- (void)onCodeButtonClicked
+- (void)onCodeButtonClicked:(UIButton *)btn
 {
     [self hideKeyboard];
     if (![JDHXLUtil isMobileNumber:[telField text]]) {
@@ -252,7 +266,7 @@
 - (void)timerStart
 {
     if (timerindex > 0) {
-        [codeButton setTitleColor:[UIColor colorWithRed:0.941 green:0.941 blue:0.941 alpha:1.0] forState:UIControlStateNormal];
+        [codeButton setTitleColor:[UIColor colorWithRed:0.841 green:0.841 blue:0.841 alpha:1.0] forState:UIControlStateNormal];
         [codeButton setTitle:[NSString stringWithFormat:@"重试（%d）", timerindex] forState:UIControlStateNormal];
         timerindex--;
         codeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerStart) userInfo:nil repeats:NO];

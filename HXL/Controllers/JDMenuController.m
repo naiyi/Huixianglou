@@ -195,7 +195,7 @@
     _sort.selected = TRUE;
     _sort_bycomment.selected = false;
     _sort_bysale.selected = false;
-    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"sort" ascending:NO];
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"sort" ascending:YES];
     NSArray *descriptors = [NSArray arrayWithObjects:sorter,nil];
     for (int i=0; i<dishes.count; i++) {
         [[dishes objectAtIndex:i] sortUsingDescriptors:descriptors];
@@ -278,11 +278,13 @@
         }
         if (indexPath.row == selectPos) {
             cell.backgroundColor = [UIColor whiteColor];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
             cell.textLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:60.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
             cell.countLabel.textColor = [UIColor whiteColor];
             cell.count_bg.image = [UIImage imageNamed:@"dishtype_ordernumber_bg"];
         } else {
             cell.backgroundColor = [UIColor clearColor];
+            cell.contentView.backgroundColor = [UIColor clearColor];
             cell.textLabel.textColor = [UIColor colorWithRed:250.0f/255.0f green:235.0f/255.0f blue:100.0f/255.0f alpha:1.0f];
             cell.countLabel.textColor = [UIColor colorWithRed:195.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
             cell.count_bg.image = [UIImage imageNamed:@"dishtype_ordernumber_bg2"];
@@ -454,10 +456,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _left) {
-        selectPos = indexPath.row;
+//        selectPos = indexPath.row;
         NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
         [_right scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:true];
-        [_left reloadData];
+//        [_left reloadData];
     } else if(tableView == _right){
         JDDishModel *dish = (JDDishModel *)[[dishes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         if ([dish.status isEqualToString:@"正常"]) {

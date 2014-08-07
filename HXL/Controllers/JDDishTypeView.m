@@ -23,4 +23,10 @@
     return self;
 }
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    // 非选中状态会挡住右上角的数字角标，原因未知。。。
+    [self.contentView sendSubviewToBack:self.textLabel];
+}
+
 @end

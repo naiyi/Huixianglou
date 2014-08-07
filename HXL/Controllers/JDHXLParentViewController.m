@@ -37,9 +37,11 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IS_iOS7 ? @"navigation_bg" : @"navigation_bg_44"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
+        [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    }
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(118.5, 10.0, 83.0, 25.0)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(113.5, 10.0, 93.0, 25.0)];
     [self.titleLabel setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.titleLabel setTextColor:[UIColor colorWithRed:0.427 green:0.361 blue:0.333 alpha:1.0]];

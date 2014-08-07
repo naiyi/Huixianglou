@@ -270,7 +270,7 @@
     [params setObject:dishString forKey:@"dish"];
     
     [[JDOHttpClient sharedClient] getJSONByServiceName:CREATE_ORDER modelClass:@"JDHXLModel" params:params success:^(JDHXLModel *dataModel) {
-        if ([(NSNumber *)dataModel.data integerValue] == 0) {
+        if ([(NSNumber *)dataModel.status integerValue] == 0) {
             [self showToast:@"订单提交成功"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
